@@ -6,14 +6,22 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+-2.0.0
 
 * System dependencies
+
 
 * Configuration
 
 * Database creation
+```
+rake db:setup
+```
 
 * Database initialization
+```
+rake db:migrate
+```
 
 * How to run the test suite
 
