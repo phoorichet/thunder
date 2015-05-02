@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502143739) do
+ActiveRecord::Schema.define(version: 20150502152105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addons", force: :cascade do |t|
+    t.integer  "contract_id"
+    t.integer  "rider_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.string   "house_number"
@@ -34,9 +41,11 @@ ActiveRecord::Schema.define(version: 20150502143739) do
     t.integer  "insured_user_id"
     t.datetime "begin_at"
     t.datetime "end_at"
-    t.integer  "book_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "rider_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "number"
+    t.integer  "main_insurance_id"
   end
 
   create_table "coverages", force: :cascade do |t|
