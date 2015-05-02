@@ -1,3 +1,4 @@
 class Rider < ActiveRecord::Base
-	has_many :items
+	has_many :premia
+	has_many :coverages
 end
