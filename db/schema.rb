@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430194050) do
+ActiveRecord::Schema.define(version: 20150501183149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,16 +30,13 @@ ActiveRecord::Schema.define(version: 20150430194050) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string   "name"
+  create_table "contracts", force: :cascade do |t|
+    t.integer  "insured_user_id"
     t.datetime "begin_at"
     t.datetime "end_at"
-    t.string   "number"
-    t.string   "description"
-    t.string   "status"
-    t.string   "book_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "book_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "insured_users", force: :cascade do |t|
@@ -50,6 +47,21 @@ ActiveRecord::Schema.define(version: 20150430194050) do
     t.string   "marital_status"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "ancestry"
+  end
+
+  add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "item_type"
+    t.float    "premium_amount"
+    t.float    "coverage_amount"
+    t.integer  "rider_id"
+    t.integer  "book_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "riders", force: :cascade do |t|

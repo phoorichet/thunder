@@ -46,3 +46,5 @@ end
 # devise
 gem 'devise'
 
+# Ancestry
+gem 'ancestry'
