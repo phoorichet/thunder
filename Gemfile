@@ -48,3 +48,9 @@ gem 'devise'
 
 # Ancestry
 gem 'ancestry'
+
+# Bower
+gem "bower-rails", "~> 0.9.2"
+
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3.4'

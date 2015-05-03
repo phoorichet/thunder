@@ -1,0 +1,2 @@
+module InsuredUsersHelper
+end

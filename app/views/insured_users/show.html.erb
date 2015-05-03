@@ -1,0 +1,49 @@
+<section class="user-profile">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-3">
+				<section class="profile">
+						<h1>Profile</h1>
+							<p>
+					  		<strong>First name:</strong>
+							  <%= @insured_user.first_name %>
+							</p>
+
+							<p>
+							  <strong>Last name:</strong>
+							  <%= @insured_user.last_name %>
+							</p>
+
+							<p>
+							  <strong>Gender:</strong>
+							  <%= @insured_user.gender %>
+							</p>
+				</section>
+			</div>
+
+			<div class="col-lg-6">
+				<section class="summary">
+					<h1 class="text-center">Summary</h1>
+				</section>
+				<section class="contract">
+					<h1 class="text-center">Contracts</h1>
+				</section>
+			</div>
+
+			<div class="col-lg-3">
+				<section class="payment">
+					<h1 class="text-center">Payment</h1>
+				</section>
+			</div>
+
+		</div><!-- end row -->
+
+
+		
+
+		<%= link_to 'Edit', edit_insured_user_path(@insured_user) %> |
+		<%= link_to 'Back', insured_users_path %>
+
+</div>
+</section>
