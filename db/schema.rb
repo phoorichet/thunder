@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502152105) do
+ActiveRecord::Schema.define(version: 20150503163920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,18 +72,6 @@ ActiveRecord::Schema.define(version: 20150502152105) do
 
   add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
 
-  create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "item_type"
-    t.float    "premium_amount"
-    t.float    "coverage_amount"
-    t.integer  "rider_id"
-    t.integer  "book_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "main_insurances", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -94,15 +82,14 @@ ActiveRecord::Schema.define(version: 20150502152105) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "premia", force: :cascade do |t|
+  create_table "master_riders", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.float    "amount"
-    t.string   "category"
-    t.integer  "main_insurance_id"
-    t.integer  "rider_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "riders", force: :cascade do |t|
@@ -113,8 +100,10 @@ ActiveRecord::Schema.define(version: 20150502152105) do
     t.string   "description"
     t.string   "status"
     t.string   "rider_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "contract_id"
+    t.integer  "master_rider_id"
   end
 
   create_table "users", force: :cascade do |t|

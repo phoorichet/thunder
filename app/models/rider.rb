@@ -2,6 +2,6 @@ class Rider < ActiveRecord::Base
 	has_many :premia
 	has_many :coverages
 
-	has_many :addons
-	has_many :contracts, through: :addons 
+	belongs_to :master_rider
+	belongs_to :contracts
 end
