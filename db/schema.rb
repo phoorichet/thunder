@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503163920) do
+ActiveRecord::Schema.define(version: 20150503171247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "addons", force: :cascade do |t|
-    t.integer  "contract_id"
-    t.integer  "rider_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "addresses", force: :cascade do |t|
     t.string   "house_number"
@@ -41,11 +34,10 @@ ActiveRecord::Schema.define(version: 20150503163920) do
     t.integer  "insured_user_id"
     t.datetime "begin_at"
     t.datetime "end_at"
-    t.integer  "rider_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "number"
-    t.integer  "main_insurance_id"
+    t.integer  "insurance_id"
   end
 
   create_table "coverages", force: :cascade do |t|
@@ -53,10 +45,23 @@ ActiveRecord::Schema.define(version: 20150503163920) do
     t.string   "description"
     t.float    "amount"
     t.string   "category"
-    t.integer  "main_insurance_id"
     t.integer  "rider_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "master_rider_id"
+    t.integer  "master_insurace_id"
+    t.integer  "insurance_id"
+  end
+
+  create_table "insurances", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "begin_at"
+    t.string   "end_at"
+    t.string   "status"
+    t.integer  "master_insurance_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "insured_users", force: :cascade do |t|
@@ -82,6 +87,16 @@ ActiveRecord::Schema.define(version: 20150503163920) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "master_insurances", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "begin_at"
+    t.string   "end_at"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "master_riders", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -90,6 +105,18 @@ ActiveRecord::Schema.define(version: 20150503163920) do
     t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "premiums", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.float    "amount"
+    t.integer  "rider_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "master_rider_id"
+    t.integer  "master_insurace_id"
+    t.integer  "insurance_id"
   end
 
   create_table "riders", force: :cascade do |t|

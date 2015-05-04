@@ -1,5 +1,5 @@
 class Rider < ActiveRecord::Base
-	has_many :premia
+	has_many :premiums
 	has_many :coverages
 
 	belongs_to :master_rider

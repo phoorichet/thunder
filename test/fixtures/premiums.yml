@@ -3,13 +3,13 @@
 one:
   name: MyString
   description: MyString
-  begin_at: 2015-05-02 21:17:30
-  end_at: 2015-05-02 21:17:30
-  status: MyString
+  amount: 1.5
+  rider_id: 1
+  main_insurance_id: 1
 
 two:
   name: MyString
   description: MyString
-  begin_at: 2015-05-02 21:17:30
-  end_at: 2015-05-02 21:17:30
-  status: MyString
+  amount: 1.5
+  rider_id: 1
+  main_insurance_id: 1

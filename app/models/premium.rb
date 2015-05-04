@@ -1,4 +1,4 @@
-class Coverage < ActiveRecord::Base
+class Premium < ActiveRecord::Base
 	belongs_to :rider
 	belongs_to :master_rider
 	belongs_to :insurance

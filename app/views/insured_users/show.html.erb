@@ -20,14 +20,25 @@
 							  <%= @insured_user.gender %>
 							</p>
 				</section>
+
+				<section>
+					<h1>Relatives</h1>
+				</section>
 			</div>
 
 			<div class="col-lg-6">
 				<section class="summary">
 					<h1 class="text-center">Summary</h1>
+					<h3>Riders</h3>
+					
 				</section>
 				<section class="contract">
 					<h1 class="text-center">Contracts</h1>
+					<% @insured_user.contracts.each do |contract| %>
+					<div>
+						<%= contract.number %>
+					</div>
+					<% end %>
 				</section>
 			</div>
 
