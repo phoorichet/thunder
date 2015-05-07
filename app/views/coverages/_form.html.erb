@@ -1,0 +1,54 @@
+<%= form_for([@coverage.rider, @coverage], html: {class: "form-horizontal"}) do |f| %>
+  <% if @coverage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@coverage.errors.count, "error") %> prohibited this coverage from being saved:</h2>
+
+      <ul>
+      <% @coverage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :coverage_amount %><br>
+    <%= f.text_field :coverage_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :coverage_unit %><br>
+    <%= f.text_field :coverage_unit %>
+  </div>
+  <div class="field">
+    <%= f.label :coverage_end_at %><br>
+    <%= f.text_field :coverage_end_at %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :abbr %><br>
+    <%= f.text_field :abbr %>
+  </div>
+  <div class="field">
+    <%= f.label :premium_amount %><br>
+    <%= f.text_field :premium_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :premium_unit %><br>
+    <%= f.text_field :premium_unit %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Coverages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Coverage amount</th>
+      <th>Category</th>
+      <th>Rider</th>
+      <th>Master rider</th>
+      <th>Abbr</th>
+      <th>Premium amount</th>
+      <th>Premium unit</th>
+      <th>Coverage unit</th>
+      <th>Coverage end at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coverages.each do |coverage| %>
+      <tr>
+        <td><%= coverage.name %></td>
+        <td><%= coverage.description %></td>
+        <td><%= coverage.coverage_amount %></td>
+        <td><%= coverage.category %></td>
+        <td><%= coverage.rider_id %></td>
+        <td><%= coverage.master_rider_id %></td>
+        <td><%= coverage.abbr %></td>
+        <td><%= coverage.premium_amount %></td>
+        <td><%= coverage.premium_unit %></td>
+        <td><%= coverage.coverage_unit %></td>
+        <td><%= coverage.coverage_end_at %></td>
+        <td><%= link_to 'Show', rider_coverage(coverage.rider, coverage) %></td>
+        <td><%= link_to 'Edit', edit_rider_coverage_path(coverage.rider, coverage) %></td>
+        <td><%= link_to 'Destroy', coverage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Coverage', new_coverage_path %>

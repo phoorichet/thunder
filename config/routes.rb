@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :riders do
+    resources :coverages
+  end
   resources :insured_users
   devise_for :users
   resources :users
