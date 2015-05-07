@@ -15,3 +15,19 @@ json.contracts @insured_user.contracts do |contract|
 		json.extract! rider, :name, :begin_at, :end_at
 	end
 end
+
+if @insured_user.spouse != nil
+	json.spouse do 
+		json.first_name @insured_user.spouse.first_name
+	end
+end
+
+if not @insured_user.root?
+	json.siblings @insured_user.siblings do |sibling|
+		json.first_name sibling.first_name
+	end
+end
+
+json.children @insured_user.children do |child|
+	json.first_name child.first_name
+end
