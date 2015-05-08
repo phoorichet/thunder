@@ -1,6 +1,77 @@
 <h1>Editing Insured User</h1>
 
-<%= render 'form' %>
+
+<%= form_for(@insured_user) do |f| %>
+  <% if @insured_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@insured_user.errors.count, "error") %> prohibited this insured_user from being saved:</h2>
+
+      <ul>
+      <% @insured_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth, "Date of Birth (dd/mm/yyyy)" %><br>
+    <%= f.text_field :date_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :marital_status %><br>
+    <%= f.text_field :marital_status %>
+  </div>
+  <div class="field">
+    <%= f.label :income %><br>
+    <%= f.text_field :income %>
+  </div>
+  <div class="field">
+    <%= f.label :national_id %><br>
+    <%= f.text_field :national_id %>
+  </div>
+  <div class="field">
+    <%= f.label :passport_id %><br>
+    <%= f.text_field :passport_id %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.text_field :height %>
+  </div>  
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>  
+  <div class="field">
+    <%= f.label :occupation %><br>
+    <%= f.text_field :occupation %>
+  </div>  
+  <br/>
+  <div class="field">
+    <%= f.label :parent_id %><br>
+    <%= f.text_field :parent_id %>
+  </div>  
+   <div class="field">
+    <%= f.label :spouse_id %><br>
+    <%= f.text_field :spouse_id %>
+  </div>  
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @insured_user %> |
 <%= link_to 'Back', insured_users_path %>

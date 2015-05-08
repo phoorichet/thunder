@@ -19,10 +19,62 @@
 							  <strong>Gender:</strong>
 							  <%= @insured_user.gender %>
 							</p>
+							<p>
+							  <strong>Date of Birth:</strong>
+							  <%= @insured_user.date_of_birth %>
+							</p>
+							<p>
+							  <strong>Marital Statue:</strong>
+							  <%= @insured_user.marital_status %>
+							</p>
+							<p>
+							  <strong>Income:</strong>
+							  <%= @insured_user.income_formatted %>
+							</p>
+							<p>
+							  <strong>National ID:</strong>
+							  <%= @insured_user.national_id %>
+							</p>
+							<p>
+							  <strong>Passport ID:</strong>
+							  <%= @insured_user.passport_id %>
+							</p>
+							<p>
+							  <strong>Height:</strong>
+							  <%= @insured_user.height %>
+							</p>
+							<p>
+							  <strong>Weight:</strong>
+							  <%= @insured_user.weight %>
+							</p>
+							<p>
+							  <strong>Occupation:</strong>
+							  <%= @insured_user.occupation %>
+							</p>
 				</section>
 
 				<section>
 					<h1>Relatives</h1>
+					<h3>Parents</h3>
+					<% @insured_user.parents.each do |user| %>
+							<div>
+								<span><%= user.first_name %> <%= user.last_name %></span>
+							</div>
+					<% end -%>
+
+					<h3>Siblings</h3>
+					<% @insured_user.get_siblings.each do |user| %>
+							<div>
+								<span><%= user.first_name %> <%= user.last_name %></span>
+							</div>
+					<% end -%>
+
+					<h3>Children</h3>
+					<% @insured_user.children.each do |user| %>
+							<div>
+								<span><%= user.first_name %> <%= user.last_name %></span>
+							</div>
+					<% end -%>
 				</section>
 			</div>
 

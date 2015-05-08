@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :riders do
     resources :coverages
   end
-  resources :insured_users
+  resources :insured_users do
+    member do 
+      post 'set_parent'
+    end
+  end
   devise_for :users
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.

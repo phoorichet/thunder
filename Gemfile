@@ -54,3 +54,6 @@ gem "bower-rails", "~> 0.9.2"
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.4'
+
+# time validation
+gem 'validates_timeliness', '~> 3.0'

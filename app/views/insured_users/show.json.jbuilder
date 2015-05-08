@@ -16,18 +16,26 @@ json.contracts @insured_user.contracts do |contract|
 	end
 end
 
+json.parents @insured_user.parents do |parent|
+	json.first_name parent.first_name
+	json.last_name parent.last_name
+end
+
 if @insured_user.spouse != nil
 	json.spouse do 
 		json.first_name @insured_user.spouse.first_name
+		json.last_name @insured_user.spouse.last_name
 	end
 end
 
 if not @insured_user.root?
-	json.siblings @insured_user.siblings do |sibling|
+	json.relatives @insured_user.siblings do |sibling|
 		json.first_name sibling.first_name
+		json.last_name sibling.last_name
 	end
 end
 
 json.children @insured_user.children do |child|
 	json.first_name child.first_name
+	json.last_name child.last_name
 end
