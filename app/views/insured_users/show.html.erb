@@ -86,11 +86,38 @@
 				</section>
 				<section class="contract">
 					<h1 class="text-center">Contracts</h1>
-					<% @insured_user.contracts.each do |contract| %>
-					<div>
-						<%= contract.number %>
-					</div>
-					<% end %>
+					
+							<table>
+							  <thead>
+							    <tr>
+							      <th>Number</th>
+							      <th>Begin at</th>
+							      <th>End at</th>
+							      <th>Main plan</th>
+							      <th>Package plan</th>
+							      <th>Personal accident plan</th>
+							      <th colspan="3"></th>
+							    </tr>
+							  </thead>
+
+							  <tbody>
+							    <% @insured_user.contracts.each do |contract| %>
+							      <tr>
+							        <td><%= contract.number %></td>
+							        <td><%= contract.begin_at %></td>
+							        <td><%= contract.end_at %></td>
+							        <td><%= contract.main_plan_id %></td>
+							        <td><%= contract.package_plan_id %></td>
+							        <td><%= contract.personal_accident_plan_id %></td>
+							        <td><%= link_to 'Show', [contract.insured_user, contract] %></td>
+							        <td><%= link_to 'Edit', edit_insured_user_contract_path(contract.insured_user, contract) %></td>
+							        <td><%= link_to 'Destroy', [contract.insured_user, contract], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+							      </tr>
+							    <% end %>
+							  </tbody>
+							</table>
+
+					<%= link_to "Add Contract", new_insured_user_contract_path(@insured_user) %>
 				</section>
 			</div>
 

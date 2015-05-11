@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :contracts
   resources :riders do
     resources :coverages
   end
   resources :insured_users do
+    resources :contracts
+    
     member do 
       post 'set_parent'
     end
