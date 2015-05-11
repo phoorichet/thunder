@@ -30,5 +30,38 @@
   <%= @contract.personal_accident_plan_id %>
 </p>
 
+  <h3>Rider Listing</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Code name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contract.riders.each do |rider| %>
+        <tr>
+          <td><%= rider.name %></td>
+          <td><%= rider.description %></td>
+          <td><%= rider.status %></td>
+          <td><%= rider.code_name %></td>
+          <td><%= link_to 'Show', contract_rider_path(rider.contract, rider) %></td>
+          <td><%= link_to 'Edit', edit_contract_rider_path(rider.contract, rider) %></td>
+          <td><%= link_to 'Destroy', [rider.contract, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Add new rider', new_contract_rider_path(@contract) %>
+
+  <br/>
+  <br/>
+
+
 <%= link_to 'Edit', edit_insured_user_contract_path(@contract.insured_user, @contract) %> |
 <%= link_to 'Back', insured_user_path(@contract.insured_user) %>

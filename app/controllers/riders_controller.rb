@@ -1,10 +1,11 @@
 class RidersController < ApplicationController
+  before_action :set_contract
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
 
   # GET /riders
   # GET /riders.json
   def index
-    @riders = Rider.all
+    @riders = @contract.riders.all
   end
 
   # GET /riders/1
@@ -14,7 +15,7 @@ class RidersController < ApplicationController
 
   # GET /riders/new
   def new
-    @rider = Rider.new
+    @rider = @contract.riders.new
   end
 
   # GET /riders/1/edit
@@ -24,11 +25,11 @@ class RidersController < ApplicationController
   # POST /riders
   # POST /riders.json
   def create
-    @rider = Rider.new(rider_params)
+    @rider = @contract.riders.new(rider_params)
 
     respond_to do |format|
       if @rider.save
-        format.html { redirect_to @rider, notice: 'Rider was successfully created.' }
+        format.html { redirect_to [@rider.contract, @rider], notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class RidersController < ApplicationController
   def update
     respond_to do |format|
       if @rider.update(rider_params)
-        format.html { redirect_to @rider, notice: 'Rider was successfully updated.' }
+        format.html { redirect_to [@rider.contract, @rider], notice: 'Rider was successfully updated.' }
         format.json { render :show, status: :ok, location: @rider }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class RidersController < ApplicationController
   def destroy
     @rider.destroy
     respond_to do |format|
-      format.html { redirect_to riders_url, notice: 'Rider was successfully destroyed.' }
+      format.html { redirect_to [@rider.contract.insured_user, @rider.contract], notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +71,9 @@ class RidersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def rider_params
       params.require(:rider).permit(:name, :description, :status, :code_name)
+    end
+
+    def set_contract
+      @contract = Contract.find(params[:contract_id])
     end
 end

@@ -53,4 +53,16 @@ class InsuredUser < ActiveRecord::Base
         self.root? ? [] : self.siblings.select { |d| d.id != self.id }
     end
 
+    # Shortcut to get all the riders that belong to insured user's contracts
+    def riders
+        result = []
+        self.contracts.each do |contract|
+            contract.riders.each do |rider|
+                result << rider
+            end
+        end
+
+        result
+    end
+
 end

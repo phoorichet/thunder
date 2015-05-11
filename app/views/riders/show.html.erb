@@ -64,5 +64,5 @@
 <%= link_to 'Add coverage', new_rider_coverage_path(@rider) %>
 <br/>
 
-<%= link_to 'Edit', edit_rider_path(@rider) %> |
-<%= link_to 'Back', riders_path %>
+<%= link_to 'Edit', edit_contract_rider_path(@rider.contract, @rider) %> |
+<%= link_to 'Back To Contract', insured_user_contract_path(@rider.contract.insured_user, @rider.contract) %>

@@ -78,10 +78,37 @@
 				</section>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col-lg-7">
 				<section class="summary">
 					<h1 class="text-center">Summary</h1>
 					<h3>Riders</h3>
+
+					<table>
+					  <thead>
+					    <tr>
+					      <th>Name</th>
+					      <th>Description</th>
+					      <th>Status</th>
+					      <th>Code name</th>
+					      <th colspan="3"></th>
+					    </tr>
+					  </thead>
+
+					  <tbody>
+					    <% @insured_user.riders.each do |rider| %>
+					      <tr>
+					        <td><%= rider.name %></td>
+					        <td><%= rider.description %></td>
+					        <td><%= rider.status %></td>
+					        <td><%= rider.code_name %></td>
+					        <td><%= link_to 'Show', [rider.contract, rider] %></td>
+					        <td><%= link_to 'Edit', edit_contract_rider_path(rider.contract, rider) %></td>
+					        <td><%= link_to 'Destroy', [rider.contract, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					      </tr>
+					    <% end %>
+					  </tbody>
+					</table>
+
 					
 				</section>
 				<section class="contract">
@@ -121,7 +148,7 @@
 				</section>
 			</div>
 
-			<div class="col-lg-3">
+			<div class="col-lg-2">
 				<section class="payment">
 					<h1 class="text-center">Payment</h1>
 				</section>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :contracts
+  resources :contracts do
+    resources :riders
+  end
+
   resources :riders do
     resources :coverages
   end

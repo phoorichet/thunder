@@ -20,9 +20,9 @@
         <td><%= rider.description %></td>
         <td><%= rider.status %></td>
         <td><%= rider.code_name %></td>
-        <td><%= link_to 'Show', rider %></td>
-        <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
-        <td><%= link_to 'Destroy', rider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [rider.contract, rider] %></td>
+        <td><%= link_to 'Edit', edit_contract_rider_path(rider.contract, rider) %></td>
+        <td><%= link_to 'Destroy', [rider.contract, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,3 @@
 
 <br>
 
-<%= link_to 'New Rider', new_rider_path %>

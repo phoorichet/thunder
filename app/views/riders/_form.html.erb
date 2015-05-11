@@ -1,4 +1,4 @@
-<%= form_for(@rider) do |f| %>
+<%= form_for([@rider.contract, @rider]) do |f| %>
   <% if @rider.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rider.errors.count, "error") %> prohibited this rider from being saved:</h2>
