@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   end
 
   resources :contracts do
-    resources :riders
+    resources :riders do 
+        collection do
+          get 'new_from_master'
+          post 'create_from_master'
+        end
+    end
   end
 
   resources :riders do

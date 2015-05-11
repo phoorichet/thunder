@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @coverage %> |
-<%= link_to 'Back', coverages_path %>
+<%= link_to 'Show', [@coverage.rider, @coverage] %> |
+<%= link_to 'Back to rider', contract_rider_path(@coverage.rider.contract, @coverage.rider) %>

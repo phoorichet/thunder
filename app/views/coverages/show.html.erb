@@ -26,11 +26,6 @@
 </p>
 
 <p>
-  <strong>Master rider:</strong>
-  <%= @coverage.master_rider_id %>
-</p>
-
-<p>
   <strong>Abbr:</strong>
   <%= @coverage.abbr %>
 </p>
@@ -56,4 +51,4 @@
 </p>
 
 <%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
-<%= link_to 'Back', rider_path(@coverage.rider) %>
+<%= link_to 'Back to rider', contract_rider_path(@coverage.rider.contract, @coverage.rider) %>
