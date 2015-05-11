@@ -2,14 +2,12 @@
 
 one:
   name: MyString
-  description: MyString
-  amount: 1.5
+  begin_at: 2015-05-11 12:26:30
+  end_at: 2015-05-11 12:26:30
   rider_id: 1
-  main_insurance_id: 1
 
 two:
   name: MyString
-  description: MyString
-  amount: 1.5
+  begin_at: 2015-05-11 12:26:30
+  end_at: 2015-05-11 12:26:30
   rider_id: 1
-  main_insurance_id: 1

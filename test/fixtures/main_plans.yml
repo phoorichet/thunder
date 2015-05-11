@@ -3,13 +3,13 @@
 one:
   name: MyString
   description: MyString
-  begin_at: MyString
-  end_at: MyString
+  begin_at: 2015-05-11 12:33:36
+  end_at: 2015-05-11 12:33:36
   status: MyString
 
 two:
   name: MyString
   description: MyString
-  begin_at: MyString
-  end_at: MyString
+  begin_at: 2015-05-11 12:33:36
+  end_at: 2015-05-11 12:33:36
   status: MyString

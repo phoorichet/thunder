@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507172648) do
+ActiveRecord::Schema.define(version: 20150511054135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,10 +34,12 @@ ActiveRecord::Schema.define(version: 20150507172648) do
     t.integer  "insured_user_id"
     t.datetime "begin_at"
     t.datetime "end_at"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "number"
-    t.integer  "insurance_id"
+    t.integer  "main_plan_id"
+    t.integer  "package_plan_id"
+    t.integer  "personal_accident_plan_id"
   end
 
   create_table "coverages", force: :cascade do |t|
@@ -46,11 +48,8 @@ ActiveRecord::Schema.define(version: 20150507172648) do
     t.float    "coverage_amount"
     t.string   "category"
     t.integer  "rider_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "master_rider_id"
-    t.integer  "master_insurace_id"
-    t.integer  "insurance_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "abbr"
     t.float    "premium_amount"
     t.string   "premium_unit"
@@ -99,6 +98,16 @@ ActiveRecord::Schema.define(version: 20150507172648) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "main_plans", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "master_insurances", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -118,6 +127,24 @@ ActiveRecord::Schema.define(version: 20150507172648) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "code_name"
+  end
+
+  create_table "package_plans", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.integer  "rider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "personal_accident_plans", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.integer  "rider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "premiums", force: :cascade do |t|
