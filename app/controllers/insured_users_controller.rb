@@ -25,9 +25,9 @@ class InsuredUsersController < ApplicationController
   # POST /insured_users.json
   def create
     @insured_user = InsuredUser.new(insured_user_params)
-    if insured_user_params[:date_of_birth]
-      @insured_user.date_of_birth = DateTime.strptime(insured_user_params[:date_of_birth], "%m/%d/%Y")
-    end
+    # if insured_user_params[:date_of_birth]
+    #   @insured_user.date_of_birth = DateTime.strptime(insured_user_params[:date_of_birth], "%m/%d/%Y")
+    # end
 
     respond_to do |format|
       if @insured_user.save

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @master_coverage.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @master_coverage.description %>
+</p>
+
+<p>
+  <strong>Coverage amount:</strong>
+  <%= @master_coverage.coverage_amount %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @master_coverage.category %>
+</p>
+
+<p>
+  <strong>Master rider:</strong>
+  <%= @master_coverage.master_rider_id %>
+</p>
+
+<p>
+  <strong>Abbr:</strong>
+  <%= @master_coverage.abbr %>
+</p>
+
+<p>
+  <strong>Premium amount:</strong>
+  <%= @master_coverage.premium_amount %>
+</p>
+
+<p>
+  <strong>Premium unit:</strong>
+  <%= @master_coverage.premium_unit %>
+</p>
+
+<p>
+  <strong>Coverage unit:</strong>
+  <%= @master_coverage.coverage_unit %>
+</p>
+
+<p>
+  <strong>Coverage end at:</strong>
+  <%= @master_coverage.coverage_end_at %>
+</p>
+
+<%= link_to 'Edit', edit_master_rider_master_coverage_path(@master_coverage.master_rider, @master_coverage) %> |
+<%= link_to 'Back', master_rider_path(@master_coverage.master_rider) %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  coverage_amount: 1.5
+  category: MyString
+  master_rider_id: 1
+  abbr: MyString
+  premium_amount: 1.5
+  premium_unit: MyString
+  coverage_unit: MyString
+  coverage_end_at: MyString
+
+two:
+  name: MyString
+  description: MyString
+  coverage_amount: 1.5
+  category: MyString
+  master_rider_id: 1
+  abbr: MyString
+  premium_amount: 1.5
+  premium_unit: MyString
+  coverage_unit: MyString
+  coverage_end_at: MyString

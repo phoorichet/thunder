@@ -1,0 +1,53 @@
+<%= form_for([@master_coverage.master_rider, @master_coverage]) do |f| %>
+  <% if @master_coverage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@master_coverage.errors.count, "error") %> prohibited this master_coverage from being saved:</h2>
+
+      <ul>
+      <% @master_coverage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :coverage_amount %><br>
+    <%= f.text_field :coverage_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :abbr %><br>
+    <%= f.text_field :abbr %>
+  </div>
+  <div class="field">
+    <%= f.label :premium_amount %><br>
+    <%= f.text_field :premium_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :premium_unit %><br>
+    <%= f.text_field :premium_unit %>
+  </div>
+  <div class="field">
+    <%= f.label :coverage_unit %><br>
+    <%= f.text_field :coverage_unit %>
+  </div>
+  <div class="field">
+    <%= f.label :coverage_end_at %><br>
+    <%= f.text_field :coverage_end_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
