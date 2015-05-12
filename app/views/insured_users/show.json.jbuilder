@@ -3,13 +3,27 @@ json.extract! @insured_user,
 :first_name, 
 :last_name, 
 :gender, 
+:date_of_birth,
+:marital_status,
+:income,
+:national_id,
+:passport_id,
+:height,
+:weight,
+:occupation,
 :created_at, 
 :updated_at
+
+json.riders do |rider|
+	json.name rider.name
+end
 
 json.contracts @insured_user.contracts do |contract|
 	json.begin_at contract.begin_at
 	json.end_at contract.end_at
-	json.insurance contract.insurance
+	json.main_plan contract.main_plan
+	json.package_plan contract.package_plan
+	json.personal_accident_plan contract.personal_accident_plan
 
 	json.riders contract.riders do |rider|
 		json.extract! rider, :name, :begin_at, :end_at

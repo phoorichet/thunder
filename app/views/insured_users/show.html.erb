@@ -66,6 +66,17 @@
 							</div>
 					<% end -%>
 
+					<h3>Spouse</h3>
+					<% if @insured_user.spouse %>
+						<div>
+							<span>
+								<%= link_to insured_user_path(@insured_user.spouse) do %> 
+									<%= @insured_user.spouse.first_name %> <%= @insured_user.spouse.last_name %>
+								<% end -%>
+							</span>
+						</div>
+					<% end -%>
+
 					<h3>Siblings</h3>
 					<% @insured_user.get_siblings.each do |user| %>
 							<div>
@@ -87,6 +98,17 @@
 								</span>
 							</div>
 					<% end -%>
+					<% if @insured_user.spouse %>
+						<% @insured_user.spouse.children.each do |user| %>
+								<div>
+									<span>
+										<%= link_to insured_user_path(user) do %> 
+											<%=user.first_name %> <%= user.last_name %>
+										<% end -%>
+									</span>
+								</div>
+						<% end -%>
+					<% end -%>
 				</section>
 			</div>
 
@@ -95,7 +117,7 @@
 					<h1 class="text-center">Summary</h1>
 					<h3>Riders</h3>
 
-					<table>
+					<table class="table table-hover">
 					  <thead>
 					    <tr>
 					      <th>Name</th>
@@ -126,7 +148,7 @@
 				<section class="contract">
 					<h1 class="text-center">Contracts</h1>
 					
-							<table>
+							<table class="table table-hover">
 							  <thead>
 							    <tr>
 							      <th>Number</th>

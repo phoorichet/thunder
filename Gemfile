@@ -57,3 +57,6 @@ gem 'bootstrap-sass', '~> 3.3.4'
 
 # time validation
 gem 'validates_timeliness', '~> 3.0'
+
+# Tagging
+gem 'acts-as-taggable-on', '~> 3.4'
