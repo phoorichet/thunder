@@ -40,18 +40,6 @@ ActiveRecord::Schema.define(version: 20150516070406) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "contracts", force: :cascade do |t|
-    t.integer  "insured_user_id"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "number"
-    t.integer  "main_plan_id"
-    t.integer  "package_plan_id"
-    t.integer  "personal_accident_plan_id"
-  end
-
   create_table "coverages", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
