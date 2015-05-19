@@ -1,4 +1,4 @@
-<%= form_for([@rider.contract, @rider]) do |f| %>
+<%= form_for([@rider.book, @rider]) do |f| %>
   <% if @rider.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rider.errors.count, "error") %> prohibited this rider from being saved:</h2>
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.select :status, options_for_select([ "active", "inactive"]) %>
   </div>
   <div class="field">
     <%= f.label :code_name %><br>

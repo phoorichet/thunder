@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  insured_user_id: 1
+  begin_at: 2015-05-14 23:29:25
+  end_at: 2015-05-14 23:29:25
+  number: MyString
+  main_rider_id: 1
+
+two:
+  insured_user_id: 1
+  begin_at: 2015-05-14 23:29:25
+  end_at: 2015-05-14 23:29:25
+  number: MyString
+  main_rider_id: 1

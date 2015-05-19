@@ -1,20 +1,21 @@
 Rails.application.routes.draw do
 
   
+  resources :books
   resources :master_riders do 
     resources :master_coverages
   end
 
 
   resources :insured_users do
-    resources :contracts
+    resources :books
     
     member do 
       post 'set_parent'
     end
   end
 
-  resources :contracts do
+  resources :books do
     resources :riders do 
         collection do
           get 'new_from_master'

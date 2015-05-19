@@ -3,7 +3,7 @@ class InsuredUser < ActiveRecord::Base
     has_ancestry 
 
     has_many :addresses
-    has_many :contracts
+    has_many :books
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
@@ -53,11 +53,11 @@ class InsuredUser < ActiveRecord::Base
         self.root? ? [] : self.siblings.select { |d| d.id != self.id }
     end
 
-    # Shortcut to get all the riders that belong to insured user's contracts
+    # Shortcut to get all the riders that belong to insured user's books
     def riders
         result = []
-        self.contracts.each do |contract|
-            contract.riders.each do |rider|
+        self.books.each do |book|
+            book.riders.each do |rider|
                 result << rider
             end
         end

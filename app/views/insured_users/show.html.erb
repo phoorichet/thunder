@@ -135,9 +135,9 @@
 					        <td><%= rider.description %></td>
 					        <td><%= rider.status %></td>
 					        <td><%= rider.code_name %></td>
-					        <td><%= link_to 'Show', [rider.contract, rider] %></td>
-					        <td><%= link_to 'Edit', edit_contract_rider_path(rider.contract, rider) %></td>
-					        <td><%= link_to 'Destroy', [rider.contract, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					        <td><%= link_to 'Show', [rider.book, rider] %></td>
+					        <td><%= link_to 'Edit', edit_book_rider_path(rider.book, rider) %></td>
+					        <td><%= link_to 'Destroy', [rider.book, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
 					      </tr>
 					    <% end %>
 					  </tbody>
@@ -145,8 +145,8 @@
 
 					
 				</section>
-				<section class="contract">
-					<h1 class="text-center">Contracts</h1>
+				<section class="book">
+					<h1 class="text-center">Books</h1>
 					
 							<table class="table table-hover">
 							  <thead>
@@ -154,31 +154,25 @@
 							      <th>Number</th>
 							      <th>Begin at</th>
 							      <th>End at</th>
-							      <th>Main plan</th>
-							      <th>Package plan</th>
-							      <th>Personal accident plan</th>
 							      <th colspan="3"></th>
 							    </tr>
 							  </thead>
 
 							  <tbody>
-							    <% @insured_user.contracts.each do |contract| %>
+							    <% @insured_user.books.each do |book| %>
 							      <tr>
-							        <td><%= contract.number %></td>
-							        <td><%= contract.begin_at %></td>
-							        <td><%= contract.end_at %></td>
-							        <td><%= contract.main_plan_id %></td>
-							        <td><%= contract.package_plan_id %></td>
-							        <td><%= contract.personal_accident_plan_id %></td>
-							        <td><%= link_to 'Show', [contract.insured_user, contract] %></td>
-							        <td><%= link_to 'Edit', edit_insured_user_contract_path(contract.insured_user, contract) %></td>
-							        <td><%= link_to 'Destroy', [contract.insured_user, contract], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+							        <td><%= book.number %></td>
+							        <td><%= book.begin_at %></td>
+							        <td><%= book.end_at %></td>
+							        <td><%= link_to 'Show', [book.insured_user, book] %></td>
+							        <td><%= link_to 'Edit', edit_insured_user_book_path(book.insured_user, book) %></td>
+							        <td><%= link_to 'Destroy', [book.insured_user, book], method: :delete, data: { confirm: 'Are you sure?' } %></td>
 							      </tr>
 							    <% end %>
 							  </tbody>
 							</table>
 
-					<%= link_to "Add Contract", new_insured_user_contract_path(@insured_user) %>
+					<%= link_to "Add book", new_insured_user_book_path(@insured_user) %>
 				</section>
 			</div>
 

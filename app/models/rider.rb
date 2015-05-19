@@ -1,6 +1,6 @@
 class Rider < ActiveRecord::Base
-	has_many :coverages
-	belongs_to :contract
+	has_many :coverages, :dependent => :destroy
+	belongs_to :book
 
 	scope :master, ->(){ where(rider_type: 'master')}
 end

@@ -15,6 +15,8 @@ class MasterRidersController < ApplicationController
   # GET /master_riders/new
   def new
     @master_rider = MasterRider.new
+    # Default end date to nil
+    @master_rider.end_at = nil
   end
 
   # GET /master_riders/1/edit

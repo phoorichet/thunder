@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511182226) do
+ActiveRecord::Schema.define(version: 20150516070406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20150511182226) do
     t.string   "postal_code"
     t.string   "country"
     t.integer  "insured_user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.integer  "insured_user_id"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.string   "number"
+    t.integer  "main_rider_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -184,7 +194,7 @@ ActiveRecord::Schema.define(version: 20150511182226) do
     t.string   "rider_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "contract_id"
+    t.integer  "book_id"
     t.integer  "master_rider_id"
     t.string   "code_name"
   end
