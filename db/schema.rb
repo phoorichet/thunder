@@ -66,26 +66,6 @@ ActiveRecord::Schema.define(version: 20150519162615) do
     t.datetime "updated_at",          null: false
   end
 
-  create_table "insured_users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.datetime "date_of_birth"
-    t.string   "marital_status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "ancestry"
-    t.integer  "spouse_id"
-    t.float    "income"
-    t.string   "national_id"
-    t.string   "passport_id"
-    t.float    "height"
-    t.float    "weight"
-    t.string   "occupation"
-  end
-
-  add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
-
   create_table "main_insurances", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -106,38 +86,12 @@ ActiveRecord::Schema.define(version: 20150519162615) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "master_coverages", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.float    "assured_amount"
-    t.string   "category"
-    t.integer  "master_rider_id"
-    t.string   "abbr"
-    t.float    "premium_amount"
-    t.string   "premium_unit"
-    t.string   "coverage_unit"
-    t.string   "coverage_end_at"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "master_insurances", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.string   "begin_at"
     t.string   "end_at"
     t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "master_riders", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.string   "description"
-    t.string   "status"
-    t.string   "code_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

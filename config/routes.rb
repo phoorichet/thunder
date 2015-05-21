@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   
   resources :books
   # resources :master_riders do 
-  #   resources :master_coverages
-  # end
+  #   # end
 
 
   resources :insured_users do
