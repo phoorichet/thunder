@@ -1,5 +1,5 @@
 class RidersController < ApplicationController
-  before_action :set_book, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_book, only: [:index, :show, :edit, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
 
@@ -48,11 +48,11 @@ class RidersController < ApplicationController
   # POST /riders_from_master.json
   def create_from_master
     @rider = @book.riders.new(rider_params)
-
+    @master_rider = Rider.master.find(rider_params[:master_rider_id])
 
     respond_to do |format|
       if @rider.save
-        @master_rider.master_coverages.each do |coverage| 
+        @master_rider.coverages.each do |coverage| 
           @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
                                             coverage_amount: coverage.coverage_amount, description: coverage.category,
                                             abbr: coverage.abbr, premium_amount: coverage.premium_amount,
