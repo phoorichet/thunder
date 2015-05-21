@@ -1,7 +1,7 @@
 class RidersController < ApplicationController
-  before_action :set_book
+  before_action :set_book, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
-  before_action :set_master_rider, only: [:create_from_master]
+  before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
 
   # GET /riders
   # GET /riders.json
@@ -69,8 +69,6 @@ class RidersController < ApplicationController
     end
   end
 
-
-
   # PATCH/PUT /riders/1
   # PATCH/PUT /riders/1.json
   def update
@@ -95,6 +93,69 @@ class RidersController < ApplicationController
     end
   end
 
+
+
+  # GET /riders/masters
+  # GET /riders/masters.json
+  def masters
+    @riders = Rider.master.all
+  end
+
+  # GET /riders/1/master
+  # GET /riders/1/master.json
+  def show_master
+  end
+
+  # GET /riders/master_new
+  def new_master
+    @rider = Rider.new(rider_type: 'master')
+  end
+
+  # GET /riders/1/edit_master
+  def edit_master
+  end
+
+  # POST /riders/create_master
+  # POST /riders/create_master.json
+  def create_master
+    @rider = Rider.new(rider_params)
+    @rider.rider_type = 'master'
+
+    respond_to do |format|
+      if @rider.save
+        format.html { redirect_to masters_rider_path(@rider), notice: 'Rider was successfully created.' }
+        format.json { render :show, status: :created, location: @rider }
+      else
+        format.html { render :new }
+        format.json { render json: @rider.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /riders/update_master/1
+  # PATCH/PUT /riders/update_master/1.json
+  def update_master
+    respond_to do |format|
+      if @rider.update(rider_params)
+        format.html { redirect_to @rider, notice: 'Rider was successfully updated.' }
+        format.json { render :show, status: :ok, location: @rider }
+      else
+        format.html { render :edit }
+        format.json { render json: @rider.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /riders/1/delete_master
+  # DELETE /riders/1/delete_master.json
+  def destroy_master
+    @rider.destroy
+    respond_to do |format|
+      format.html { redirect_to masters_riders_path, notice: 'Rider was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rider
@@ -111,6 +172,6 @@ class RidersController < ApplicationController
     end
 
     def set_master_rider
-      @master_rider = MasterRider.find(rider_params[:master_rider_id])
+      @rider = Rider.master.find(params[:id])
     end
 end

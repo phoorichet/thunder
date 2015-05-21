@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Master Riders</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Code name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @riders.each do |rider| %>
+      <tr>
+        <td><%= rider.name %></td>
+        <td><%= rider.description %></td>
+        <td><%= rider.status %></td>
+        <td><%= rider.code_name %></td>
+        <td><%= link_to 'Show', master_rider_path(rider) %></td>
+        <td><%= link_to 'Edit', edit_master_rider_path(rider) %></td>
+        <td><%= link_to 'Destroy', master_rider_path(rider), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "Add Master", new_master_riders_path %>
+

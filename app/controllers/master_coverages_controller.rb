@@ -70,7 +70,7 @@ class MasterCoveragesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def master_coverage_params
-      params.require(:master_coverage).permit(:name, :description, :coverage_amount, :category, :master_rider_id, :abbr, :premium_amount, :premium_unit, :coverage_unit, :coverage_end_at)
+      params.require(:master_coverage).permit(:name, :description, :assured_amount, :category, :master_rider_id, :abbr, :premium_amount, :premium_unit, :coverage_unit, :coverage_end_at)
     end
 
     def set_master_rider

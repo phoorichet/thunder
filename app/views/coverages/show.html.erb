@@ -51,4 +51,12 @@
 </p>
 
 <%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
-<%= link_to 'Back to rider', contract_rider_path(@coverage.rider.contract, @coverage.rider) %>
+
+<% if  @coverage.rider.rider_type == 'master' %>
+<%= link_to 'Back to master rider', master_rider_path(@coverage.rider) %> |
+<% end -%>
+
+
+<% if  @coverage.rider.book != nil %>
+<%= link_to 'Back to book', book_rider_path(@coverage.rider.book, @coverage.rider) %>
+<% end -%>

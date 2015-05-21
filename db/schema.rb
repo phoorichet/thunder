@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516070406) do
+ActiveRecord::Schema.define(version: 20150519162615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20150516070406) do
   create_table "master_coverages", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.float    "coverage_amount"
+    t.float    "assured_amount"
     t.string   "category"
     t.integer  "master_rider_id"
     t.string   "abbr"
@@ -170,6 +170,16 @@ ActiveRecord::Schema.define(version: 20150516070406) do
     t.integer  "master_rider_id"
     t.integer  "master_insurace_id"
     t.integer  "insurance_id"
+  end
+
+  create_table "returns", force: :cascade do |t|
+    t.string   "return_type"
+    t.float    "amount"
+    t.integer  "relative_year"
+    t.integer  "coverage_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "master_coverage_id"
   end
 
   create_table "riders", force: :cascade do |t|

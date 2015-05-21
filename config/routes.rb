@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   
   resources :books
-  resources :master_riders do 
-    resources :master_coverages
-  end
+  # resources :master_riders do 
+  #   resources :master_coverages
+  # end
 
 
   resources :insured_users do
@@ -26,6 +26,18 @@ Rails.application.routes.draw do
 
   resources :riders do
     resources :coverages
+
+    collection do
+      get 'masters'
+      get 'new_master'
+      post 'master' => 'riders#create_master'
+    end
+    member do
+      get 'master' => 'riders#show_master'
+      put 'master' => 'riders#update_master'
+      get 'edit_master'
+      delete 'master' => 'riders#destroy_master'
+    end
   end
 
 
