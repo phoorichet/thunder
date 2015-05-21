@@ -32,7 +32,7 @@
 
   <div class="field">
   	<%= f.label :master_rider %><br>
-  	<%= f.collection_select(:master_rider_id, MasterRider.all, :id, :name) %>
+  	<%= f.collection_select(:master_rider_id, Rider.master.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

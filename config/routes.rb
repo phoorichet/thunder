@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :riders do 
         collection do
-          get 'new_from_master'
+          get  'new_from_master'
           post 'create_from_master'
         end
     end
@@ -28,8 +28,8 @@ Rails.application.routes.draw do
     resources :coverages
 
     collection do
-      get 'masters'
-      get 'new_master'
+      get  'masters'
+      get  'new_master'
       post 'master' => 'riders#create_master'
     end
     member do
