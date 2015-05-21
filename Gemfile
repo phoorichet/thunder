@@ -43,6 +43,12 @@ group :development, :test do
   gem 'spring','~>1.3.6'
 end
 
+group :production do
+   # Heroku
+	gem 'rails_12factor'
+    
+end
+
 # devise
 gem 'devise'
 
@@ -61,5 +67,4 @@ gem 'validates_timeliness', '~> 3.0'
 # Tagging
 gem 'acts-as-taggable-on', '~> 3.4'
 
-# Heroku
-gem 'rails_12factor'
+
