@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519162615) do
+ActiveRecord::Schema.define(version: 20150519160705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,75 +55,35 @@ ActiveRecord::Schema.define(version: 20150519162615) do
     t.string   "coverage_end_at"
   end
 
-  create_table "insurances", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "begin_at"
-    t.string   "end_at"
-    t.string   "status"
-    t.integer  "master_insurance_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+  create_table "insured_users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.datetime "date_of_birth"
+    t.string   "marital_status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "ancestry"
+    t.integer  "spouse_id"
+    t.float    "income"
+    t.string   "national_id"
+    t.string   "passport_id"
+    t.float    "height"
+    t.float    "weight"
+    t.string   "occupation"
   end
 
-  create_table "main_insurances", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+  add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
 
-  create_table "main_plans", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "master_insurances", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "begin_at"
-    t.string   "end_at"
-    t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "package_plans", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.integer  "rider_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "personal_accident_plans", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "begin_at"
-    t.datetime "end_at"
-    t.integer  "rider_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "premiums", force: :cascade do |t|
+  create_table "premia", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.float    "amount"
+    t.string   "category"
+    t.integer  "main_insurance_id"
     t.integer  "rider_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "master_rider_id"
-    t.integer  "master_insurace_id"
-    t.integer  "insurance_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "returns", force: :cascade do |t|
@@ -131,9 +91,8 @@ ActiveRecord::Schema.define(version: 20150519162615) do
     t.float    "amount"
     t.integer  "relative_year"
     t.integer  "coverage_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "master_coverage_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "riders", force: :cascade do |t|
