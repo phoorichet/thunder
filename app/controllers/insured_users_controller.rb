@@ -4,7 +4,8 @@ class InsuredUsersController < ApplicationController
   # GET /insured_users
   # GET /insured_users.json
   def index
-    @insured_users = InsuredUser.all.order_by_fist_name
+    page = params[:page] || 1
+    @insured_users = InsuredUser.page(page).order_by_fist_name
   end
 
   # GET /insured_users/1

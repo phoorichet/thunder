@@ -6,7 +6,8 @@ class RidersController < ApplicationController
   # GET /riders
   # GET /riders.json
   def index
-    @riders = @plan.riders.all
+    page = params[:page] || 1
+    @riders = @plan.riders.page(page)
   end
 
   # GET /riders/1
@@ -98,7 +99,8 @@ class RidersController < ApplicationController
   # GET /riders/masters
   # GET /riders/masters.json
   def index_master
-    @riders = Rider.master.all
+    page = params[:page] || 1
+    @riders = Rider.master.page(page)
   end
 
   # GET /riders/1/master

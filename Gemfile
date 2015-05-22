@@ -67,4 +67,7 @@ gem 'validates_timeliness', '~> 3.0'
 # Tagging
 gem 'acts-as-taggable-on', '~> 3.4'
 
+# Pagination
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 

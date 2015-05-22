@@ -7,7 +7,8 @@ class CoveragesController < ApplicationController
   # GET /coverages
   # GET /coverages.json
   def index
-    @coverages = @rider.coverages.all
+    page = params[:page] || 1
+    @coverages = @rider.coverages.page(page)
   end
 
   # GET /coverages/1
@@ -68,7 +69,8 @@ class CoveragesController < ApplicationController
   # GET /coverages/master
   # GET /coverages/master.json
   def index_master
-    @coverages = Coverage.master.all
+    page = params[:page] || 1
+    @coverages = Coverage.master.page(page)
   end
 
   # GET /coverages/1/master

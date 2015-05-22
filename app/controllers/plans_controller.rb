@@ -6,7 +6,8 @@ class PlansController < ApplicationController
   # GET /plans
   # GET /plans.json
   def index
-    @plans = @book.plans.all
+    page = params[:page] || 1
+    @plans = @book.plans.page(page)
   end
 
   # GET /plans/1
@@ -72,7 +73,8 @@ class PlansController < ApplicationController
   # GET /plans/masters
   # GET /plans/masters.json
   def index_master
-    @plans = Plan.master.all
+    page = params[:page] || 1
+    @plans = Plan.master.page(page)
   end
 
   # GET /plans/1/master
