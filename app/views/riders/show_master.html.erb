@@ -28,9 +28,8 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Coverage amount</th>
+      <th>Assured amount</th>
       <th>Category</th>
-      <th>Abbr</th>
       <th>Premium amount</th>
       <th>Premium unit</th>
       <th>Coverage unit</th>
@@ -44,9 +43,8 @@
       <tr>
         <td><%= coverage.name %></td>
         <td><%= coverage.description %></td>
-        <td><%= coverage.coverage_amount %></td>
+        <td><%= coverage.assured_amount %></td>
         <td><%= coverage.category %></td>
-        <td><%= coverage.abbr %></td>
         <td><%= coverage.premium_amount %></td>
         <td><%= coverage.premium_unit %></td>
         <td><%= coverage.coverage_unit %></td>
@@ -62,4 +60,5 @@
 <%= link_to 'Add coverage', new_rider_coverage_path(@rider) %>
 <br/>
 
-<%= link_to 'Edit', edit_master_rider_path(@rider) %> 
+<%= link_to 'Edit', edit_master_rider_path(@rider) %> <br>
+<%= link_to 'Back to Master Rider', masters_riders_path %> 

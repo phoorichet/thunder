@@ -1,6 +1,6 @@
 <h1>New Rider From Master</h1>
 
-<%= form_for([@rider.book, @rider], url: create_from_master_book_riders_path(@rider.book, @rider)) do |f| %>
+<%= form_for([@rider.plan, @rider], url: create_from_master_plan_riders_path(@rider.plan, @rider)) do |f| %>
   <% if @rider.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rider.errors.count, "error") %> prohibited this rider from being saved:</h2>
@@ -13,32 +13,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
+  <div class="form-group">
+    <%= f.label :status %>
     <%= f.select :status, options_for_select([ "active", "inactive"]) %>
   </div>
-  <div class="field">
-    <%= f.label :code_name %><br>
-    <%= f.text_field :code_name %>
+  <div class="form-group">
+    <%= f.label :code_name %>
+    <%= f.text_field :code_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-  	<%= f.label :master_rider %><br>
+  <div class="form-group">
+  	<%= f.label :master_rider %>
   	<%= f.collection_select(:master_rider_id, Rider.master.all, :id, :name) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit 'submit', class: 'btn btn-primary' %>
   </div>
 
 <% end %>
 
 
-<%= link_to 'Back', book_riders_path(@rider.book) %>
+<%= link_to 'Back', plan_riders_path(@rider.plan) %>

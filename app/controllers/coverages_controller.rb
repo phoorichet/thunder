@@ -72,7 +72,7 @@ class CoveragesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def coverage_params
       params.require(:coverage).permit(:name, :description, :coverage_amount, :category, 
-        :rider_id, :rider_id, :abbr, :premium_amount, :premium_unit, :coverage_unit, 
+        :rider_id, :rider_id, :premium_amount, :premium_unit, :coverage_unit, 
         :coverage_end_at, :tag_list)
     end
 

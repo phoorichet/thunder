@@ -2,8 +2,8 @@ class InsuredUser < ActiveRecord::Base
     # Tree enabled
     has_ancestry 
 
-    has_many :addresses
-    has_many :books
+    has_many :addresses, :dependent => :destroy
+    has_many :books, :dependent => :destroy
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
@@ -57,8 +57,10 @@ class InsuredUser < ActiveRecord::Base
     def riders
         result = []
         self.books.each do |book|
-            book.riders.each do |rider|
-                result << rider
+            book.plans.each do |plan|
+                plan.riders.each do |rider|
+                    result << rider
+                end
             end
         end
 

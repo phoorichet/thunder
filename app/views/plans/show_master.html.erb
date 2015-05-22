@@ -1,6 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Riders</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @plan.name %>
+</p>
+
+<p>
+  <strong>Plan type:</strong>
+  <%= @plan.plan_type %>
+</p>
+
+<p>
+  <strong>Begin at:</strong>
+  <%= @plan.begin_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @plan.end_at %>
+</p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @plan.book_id %>
+</p>
 
 <table class="table table-hover">
   <thead>
@@ -14,7 +37,7 @@
   </thead>
 
   <tbody>
-    <% @riders.each do |rider| %>
+    <% @plan.riders.each do |rider| %>
       <tr>
         <td><%= rider.name %></td>
         <td><%= rider.description %></td>
@@ -28,7 +51,10 @@
   </tbody>
 </table>
 
+<%= link_to 'Add new rider from master', new_from_master_plan_riders_path(@plan) %>
+
 <br>
 
 
-
+<%= link_to 'Edit', edit_master_plan_path(@plan) %> <br>
+<%= link_to 'Back to Master Plan', masters_plans_path %> 

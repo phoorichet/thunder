@@ -1,10 +1,10 @@
-<%= form_for([@book.insured_user, @book]) do |f| %>
-  <% if @book.errors.any? %>
+<%= form_for(@plan, url: master_plans_path(@rider) ) do |f| %>
+  <% if @plan.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
 
       <ul>
-      <% @book.errors.full_messages.each do |message| %>
+      <% @plan.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :number %><br>
-    <%= f.text_field :number, class: "form-control" %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :begin_at %><br>
@@ -23,7 +23,7 @@
     <%= f.label :end_at %><br>
     <%= f.datetime_select :end_at, :include_blank => true, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit 'create book', class: "btn btn-primary" %>
+  <div class="form-group">
+    <%= f.submit 'submit', class: 'btn btn-primary' %>
   </div>
 <% end %>

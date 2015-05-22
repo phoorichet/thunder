@@ -135,9 +135,9 @@
 					        <td><%= rider.description %></td>
 					        <td><%= rider.status %></td>
 					        <td><%= rider.code_name %></td>
-					        <td><%= link_to 'Show', [rider.book, rider] %></td>
-					        <td><%= link_to 'Edit', edit_book_rider_path(rider.book, rider) %></td>
-					        <td><%= link_to 'Destroy', [rider.book, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					        <td><%= link_to 'Show', [rider.plan, rider] %></td>
+					        <td><%= link_to 'Edit', edit_plan_rider_path(rider.plan, rider) %></td>
+					        <td><%= link_to 'Destroy', [rider.plan, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
 					      </tr>
 					    <% end %>
 					  </tbody>

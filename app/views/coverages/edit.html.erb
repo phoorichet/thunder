@@ -3,4 +3,8 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', [@coverage.rider, @coverage] %> |
-<%= link_to 'Back to rider', contract_rider_path(@coverage.rider.contract, @coverage.rider) %>
+<% if @coverage.rider.rider_type == 'master' %>
+<%= link_to 'Back to master rider', master_rider_path(@coverage.rider) %>
+<% elsif %>
+<%= link_to 'Back to rider', book_rider_path(@coverage.rider.book, @coverage.rider) %>
+<% end %>

@@ -1,12 +1,12 @@
 class RidersController < ApplicationController
-  before_action :set_book, only: [:index, :show, :edit, :update, :destroy, :new_from_master, :create_from_master]
+  before_action :set_plan, only: [:index, :new, :show, :edit, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
 
   # GET /riders
   # GET /riders.json
   def index
-    @riders = @book.riders.all
+    @riders = @plan.riders.all
   end
 
   # GET /riders/1
@@ -16,12 +16,12 @@ class RidersController < ApplicationController
 
   # GET /riders/new
   def new
-    @rider = @book.riders.new
+    @rider = @plan.riders.new
   end
 
   # GET /riders/new_from_master
   def new_from_master
-    @rider = @book.riders.new
+    @rider = @plan.riders.new
   end
 
   # GET /riders/1/edit
@@ -31,11 +31,11 @@ class RidersController < ApplicationController
   # POST /riders
   # POST /riders.json
   def create
-    @rider = @book.riders.new(rider_params)
+    @rider = @plan.riders.new(rider_params)
 
     respond_to do |format|
       if @rider.save
-        format.html { redirect_to [@rider.book, @rider], notice: 'Rider was successfully created.' }
+        format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class RidersController < ApplicationController
   # POST /riders_from_master
   # POST /riders_from_master.json
   def create_from_master
-    @rider = @book.riders.new(rider_params)
+    @rider = @plan.riders.new(rider_params)
     @master_rider = Rider.master.find(rider_params[:master_rider_id])
 
     respond_to do |format|
@@ -60,7 +60,7 @@ class RidersController < ApplicationController
                                             coverage_end_at: coverage.coverage_end_at)
         end
 
-        format.html { redirect_to [@rider.book, @rider], notice: 'Rider was successfully created.' }
+        format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new }
@@ -74,7 +74,7 @@ class RidersController < ApplicationController
   def update
     respond_to do |format|
       if @rider.update(rider_params)
-        format.html { redirect_to [@rider.book, @rider], notice: 'Rider was successfully updated.' }
+        format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully updated.' }
         format.json { render :show, status: :ok, location: @rider }
       else
         format.html { render :edit }
@@ -88,7 +88,7 @@ class RidersController < ApplicationController
   def destroy
     @rider.destroy
     respond_to do |format|
-      format.html { redirect_to [@rider.book.insured_user, @rider.book], notice: 'Rider was successfully destroyed.' }
+      format.html { redirect_to [@rider.plan.book, @rider.plan], notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -123,7 +123,7 @@ class RidersController < ApplicationController
 
     respond_to do |format|
       if @rider.save
-        format.html { redirect_to masters_rider_path(@rider), notice: 'Rider was successfully created.' }
+        format.html { redirect_to master_rider_path(@rider), notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new }
@@ -167,8 +167,8 @@ class RidersController < ApplicationController
       params.require(:rider).permit(:name, :description, :status, :code_name, :master_rider_id)
     end
 
-    def set_book
-      @book = Book.find(params[:book_id])
+    def set_plan
+      @plan = Plan.find(params[:plan_id])
     end
 
     def set_master_rider

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Plans</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Plan type</th>
+      <th>Begin at</th>
+      <th>End at</th>
+      <th>Book</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.name %></td>
+        <td><%= plan.plan_type %></td>
+        <td><%= plan.begin_at %></td>
+        <td><%= plan.end_at %></td>
+        <td><%= plan.book_id %></td>
+        <td><%= link_to 'Show', master_plan_path(plan) %></td>
+        <td><%= link_to 'Edit', edit_master_plan_path(plan) %></td>
+        <td><%= link_to 'Destroy', master_plan_path(plan), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master Plan', new_master_plans_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519160705) do
+ActiveRecord::Schema.define(version: 20150522043604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,12 +43,11 @@ ActiveRecord::Schema.define(version: 20150519160705) do
   create_table "coverages", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.float    "coverage_amount"
+    t.float    "assured_amount"
     t.string   "category"
     t.integer  "rider_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "abbr"
     t.float    "premium_amount"
     t.string   "premium_unit"
     t.string   "coverage_unit"
@@ -74,6 +73,16 @@ ActiveRecord::Schema.define(version: 20150519160705) do
   end
 
   add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
+
+  create_table "plans", force: :cascade do |t|
+    t.string   "name"
+    t.string   "plan_type"
+    t.datetime "begin_at"
+    t.datetime "end_at"
+    t.integer  "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "premia", force: :cascade do |t|
     t.string   "name"
@@ -105,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150519160705) do
     t.string   "rider_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "book_id"
+    t.integer  "plan_id"
     t.integer  "master_rider_id"
     t.string   "code_name"
   end

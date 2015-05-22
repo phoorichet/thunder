@@ -11,51 +11,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
+  <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.text_field :gender, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :date_of_birth %><br>
+  <div class="form-group">
+    <%= f.label :date_of_birth %>
     <%= f.datetime_select :date_of_birth %>
   </div>
-  <div class="field">
-    <%= f.label :marital_status %><br>
-    <%= f.text_field :marital_status %>
+  <div class="form-group">
+    <%= f.label :marital_status %>
+    <%= f.text_field :marital_status, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :income %><br>
-    <%= f.text_field :income %>
+  <div class="form-group">
+    <%= f.label :income %>
+    <%= f.text_field :income, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :national_id %><br>
-    <%= f.text_field :national_id %>
+  <div class="form-group">
+    <%= f.label :national_id %>
+    <%= f.text_field :national_id, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :passport_id %><br>
-    <%= f.text_field :passport_id %>
+  <div class="form-group">
+    <%= f.label :passport_id %>
+    <%= f.text_field :passport_id, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :height %><br>
-    <%= f.text_field :height %>
+  <div class="form-group">
+    <%= f.label :height %>
+    <%= f.text_field :height, class: "form-control" %>
   </div>  
-  <div class="field">
-    <%= f.label :weight %><br>
-    <%= f.text_field :weight %>
+  <div class="form-group">
+    <%= f.label :weight %>
+    <%= f.text_field :weight, class: "form-control" %>
   </div>  
-  <div class="field">
-    <%= f.label :occupation %><br>
-    <%= f.text_field :occupation %>
+  <div class="form-group">
+    <%= f.label :occupation %>
+    <%= f.text_field :occupation, class: "form-control" %>
   </div>  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'sumit', class: 'btn btn-primary' %>
   </div>
 <% end %>

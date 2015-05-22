@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Number:</strong>
   <%= @book.number %>
@@ -15,36 +13,34 @@
   <%= @book.end_at %>
 </p>
 
-  <h3>Rider Listing</h3>
+  <h3>Plan Listing</h3>
   <table class="table table-hover">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Code name</th>
+        <th>Begin at</th>
+        <th>End at</th>
         <th colspan="3"></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @book.riders.each do |rider| %>
+      <% @book.plans.each do |plan| %>
         <tr>
-          <td><%= rider.name %></td>
-          <td><%= rider.description %></td>
-          <td><%= rider.status %></td>
-          <td><%= rider.code_name %></td>
-          <td><%= link_to 'Show', book_rider_path(rider.book, rider) %></td>
-          <td><%= link_to 'Edit', edit_book_rider_path(rider.book, rider) %></td>
-          <td><%= link_to 'Destroy', [rider.book, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= plan.name %></td>
+          <td><%= plan.begin_at %></td>
+          <td><%= plan.end_at %></td>
+          <td><%= link_to 'Show', book_plan_path(plan.book, plan) %></td>
+          <td><%= link_to 'Edit', edit_book_plan_path(plan.book, plan) %></td>
+          <td><%= link_to 'Destroy', [plan.book, plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <%= link_to 'Add new rider', new_book_rider_path(@book) %>
+  <%= link_to 'Add new plan', new_book_plan_path(@book) %>
   <br/>
-  <%= link_to 'Add new rider from master', new_from_master_book_riders_path(@book) %>
+  <%= link_to 'Add new plan from master', new_from_master_book_plans_path(@book) %>
 
   <br/>
   <br/>

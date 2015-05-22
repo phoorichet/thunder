@@ -28,7 +28,7 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Coverage amount</th>
+      <th>Assured amount</th>
       <th>Category</th>
       <th>Rider</th>
       <th>Abbr</th>
@@ -45,7 +45,7 @@
       <tr>
         <td><%= coverage.name %></td>
         <td><%= coverage.description %></td>
-        <td><%= coverage.coverage_amount %></td>
+        <td><%= coverage.assured_amount %></td>
         <td><%= coverage.category %></td>
         <td><%= coverage.rider_id %></td>
         <td><%= coverage.abbr %></td>
@@ -64,5 +64,5 @@
 <%= link_to 'Add coverage', new_rider_coverage_path(@rider) %>
 <br/>
 
-<%= link_to 'Edit', edit_book_rider_path(@rider.book, @rider) %> |
-<%= link_to 'Back To book', insured_user_book_path(@rider.book.insured_user, @rider.book) %>
+<%= link_to 'Edit', edit_plan_rider_path(@rider.plan, @rider) %> |
+<%= link_to 'Back To book', insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book) %>
