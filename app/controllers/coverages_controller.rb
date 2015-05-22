@@ -1,6 +1,6 @@
 class CoveragesController < ApplicationController
-  before_action :set_rider
-  before_action :set_coverage, only: [:show, :edit, :update, :destroy]
+  before_action :set_rider, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :set_coverage, only: [:show, :edit, :update, :destroy, :show_master, :update_master, :destroy_master]
 
 
   # GET /coverages
@@ -62,6 +62,70 @@ class CoveragesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  # GET /coverages/master
+  # GET /coverages/master.json
+  def index_master
+    @coverages = Coverage.master.all
+  end
+
+  # GET /coverages/1/master
+  # GET /coverages/1/master.json
+  def show_master
+  end
+
+  # GET /coverages/new_master
+  def new_master
+    @coverage = Coverage.new
+    @coverage.coverage_type = 'master'
+  end
+
+  # GET /coverages/1/edit_master
+  def edit_master
+  end
+
+  # POST /coverages/master
+  # POST /coverages/master.json
+  def create_master
+    @coverage = Coverage.new(coverage_params)
+    @coverage.coverage_type = 'master'
+
+    respond_to do |format|
+      if @coverage.save
+        format.html { redirect_to master_coverage_path(@coverage), notice: 'Coverage was successfully created.' }
+        format.json { render :show, status: :created, location: @coverage }
+      else
+        format.html { render :new }
+        format.json { render json: @coverage.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /coverages/1
+  # PATCH/PUT /coverages/1.json
+  def update_master
+    respond_to do |format|
+      if @coverage.update(coverage_params)
+        format.html { redirect_to show_master_coverage_path(@coverage), notice: 'Coverage was successfully updated.' }
+        format.json { render :show, status: :ok, location: @coverage }
+      else
+        format.html { render :edit }
+        format.json { render json: @coverage.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /coverages/1
+  # DELETE /coverages/1.json
+  def destroy_master
+    @coverage.destroy
+    respond_to do |format|
+      format.html { redirect_to masters_coverages_path, notice: 'Coverage was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

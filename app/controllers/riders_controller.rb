@@ -97,7 +97,7 @@ class RidersController < ApplicationController
 
   # GET /riders/masters
   # GET /riders/masters.json
-  def masters
+  def index_master
     @riders = Rider.master.all
   end
 

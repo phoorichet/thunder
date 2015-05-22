@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
 
     collection do
-      get  'masters'
+      get  'masters' => 'plans#index_master'
       get  'new_master'
       post 'master' => 'plans#create_master'
     end
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     resources :coverages
 
     collection do
-      get  'masters'
+      get  'masters' => 'riders#index_master'
       get  'new_master'
       post 'master' => 'riders#create_master'
     end
@@ -57,6 +57,15 @@ Rails.application.routes.draw do
       delete 'master' => 'riders#destroy_master'
     end
   end
+
+  # Custom routes for coverages
+  get 'coverages/masters' => 'coverages#index_master', as: :masters_coverages
+  get 'coverages/new_master' => 'coverages#new_master', as: :new_master_coverage
+  post 'coverages/master' => 'coverages#create_master', as: :master_coverages
+  get 'coverages/:id/master' => 'coverages#show_master', as: :master_coverage
+  get 'coverages/:id/edit_master' => 'coverages#edit_master', as: :edit_master_coverage
+  put 'coverages/:id/master' => 'coverages#create_master'
+  delete 'coverages/:id/master' => 'coverages#destroy_master'
 
 
 

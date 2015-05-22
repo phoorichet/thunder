@@ -45,13 +45,7 @@
   <%= @coverage.coverage_end_at %>
 </p>
 
-<%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
+<%= link_to 'Edit', edit_master_coverage_path(@coverage) %> |
 
-<% if  @coverage.rider.is_master? %>
-<%= link_to 'Back to master rider', master_rider_path(@coverage.rider) %> |
-<% end -%>
+<%= link_to 'Back to Master Coverage', masters_coverages_path %>
 
-
-<% if  @coverage.rider.plan != nil %>
-<%= link_to 'Back to plan', plan_rider_path(@coverage.rider.plan, @coverage.rider) %>
-<% end -%>

@@ -2,7 +2,7 @@
 
 <h1>Listing Coverages</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -28,9 +28,9 @@
         <td><%= coverage.premium_unit %></td>
         <td><%= coverage.coverage_unit %></td>
         <td><%= coverage.coverage_end_at %></td>
-        <td><%= link_to 'Show', rider_coverage(coverage.rider, coverage) %></td>
-        <td><%= link_to 'Edit', edit_rider_coverage_path(coverage.rider, coverage) %></td>
-        <td><%= link_to 'Destroy', coverage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', master_coverage_path(coverage) %></td>
+        <td><%= link_to 'Edit', edit_master_coverage_path(coverage) %></td>
+        <td><%= link_to 'Destroy', master_coverage_path(coverage), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Coverage', new_coverage_path %>
+<%= link_to 'New Master Coverage', new_master_coverage_path %>

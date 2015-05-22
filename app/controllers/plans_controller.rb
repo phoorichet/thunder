@@ -66,7 +66,7 @@ class PlansController < ApplicationController
 
   # GET /plans/masters
   # GET /plans/masters.json
-  def masters
+  def index_master
     @plans = Plan.master.all
   end
 
