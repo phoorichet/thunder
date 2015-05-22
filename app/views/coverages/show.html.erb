@@ -47,11 +47,11 @@
 
 <%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
 
-<% if  @coverage.rider.rider_type == 'master' %>
+<% if  @coverage.rider.is_master? %>
 <%= link_to 'Back to master rider', master_rider_path(@coverage.rider) %> |
 <% end -%>
 
 
-<% if  @coverage.rider.book != nil %>
-<%= link_to 'Back to book', book_rider_path(@coverage.rider.book, @coverage.rider) %>
+<% if  @coverage.rider.plan != nil %>
+<%= link_to 'Back to plan', plan_rider_path(@coverage.rider.plan, @coverage.rider) %>
 <% end -%>

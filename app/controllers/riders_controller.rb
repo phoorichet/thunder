@@ -54,8 +54,8 @@ class RidersController < ApplicationController
       if @rider.save
         @master_rider.coverages.each do |coverage| 
           @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
-                                            coverage_amount: coverage.coverage_amount, description: coverage.category,
-                                            abbr: coverage.abbr, premium_amount: coverage.premium_amount,
+                                            assured_amount: coverage.assured_amount, description: coverage.category,
+                                            premium_amount: coverage.premium_amount,
                                             premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
                                             coverage_end_at: coverage.coverage_end_at)
         end

@@ -30,8 +30,6 @@
       <th>Description</th>
       <th>Assured amount</th>
       <th>Category</th>
-      <th>Rider</th>
-      <th>Abbr</th>
       <th>Premium amount</th>
       <th>Premium unit</th>
       <th>Coverage unit</th>
@@ -47,8 +45,6 @@
         <td><%= coverage.description %></td>
         <td><%= coverage.assured_amount %></td>
         <td><%= coverage.category %></td>
-        <td><%= coverage.rider_id %></td>
-        <td><%= coverage.abbr %></td>
         <td><%= coverage.premium_amount %></td>
         <td><%= coverage.premium_unit %></td>
         <td><%= coverage.coverage_unit %></td>
@@ -64,5 +60,11 @@
 <%= link_to 'Add coverage', new_rider_coverage_path(@rider) %>
 <br/>
 
-<%= link_to 'Edit', edit_plan_rider_path(@rider.plan, @rider) %> |
-<%= link_to 'Back To book', insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book) %>
+<%= link_to 'Edit', edit_plan_rider_path(@rider.plan, @rider) %> <br>
+<% if @rider.plan.is_master? %>
+  <%= link_to 'Back To Master Plan', master_plan_path(@rider.plan) %>
+<% elsif %>
+  <%= link_to 'Back To book', insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book) %>
+<% end %>
+
+
