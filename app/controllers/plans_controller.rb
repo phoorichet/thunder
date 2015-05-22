@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :set_book, only: [:index, :new, :show, :edit, :update, :destroy, :create]
+  before_action :set_book, only: [:index, :new, :show, :edit, :update, :destroy, :create, :new_from_master]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :set_master_plan, only: [:show_master, :edit_master, :update_master, :destroy_master]
 
@@ -16,6 +16,11 @@ class PlansController < ApplicationController
 
   # GET /plans/new
   def new
+    @plan = @book.plans.new
+  end
+
+  # GET /plans/new_from_master
+  def new_from_master
     @plan = @book.plans.new
   end
 
@@ -135,7 +140,7 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id)
+      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id, :master_plan_id)
     end
 
     def set_book

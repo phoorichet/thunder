@@ -6,9 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
-      <th>Assured amount</th>
       <th>Category</th>
+      <th>Assured amount</th>
       <th>Premium amount</th>
       <th>Premium unit</th>
       <th>Coverage unit</th>
@@ -21,9 +20,8 @@
     <% @coverages.each do |coverage| %>
       <tr>
         <td><%= coverage.name %></td>
-        <td><%= coverage.description %></td>
-        <td><%= coverage.assured_amount %></td>
         <td><%= coverage.category %></td>
+        <td><%= coverage.assured_amount %></td>
         <td><%= coverage.premium_amount %></td>
         <td><%= coverage.premium_unit %></td>
         <td><%= coverage.coverage_unit %></td>
