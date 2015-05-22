@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     member do
       get 'master' => 'plans#show_master'
       put 'master' => 'plans#update_master'
+      patch 'master' => 'plans#update_master'
       get 'edit_master'
       delete 'master' => 'plans#destroy_master'
     end
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
     member do
       get 'master' => 'riders#show_master'
       put 'master' => 'riders#update_master'
+      patch 'master' => 'riders#update_master'
       get 'edit_master'
       delete 'master' => 'riders#destroy_master'
     end
@@ -64,7 +66,8 @@ Rails.application.routes.draw do
   post 'coverages/master' => 'coverages#create_master', as: :master_coverages
   get 'coverages/:id/master' => 'coverages#show_master', as: :master_coverage
   get 'coverages/:id/edit_master' => 'coverages#edit_master', as: :edit_master_coverage
-  put 'coverages/:id/master' => 'coverages#create_master'
+  patch 'coverages/:id/master' => 'coverages#update_master'
+  put 'coverages/:id/master' => 'coverages#update_master'
   delete 'coverages/:id/master' => 'coverages#destroy_master'
 
 

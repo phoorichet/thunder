@@ -1,51 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-12">
+    <p>
+      <strong>Name:</strong>
+      <%= @coverage.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @coverage.name %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @coverage.description %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @coverage.description %>
-</p>
+    <p>
+      <strong>Assured amount:</strong>
+      <%= @coverage.assured_amount %>
+    </p>
 
-<p>
-  <strong>Assured amount:</strong>
-  <%= @coverage.assured_amount %>
-</p>
+    <p>
+      <strong>Category:</strong>
+      <%= @coverage.category %>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @coverage.category %>
-</p>
+    <p>
+      <strong>Rider:</strong>
+      <%= @coverage.rider_id %>
+    </p>
 
-<p>
-  <strong>Rider:</strong>
-  <%= @coverage.rider_id %>
-</p>
+    <p>
+      <strong>Premium amount:</strong>
+      <%= @coverage.premium_amount %>
+    </p>
 
-<p>
-  <strong>Premium amount:</strong>
-  <%= @coverage.premium_amount %>
-</p>
+    <p>
+      <strong>Premium unit:</strong>
+      <%= @coverage.premium_unit %>
+    </p>
 
-<p>
-  <strong>Premium unit:</strong>
-  <%= @coverage.premium_unit %>
-</p>
+    <p>
+      <strong>Coverage unit:</strong>
+      <%= @coverage.coverage_unit %>
+    </p>
 
-<p>
-  <strong>Coverage unit:</strong>
-  <%= @coverage.coverage_unit %>
-</p>
+    <p>
+      <strong>Coverage end at:</strong>
+      <%= @coverage.coverage_end_at %>
+    </p>
 
-<p>
-  <strong>Coverage end at:</strong>
-  <%= @coverage.coverage_end_at %>
-</p>
+    <p>
+      <strong>Tag list:</strong>
+      <%= @coverage.tag_list %>
+    </p>
 
-<%= link_to 'Edit', edit_master_coverage_path(@coverage) %> |
+    <%= link_to 'Edit', edit_master_coverage_path(@coverage) %> |
 
-<%= link_to 'Back to Master Coverage', masters_coverages_path %>
+    <%= link_to 'Back to Master Coverage', masters_coverages_path %>
+  </div>
+</div>
+
+
 

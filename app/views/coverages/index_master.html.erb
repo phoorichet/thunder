@@ -1,12 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Coverages</h1>
+<h1>Listing Master Coverages</h1>
 
 <table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
       <th>Category</th>
+      <th>Tags</th>
       <th>Assured amount</th>
       <th>Premium amount</th>
       <th>Premium unit</th>
@@ -21,6 +20,7 @@
       <tr>
         <td><%= coverage.name %></td>
         <td><%= coverage.category %></td>
+        <td><%= coverage.tag_list %></td>
         <td><%= coverage.assured_amount %></td>
         <td><%= coverage.premium_amount %></td>
         <td><%= coverage.premium_unit %></td>

@@ -1,4 +1,4 @@
-<%= form_for(@coverage, url: master_coverages_path(@coverage), html: {class: "form-horizontal"}) do |f| %>
+<%= form_for(@coverage, url: master_coverage_path(@coverage), html: {class: "form-horizontal"}) do |f| %>
   <% if @coverage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@coverage.errors.count, "error") %> prohibited this coverage from being saved:</h2>
@@ -42,6 +42,11 @@
   <div class="form-group">
     <%= f.label :premium_unit %>
     <%= f.text_field :premium_unit, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, class: "form-control" %>
   </div>
   
   <div class="form-group">

@@ -137,7 +137,7 @@ class RidersController < ApplicationController
   def update_master
     respond_to do |format|
       if @rider.update(rider_params)
-        format.html { redirect_to @rider, notice: 'Rider was successfully updated.' }
+        format.html { redirect_to master_rider_path(@rider), notice: 'Rider was successfully updated.' }
         format.json { render :show, status: :ok, location: @rider }
       else
         format.html { render :edit }

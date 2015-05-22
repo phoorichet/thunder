@@ -1,6 +1,7 @@
 class CoveragesController < ApplicationController
   before_action :set_rider, only: [:index, :new, :show, :edit, :update, :destroy]
-  before_action :set_coverage, only: [:show, :edit, :update, :destroy, :show_master, :update_master, :destroy_master]
+  before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
+                                      :show_master, :edit_master, :update_master, :destroy_master]
 
 
   # GET /coverages
@@ -107,7 +108,7 @@ class CoveragesController < ApplicationController
   def update_master
     respond_to do |format|
       if @coverage.update(coverage_params)
-        format.html { redirect_to show_master_coverage_path(@coverage), notice: 'Coverage was successfully updated.' }
+        format.html { redirect_to master_coverage_path(@coverage), notice: 'Coverage was successfully updated.' }
         format.json { render :show, status: :ok, location: @coverage }
       else
         format.html { render :edit }
