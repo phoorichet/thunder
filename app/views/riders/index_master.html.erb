@@ -1,35 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-8">
+    <h1>Listing Master Riders</h1>    
+  </div>
+  <div class="col-lg-4">
+    <div class="pull-right">
+      <%= link_to "Add Master", new_master_riders_path %>  
+    </div>
+  </div>
+</div>
 
-<h1>Listing Master Riders</h1>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Code name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Code name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @riders.each do |rider| %>
+          <tr>
+            <td><%= rider.name %></td>
+            <td><%= rider.description %></td>
+            <td><%= rider.status %></td>
+            <td><%= rider.code_name %></td>
+            <td><%= link_to 'Show', master_rider_path(rider) %></td>
+            <td><%= link_to 'Edit', edit_master_rider_path(rider) %></td>
+            <td><%= link_to 'Destroy', master_rider_path(rider), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-  <tbody>
-    <% @riders.each do |rider| %>
-      <tr>
-        <td><%= rider.name %></td>
-        <td><%= rider.description %></td>
-        <td><%= rider.status %></td>
-        <td><%= rider.code_name %></td>
-        <td><%= link_to 'Show', master_rider_path(rider) %></td>
-        <td><%= link_to 'Edit', edit_master_rider_path(rider) %></td>
-        <td><%= link_to 'Destroy', master_rider_path(rider), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-<%= paginate @riders, :theme => 'twitter-bootstrap-3' %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="text-center">
+      <%= paginate @riders, :theme => 'twitter-bootstrap-3' %>
+    </div>    
+  </div>
+</div>
 
-<%= link_to "Add Master", new_master_riders_path %>
+
+
 

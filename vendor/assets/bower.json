@@ -1,6 +1,7 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "moment": "latest"
+    "moment": "latest",
+    "typeahead.js": "latest"
   }
 }

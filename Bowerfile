@@ -3,3 +3,4 @@
 
 # asset 'bootstrap'
 asset "moment"
+asset "typeahead.js"
