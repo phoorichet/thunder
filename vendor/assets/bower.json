@@ -2,6 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "moment": "latest",
-    "typeahead.js": "latest"
+    "typeahead.js": "latest",
+    "bootstrap-tagsinput": "latest"
   }
 }

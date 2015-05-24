@@ -4,3 +4,4 @@
 # asset 'bootstrap'
 asset "moment"
 asset "typeahead.js"
+asset "bootstrap-tagsinput"

@@ -5,6 +5,8 @@ class Coverage < ActiveRecord::Base
 
 	scope :master, ->(){where(coverage_type: 'master')}
 
+	default_scope { order(id: :asc)}
+
 	def is_master?
 		self.coverage_type == 'master'
 	end
