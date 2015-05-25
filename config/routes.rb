@@ -1,6 +1,36 @@
 Rails.application.routes.draw do
 
+  # custom routes must be placed in the first order so that it override 
+  # routes in resources.
+  # 
+  get  'plans/masters'         => 'plans#index_master', as: :masters_plans
+  get  'plans/masters/new'     => 'plans#new_master', as: :new_master_plan
+  post 'plans/masters'         => 'plans#create_master', as: :master_plans
+  get 'plans/masters/:id'      => 'plans#show_master', as: :master_plan
+  get 'plans/masters/:id/edit' => 'plans#edit_master', as: :edit_master_plan
+  put 'plans/masters/:id'      => 'plans#update_master'
+  patch 'plans/masters/:id'    => 'plans#update_master'
+  delete 'plans/masters/:id'   => 'plans#destroy_master'
 
+  get  'riders/masters'         => 'riders#index_master', as: :masters_riders
+  get  'riders/masters/new'     => 'riders#new_master', as: :new_master_rider
+  post 'riders/masters'         => 'riders#create_master', as: :master_riders
+  get 'riders/masters/:id'      => 'riders#show_master', as: :master_rider
+  get 'riders/masters/:id/edit' => 'riders#edit_master', as: :edit_master_rider
+  put 'riders/masters/:id'      => 'riders#update_master'
+  patch 'riders/masters/:id'    => 'riders#update_master'
+  delete 'riders/masters/:id'   => 'riders#destroy_master'
+
+  get 'coverages/masters'          => 'coverages#index_master', as: :masters_coverages
+  get 'coverages/masters/new'      => 'coverages#new_master', as: :new_master_coverage
+  post 'coverages/masters'         => 'coverages#create_master', as: :master_coverages
+  get 'coverages/masters/:id'      => 'coverages#show_master', as: :master_coverage
+  get 'coverages/masters/:id/edit' => 'coverages#edit_master', as: :edit_master_coverage
+  put 'coverages/masters/:id'      => 'coverages#update_master'
+  patch 'coverages/masters/:id'    => 'coverages#update_master'
+  delete 'coverages/masters/:id'   => 'coverages#destroy_master'
+
+  # end custom routes
 
   resources :insured_users do
     resources :books
@@ -18,8 +48,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  # resources :master_riders do 
-  #   # end
 
   resources :plans do
     resources :riders do 
@@ -28,47 +56,14 @@ Rails.application.routes.draw do
           post 'create_from_master'
         end
     end
-
-    collection do
-      get  'masters' => 'plans#index_master'
-      get  'new_master'
-      post 'master' => 'plans#create_master'
-    end
-    member do
-      get 'master' => 'plans#show_master'
-      put 'master' => 'plans#update_master'
-      patch 'master' => 'plans#update_master'
-      get 'edit_master'
-      delete 'master' => 'plans#destroy_master'
-    end
   end
 
   resources :riders do
     resources :coverages
-
-    collection do
-      get  'masters' => 'riders#index_master'
-      get  'new_master'
-      post 'master' => 'riders#create_master'
-    end
-    member do
-      get 'master' => 'riders#show_master'
-      put 'master' => 'riders#update_master'
-      patch 'master' => 'riders#update_master'
-      get 'edit_master'
-      delete 'master' => 'riders#destroy_master'
-    end
   end
 
-  # Custom routes for coverages
-  get 'coverages/masters' => 'coverages#index_master', as: :masters_coverages
-  get 'coverages/new_master' => 'coverages#new_master', as: :new_master_coverage
-  post 'coverages/master' => 'coverages#create_master', as: :master_coverages
-  get 'coverages/:id/master' => 'coverages#show_master', as: :master_coverage
-  get 'coverages/:id/edit_master' => 'coverages#edit_master', as: :edit_master_coverage
-  patch 'coverages/:id/master' => 'coverages#update_master'
-  put 'coverages/:id/master' => 'coverages#update_master'
-  delete 'coverages/:id/master' => 'coverages#destroy_master'
+
+  
 
 
 
