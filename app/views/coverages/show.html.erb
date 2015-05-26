@@ -45,6 +45,11 @@
   <%= @coverage.coverage_end_at %>
 </p>
 
+<p>
+  <strong>Tag list:</strong>
+  <%= @coverage.tag_list %>
+</p>
+
 <%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
 
 <% if  @coverage.rider.is_master? %>

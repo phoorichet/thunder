@@ -12,6 +12,6 @@ json.array!(@coverages) do |coverage|
   :coverage_end_at,
   :coverage_type,
   :tag_list
-
-  json.url coverage_url(coverage, format: :json)
+  
+  json.url master_coverages_url(coverage, format: :json)
 end
