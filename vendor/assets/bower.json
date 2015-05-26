@@ -3,6 +3,14 @@
   "dependencies": {
     "moment": "latest",
     "typeahead.js": "latest",
-    "bootstrap-tagsinput": "latest"
+    "bootstrap-tagsinput": "latest",
+    "colorbrewer": "latest",
+    "lodash": "latest",
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "angular-animate": "latest",
+    "skrollr": "latest"
   }
 }

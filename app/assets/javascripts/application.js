@@ -15,4 +15,11 @@
 //= require bootstrap-sprockets
 //= require typeahead.js/dist/typeahead.bundle
 //= require bootstrap-tagsinput/dist/bootstrap-tagsinput
+//= require angular
+//= require angular-resource
+//= require angular-bootstrap
+//= require angular-ui-router
+//= require angular-animate
+//= require moment
+//= require skrollr
 //= require_tree .
