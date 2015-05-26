@@ -1,0 +1,37 @@
+'use strict';
+
+(function(){
+  
+  var module = angular.module('thunder.searchInsuredUser.controllers', 
+    [ 
+      'thunder.api.services', 
+    ]
+  );
+
+  module.controller('SearchInsuredUserController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
+    function($scope, Api, $filter, $location, $modal, $state){
+
+        $scope.user_list = [];
+
+        $scope.search = function(){
+            // get and parse params.
+            var firstname = $scope.firstname || null;
+            var lastname = $scope.lastname || null;
+
+            var params = {
+              first_name: firstname,
+              last_name: lastname,
+            };
+
+            Api.InsuredUser.search(params, function(data){
+                $scope.user_list = data;
+                console.log(data);
+            }, function(error){
+
+            })            
+        }
+
+    }
+  ]) // end module
+
+}());

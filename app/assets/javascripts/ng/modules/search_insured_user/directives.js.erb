@@ -1,0 +1,33 @@
+'use strict';
+
+(function(){
+
+  var module = angular.module('thunder.searchInsuredUser.directives', ['thunder.searchInsuredUser.controllers']);
+  
+  module.directive('searchInsuredUserPanel', function(){
+    return {
+      restrict: "AE",
+      replace: true,
+      // template: "<p>Test Directive hahaha</p>",
+      templateUrl: "<%= asset_path 'ng/modules/search_insured_user/search.html' %>", //'/assets/ng/modules/widget/template.html',
+      scope: {
+        uid: '=',
+      },
+      controller: 'SearchInsuredUserController',
+      link: function(scope, element, attributes){        
+        // Set scope attrbute so that we can use in the template
+        scope.attributes = attributes;
+        scope.element = element;
+
+        scope.id = attributes.id;
+        console.log(scope.id);
+
+        // $('.item-modal').on('loaded.bs.modal', function (e) {
+        //   console.log(e.target);
+        // })
+
+      }
+    }
+  });
+
+}());

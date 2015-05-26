@@ -63,6 +63,26 @@ Rails.application.routes.draw do
   end
 
 
+  # API V1
+  namespace :api, defaults: {:format=> 'json'} do
+    namespace :v1 do
+      # collection
+      resources :insured_users do
+        collection do
+          get 'search'
+        end
+
+        # member do
+        #   get 'add'
+        #   put 'additem'
+        #   post 'toggle_item'
+        # end
+      end
+      
+    end
+  end
+
+
   
 
 

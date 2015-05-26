@@ -96,14 +96,22 @@
       
       <div class="form-group">
         <%= f.label :parent_id, class: 'col-lg-2 control-label'  %>
-        <div class="col-lg-10">
-          <%= f.text_field :parent_id, class: "form-control" %>
+        <div class="col-lg-6">
+          <%= f.text_field :parent_id, class: "form-control", "ng-model" => "parent_id"  %>
+        </div>
+        <div class="col-lg-4">
+          <search-insured-user-panel id="parentSearch" uid="parent_id">
+          </search-insured-user-panel>
         </div>
       </div>  
        <div class="form-group">
         <%= f.label :spouse_id, class: 'col-lg-2 control-label'  %>
-        <div class="col-lg-10">
-          <%= f.text_field :spouse_id, class: "form-control" %>
+        <div class="col-lg-6">
+          <%= f.text_field :spouse_id, class: "form-control", "ng-model" => "spouse_id" %>
+        </div>
+         <div class="col-lg-4">
+          <search-insured-user-panel id="spouseSearch" uid="spouse_id">
+          </search-insured-user-panel>
         </div>
       </div>  
 

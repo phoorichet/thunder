@@ -7,6 +7,8 @@ class InsuredUser < ActiveRecord::Base
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
+    scope :search_first_name, ->(value) { where("first_name LIKE ?", "%#{value}%") if value != nil }
+    scope :search_last_name, ->(value) { where("last_name LIKE ?", "%#{value}%") if value != nil }
 
     # validations
     validates :first_name, presence: true
