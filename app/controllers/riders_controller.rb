@@ -1,5 +1,5 @@
 class RidersController < ApplicationController
-  before_action :set_plan, only: [:index, :new, :show, :edit, :update, :destroy, :new_from_master, :create_from_master]
+  before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
 
@@ -17,12 +17,19 @@ class RidersController < ApplicationController
 
   # GET /riders/new
   def new
-    @rider = @plan.riders.new
-  end
-
-  # GET /riders/new_from_master
-  def new_from_master
-    @rider = @plan.riders.new
+    copy_from_id = params[:uid]
+    if copy_from_id != nil 
+      cloned_rider = Rider.find(copy_from_id)
+      if cloned_rider 
+        attrs = cloned_rider.copied_attributes
+        @rider = @plan.riders.new(attrs)
+      else
+        @rider = @plan.riders.new
+      end
+      
+    else
+      @rider = @plan.riders.new
+    end
   end
 
   # GET /riders/1/edit
@@ -36,31 +43,17 @@ class RidersController < ApplicationController
 
     respond_to do |format|
       if @rider.save
-        format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
-        format.json { render :show, status: :created, location: @rider }
-      else
-        format.html { render :new }
-        format.json { render json: @rider.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # POST /riders_from_master
-  # POST /riders_from_master.json
-  def create_from_master
-    @rider = @plan.riders.new(rider_params)
-    @master_rider = Rider.master.find(rider_params[:master_rider_id])
-
-    respond_to do |format|
-      if @rider.save
-        @master_rider.coverages.each do |coverage| 
-          @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
-                                            assured_amount: coverage.assured_amount, description: coverage.category,
-                                            premium_amount: coverage.premium_amount,
-                                            premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
-                                            coverage_end_at: coverage.coverage_end_at)
+        # Deep clone coverage in the reference rider
+        if rider_params[:reference_id] != nil
+          reference_rider = Rider.find(rider_params[:reference_id])
+          reference_rider.coverages.each do |coverage| 
+            @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
+                                              assured_amount: coverage.assured_amount, description: coverage.category,
+                                              premium_amount: coverage.premium_amount,
+                                              premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
+                                              coverage_end_at: coverage.coverage_end_at)
+          end
         end
-
         format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
@@ -166,7 +159,7 @@ class RidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rider_params
-      params.require(:rider).permit(:name, :description, :status, :code_name, :master_rider_id)
+      params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list)
     end
 
     def set_plan

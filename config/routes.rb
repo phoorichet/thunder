@@ -50,12 +50,7 @@ Rails.application.routes.draw do
   end
 
   resources :plans do
-    resources :riders do 
-        collection do
-          get  'new_from_master'
-          post 'create_from_master'
-        end
-    end
+    resources :riders
   end
 
   resources :riders do
@@ -118,12 +113,7 @@ Rails.application.routes.draw do
       end
 
       resources :plans do
-        resources :riders do 
-            collection do
-              get  'new_from_master'
-              post 'create_from_master'
-            end
-        end
+        resources :riders
       end
 
       resources :riders do

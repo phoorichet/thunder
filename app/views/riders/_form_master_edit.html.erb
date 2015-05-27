@@ -38,6 +38,12 @@
       </div>
     </div>
     <div class="form-group">
+    <%= f.label :tag_list, class: 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :tag_list, :value => "#{@rider.tag_list}", class: "form-control thunder-taginput", "data-role" => "tagsinput" %>
+    </div>
+  </div>
+    <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
         <%= f.submit 'submit', class: 'btn btn-primary' %>
       </div>

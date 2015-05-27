@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150526033943) do
+ActiveRecord::Schema.define(version: 20150527165433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,10 +118,10 @@ ActiveRecord::Schema.define(version: 20150526033943) do
     t.string   "description"
     t.string   "status"
     t.string   "rider_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "plan_id"
-    t.integer  "master_rider_id"
+    t.integer  "reference_id"
     t.string   "code_name"
   end
 

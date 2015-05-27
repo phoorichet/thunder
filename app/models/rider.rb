@@ -2,9 +2,24 @@ class Rider < ActiveRecord::Base
 	has_many :coverages, :dependent => :destroy
 	belongs_to :plan
 
+	acts_as_taggable # Alias for acts_as_taggable_on :tags
+
 	scope :master, ->(){ where(rider_type: 'master')}
 
 	def is_master?
 		self.rider_type == 'master'
+	end
+
+	# copied_attributes copies only some attributes and return as a hash
+	def copied_attributes
+		attrs = {}
+		attrs[:name] = self.name
+		attrs[:description] = self.description
+		attrs[:status] = self.status
+		attrs[:code_name] = self.code_name
+		attrs[:reference_id] = self.id
+		attrs[:tag_list] = self.tag_list
+
+		attrs
 	end
 end

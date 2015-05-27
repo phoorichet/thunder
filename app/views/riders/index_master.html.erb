@@ -18,6 +18,7 @@
           <th>Description</th>
           <th>Status</th>
           <th>Code name</th>
+          <th>Tags</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
             <td><%= rider.description %></td>
             <td><%= rider.status %></td>
             <td><%= rider.code_name %></td>
+            <td><%= rider.tag_list %></td>
             <td><%= link_to 'Show', master_rider_path(rider) %></td>
             <td><%= link_to 'Edit', edit_master_rider_path(rider) %></td>
             <td><%= link_to 'Destroy', master_rider_path(rider), method: :delete, data: { confirm: 'Are you sure?' } %></td>
