@@ -22,7 +22,9 @@ class Coverage < ActiveRecord::Base
 		attrs[:coverage_unit] = self.coverage_unit
 		attrs[:coverage_end_at] = self.coverage_end_at
 		attrs[:description] = self.description
+		attrs[:reference_id] = self.id
 		attrs[:tag_list] = self.tag_list
+
 
 		attrs
 	end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527170627) do
+ActiveRecord::Schema.define(version: 20150527175705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150527170627) do
     t.string   "coverage_end_at"
     t.text     "description"
     t.string   "coverage_type"
+    t.integer  "reference_id"
   end
 
   add_index "coverages", ["coverage_type"], name: "index_coverages_on_coverage_type", using: :btree
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150527170627) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "master_plan_id"
+    t.integer  "reference_id"
   end
 
   add_index "plans", ["plan_type"], name: "index_plans_on_plan_type", using: :btree

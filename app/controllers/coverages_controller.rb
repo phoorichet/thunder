@@ -153,7 +153,7 @@ class CoveragesController < ApplicationController
     def coverage_params
       params.require(:coverage).permit(:name, :description, :coverage_amount, :category, 
         :rider_id, :rider_id, :premium_amount, :premium_unit, :coverage_unit, 
-        :coverage_end_at, :tag_list)
+        :coverage_end_at, :tag_list, :reference_id)
     end
 
     # Get metric

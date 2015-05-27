@@ -142,7 +142,7 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id, :master_plan_id)
+      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id, :master_plan_id, :reference_id)
     end
 
     def set_book

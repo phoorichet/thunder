@@ -50,6 +50,11 @@
   <%= @coverage.tag_list %>
 </p>
 
+<p>
+  <strong>Reference:</strong>
+  <%= @coverage.reference_id %>
+</p>
+
 <%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
 
 <% if  @coverage.rider.is_master? %>

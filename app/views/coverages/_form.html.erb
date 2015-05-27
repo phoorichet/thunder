@@ -37,6 +37,12 @@
           <%= f.text_field :tag_list, :value => "#{@coverage.tag_list}", class: "form-control thunder-taginput", "data-role" => "tagsinput" %>
         </div>
       </div>
+      <div class="form-group">
+        <%= f.label :reference_id , class: 'col-lg-2 control-label'%>
+        <div class="col-lg-10">
+          <%= f.text_field :reference_id, class: "form-control" %>
+        </div>
+      </div>
 
       <hr>
 
