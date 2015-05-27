@@ -73,9 +73,19 @@ class CoveragesController < ApplicationController
   def destroy
     @coverage.destroy
     respond_to do |format|
-      format.html { redirect_to [@coverage.rider], notice: 'Coverage was successfully destroyed.' }
+
+      format.html { redirect_to redirect_after_destroy(@coverage.rider), notice: 'Coverage was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def redirect_after_destroy(rider)
+    if rider.is_master?
+      master_rider_path(rider)
+    else
+      rider_path(rider)
+    end
+
   end
 
 
