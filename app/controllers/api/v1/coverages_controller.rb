@@ -9,7 +9,7 @@ module Api
       # Get data and configurations for visualization
       def search
         tag_list = params[:tag_list]
-        results = Coverage.tagged_with(tag_list)
+        results = Coverage.master.tagged_with(tag_list)
                             
         respond_with results
       end
