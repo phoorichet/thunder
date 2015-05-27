@@ -1,39 +1,51 @@
-<h1>New Plan From Master Plan</h1>
+<div class="row">
+  <div class="col-lg-12">
+    <h1>New Plan From Master Plan</h1>    
+  </div>
+</div>
 
-<%= form_for([@plan.book, @plan]) do |f| %>
-  <% if @plan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+<div class="row">
+  <div class="col-lg-6">
+    <%= form_for([@plan.book, @plan]) do |f| %>
+      <% if @plan.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
 
-      <ul>
-      <% @plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @plan.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :plan_type %><br>
+        <%= f.text_field :plan_type, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :begin_at %><br>
+        <%= f.datetime_select :begin_at, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_at %><br>
+        <%= f.datetime_select :end_at, :include_blank => true, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit 'submit', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= f.label :plan_type %><br>
-    <%= f.text_field :plan_type, class: "form-control" %>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label 'Master Plan' %>
+      <%= f.collection_select(:master_plan_id, Plan.master.all, :id, :name) %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :begin_at %><br>
-    <%= f.datetime_select :begin_at, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :end_at %><br>
-    <%= f.datetime_select :end_at, :include_blank => true, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label 'Master Plan' %>
-    <%= f.collection_select(:master_plan_id, Plan.master.all, :id, :name) %>
-  </div>
-  <div class="form-group">
-    <%= f.submit 'submit', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>
+

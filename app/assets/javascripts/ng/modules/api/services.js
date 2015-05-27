@@ -61,6 +61,24 @@
                       isArray: true
                     },                    
                   }),
+        Rider: $resource('/api/v1/riders/:collectionCtrl:id/:memberCtrl', {
+                    id: '@id',
+                    collectionCtrl: '@collectionCtrl',
+                    memberCtrl: '@memberCtrl'
+                  }, {
+                    index: {
+                      method: 'GET',
+                      isArray: true,
+                      responseType: 'json'
+                    },
+                    search: {
+                      method: 'GET',
+                      params: {
+                        collectionCtrl: 'search'
+                      },
+                      isArray: true
+                    },                    
+                  }),
         Comment: $resource('/api/v1/comments/:collectionCtrl:id/:memberCtrl', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',

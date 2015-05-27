@@ -66,17 +66,68 @@ Rails.application.routes.draw do
   # API V1
   namespace :api, defaults: {:format=> 'json'} do
     namespace :v1 do
-      # collection
+
+      get  'plans/masters'         => 'plans#index_master', as: :masters_plans
+      get  'plans/masters/new'     => 'plans#new_master', as: :new_master_plan
+      post 'plans/masters'         => 'plans#create_master', as: :master_plans
+      get 'plans/masters/:id'      => 'plans#show_master', as: :master_plan
+      get 'plans/masters/:id/edit' => 'plans#edit_master', as: :edit_master_plan
+      put 'plans/masters/:id'      => 'plans#update_master'
+      patch 'plans/masters/:id'    => 'plans#update_master'
+      delete 'plans/masters/:id'   => 'plans#destroy_master'
+
+      get  'riders/masters'         => 'riders#index_master', as: :masters_riders
+      get  'riders/masters/new'     => 'riders#new_master', as: :new_master_rider
+      post 'riders/masters'         => 'riders#create_master', as: :master_riders
+      get 'riders/masters/:id'      => 'riders#show_master', as: :master_rider
+      get 'riders/masters/:id/edit' => 'riders#edit_master', as: :edit_master_rider
+      put 'riders/masters/:id'      => 'riders#update_master'
+      patch 'riders/masters/:id'    => 'riders#update_master'
+      delete 'riders/masters/:id'   => 'riders#destroy_master'
+
+      get 'coverages/masters'          => 'coverages#index_master', as: :masters_coverages
+      get 'coverages/masters/new'      => 'coverages#new_master', as: :new_master_coverage
+      post 'coverages/masters'         => 'coverages#create_master', as: :master_coverages
+      get 'coverages/masters/:id'      => 'coverages#show_master', as: :master_coverage
+      get 'coverages/masters/:id/edit' => 'coverages#edit_master', as: :edit_master_coverage
+      put 'coverages/masters/:id'      => 'coverages#update_master'
+      patch 'coverages/masters/:id'    => 'coverages#update_master'
+      delete 'coverages/masters/:id'   => 'coverages#destroy_master'
+
+      get 'coverages/search' => 'coverages#search'
+      get 'riders/search' => 'riders#search'
+
       resources :insured_users do
+        resources :books
+        
         collection do
           get 'search'
+        end
+        member do 
+          post 'set_parent'
         end
       end
 
-      resources :coverages do
-        collection do
-          get 'search'
+      resources :books do 
+        resources :plans do
+          collection do
+            get  'new_from_master'
+            post 'create_from_master'
+          end
         end
+      end
+
+      resources :plans do
+        resources :riders do 
+            collection do
+              get  'new_from_master'
+              post 'create_from_master'
+            end
+        end
+      end
+
+      resources :riders do
+        resources :coverages
       end
       
     end
