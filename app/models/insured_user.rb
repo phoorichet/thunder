@@ -7,8 +7,8 @@ class InsuredUser < ActiveRecord::Base
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
-    scope :search_first_name, ->(value) { where("first_name LIKE ?", "%#{value}%") if value != nil }
-    scope :search_last_name, ->(value) { where("last_name LIKE ?", "%#{value}%") if value != nil }
+    scope :search_first_name, ->(value) { where("first_name ILIKE ?", "%#{value}%") if value != nil }
+    scope :search_last_name, ->(value) { where("last_name ILIKE ?", "%#{value}%") if value != nil }
 
     # validations
     validates :first_name, presence: true
@@ -26,10 +26,12 @@ class InsuredUser < ActiveRecord::Base
     	end
     end
 
-    # Make it two set
+    # Make it set twice
     def spouse=(insured_user)
     	self.spouse_id = insured_user.id
         insured_user.spouse_id = self.spouse_id
+        insured_user.save
+        self.save
     end
 
     def income_formatted

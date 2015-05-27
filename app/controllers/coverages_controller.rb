@@ -1,5 +1,5 @@
 class CoveragesController < ApplicationController
-  before_action :set_rider, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :set_rider, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
                                       :show_master, :edit_master, :update_master, :destroy_master]
 
@@ -18,7 +18,20 @@ class CoveragesController < ApplicationController
 
   # GET /coverages/new
   def new
-    @coverage = @rider.coverages.new
+    copy_from_id = params[:uid]
+    if copy_from_id != nil 
+      cloned_coverage = Coverage.find(copy_from_id)
+      if cloned_coverage 
+        attrs = cloned_coverage.copied_attributes
+        @coverage = @rider.coverages.new(attrs)
+      else
+        @coverage = @rider.coverages.new
+      end
+      
+    else
+      @coverage = @rider.coverages.new
+    end
+    
   end
 
   # GET /coverages/1/edit

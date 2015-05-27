@@ -71,21 +71,16 @@ Rails.application.routes.draw do
         collection do
           get 'search'
         end
+      end
 
-        # member do
-        #   get 'add'
-        #   put 'additem'
-        #   post 'toggle_item'
-        # end
+      resources :coverages do
+        collection do
+          get 'search'
+        end
       end
       
     end
   end
-
-
-  
-
-
 
   devise_for :users
   resources :users

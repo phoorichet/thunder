@@ -26,10 +26,6 @@ class InsuredUsersController < ApplicationController
   # POST /insured_users.json
   def create
     @insured_user = InsuredUser.new(insured_user_params)
-    # if insured_user_params[:date_of_birth]
-    #   @insured_user.date_of_birth = DateTime.strptime(insured_user_params[:date_of_birth], "%m/%d/%Y")
-    # end
-
     respond_to do |format|
       if @insured_user.save
         format.html { redirect_to @insured_user, notice: 'Insured user was successfully created.' }
@@ -46,6 +42,11 @@ class InsuredUsersController < ApplicationController
   def update
     respond_to do |format|
       if @insured_user.update(insured_user_params)
+        # Update spouse
+        # if @insured_user.spouse_id != nil and @insured_user.spouse_id != @insured_user.spouse.id
+        #   @insured_user.spouse = InsuredUser.find(@insured_user.spouse_id)
+        # end
+        
         format.html { redirect_to @insured_user, notice: 'Insured user was successfully updated.' }
         format.json { render :show, status: :ok, location: @insured_user }
       else

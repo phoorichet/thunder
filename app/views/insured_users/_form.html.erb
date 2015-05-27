@@ -1,61 +1,133 @@
-<%= form_for(@insured_user) do |f| %>
-  <% if @insured_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@insured_user.errors.count, "error") %> prohibited this insured_user from being saved:</h2>
+<div class="row">
+  <div class="col-lg-12">
 
-      <ul>
-      <% @insured_user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <%= form_for(@insured_user, html: {class: "form-horizontal"}) do |f| %>
+      <% if @insured_user.errors.any? %>
+        <div class="alert alert-danger alert-dismissable" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h2><%= pluralize(@insured_user.errors.count, "error") %> prohibited this insured_user from being saved:</h2>
+
+          <ul>
+          <% @insured_user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :first_name, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :gender, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.select :gender, options_for_select([['male', 'male'], ['female', 'female'], ['unspecified', 'unspecified']], selected: @insured_user.gender), class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date_of_birth, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.date_select :date_of_birth, :start_year => Date.today.year - 80, :end_year => Date.today.year, class: "form-control"  %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :height, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.text_field :height, class: "form-control" %>
+        </div>
+      </div>  
+      <div class="form-group">
+        <%= f.label :weight, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.text_field :weight, class: "form-control" %>
+        </div>
+      </div> 
+
+      <br/>
+      <hr>
+      <br/>
+
+      <div class="form-group">
+        <%= f.label :marital_status, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.select :marital_status, options_for_select([['single', 'single'], ['married', 'married'], ['divorced', 'divorced']], selected: @insured_user.marital_status), class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :income, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.text_field :income, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :national_id, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.text_field :national_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :passport_id, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.text_field :passport_id, class: "form-control" %>
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <%= f.label :occupation, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-10">
+          <%= f.text_field :occupation, class: "form-control" %>
+        </div>
+      </div>  
+
+      <br/>
+      <hr>
+      <br/>
+      
+      <div class="form-group">
+        <%= f.label :parent_id, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-6">
+          <%= f.text_field :parent_id, class: "form-control", "ng-model" => "parent_id"  %>
+        </div>
+        <div class="col-lg-4">
+          <search-insured-user-panel id="parentSearch" uid="parent_id">
+          </search-insured-user-panel>
+        </div>
+      </div>  
+       <div class="form-group">
+        <%= f.label :spouse_id, class: 'col-lg-2 control-label'  %>
+        <div class="col-lg-6">
+          <%= f.text_field :spouse_id, class: "form-control", "ng-model" => "spouse_id" %>
+        </div>
+         <div class="col-lg-4">
+          <search-insured-user-panel id="spouseSearch" uid="spouse_id">
+          </search-insured-user-panel>
+        </div>
+      </div>  
+
+      <br/>
+      <hr>
+      <br/>
+
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <%= f.submit 'submit', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= link_to 'Show', @insured_user %> |
+    <%= link_to 'Back', insured_users_path %>
+
   </div>
-  <div class="form-group">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :gender %>
-    <%= f.text_field :gender, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :date_of_birth %>
-    <%= f.datetime_select :date_of_birth %>
-  </div>
-  <div class="form-group">
-    <%= f.label :marital_status %>
-    <%= f.text_field :marital_status, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :income %>
-    <%= f.text_field :income, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :national_id %>
-    <%= f.text_field :national_id, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :passport_id %>
-    <%= f.text_field :passport_id, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :height %>
-    <%= f.text_field :height, class: "form-control" %>
-  </div>  
-  <div class="form-group">
-    <%= f.label :weight %>
-    <%= f.text_field :weight, class: "form-control" %>
-  </div>  
-  <div class="form-group">
-    <%= f.label :occupation %>
-    <%= f.text_field :occupation, class: "form-control" %>
-  </div>  
-  <div class="actions">
-    <%= f.submit 'sumit', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>
+
+

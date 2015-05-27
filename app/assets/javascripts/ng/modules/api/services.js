@@ -43,7 +43,7 @@
                       isArray: true
                     },
                   }),
-        Item: $resource('/api/v1/items/:collectionCtrl:id/:memberCtrl', {
+        Coverage: $resource('/api/v1/coverages/:collectionCtrl:id/:memberCtrl', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
@@ -53,23 +53,13 @@
                       isArray: true,
                       responseType: 'json'
                     },
-                    toggleLike: {
-                      method: 'POST',
+                    search: {
+                      method: 'GET',
                       params: {
-                        memberCtrl: 'toggle_like'
+                        collectionCtrl: 'search'
                       },
-                      responseType: 'json'
-                    },
-                    // get: {
-                    //   method: 'GET',
-                    //   // params: {
-                    //   //   // collectionCtrl: 'metric2'
-                    //   //   // memberCtrl: 'mapreduce'
-                    //   // },
-                    //   isArray: false,
-                    //   responseType: 'json'
-                    // },
-                    
+                      isArray: true
+                    },                    
                   }),
         Comment: $resource('/api/v1/comments/:collectionCtrl:id/:memberCtrl', {
                     id: '@id',
