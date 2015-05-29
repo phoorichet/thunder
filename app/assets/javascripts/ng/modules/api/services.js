@@ -79,6 +79,24 @@
                       isArray: true
                     },                    
                   }),
+        Plan: $resource('/api/v1/plans/:collectionCtrl:id/:memberCtrl', {
+                    id: '@id',
+                    collectionCtrl: '@collectionCtrl',
+                    memberCtrl: '@memberCtrl'
+                  }, {
+                    index: {
+                      method: 'GET',
+                      isArray: true,
+                      responseType: 'json'
+                    },
+                    search: {
+                      method: 'GET',
+                      params: {
+                        collectionCtrl: 'search'
+                      },
+                      isArray: true
+                    },                    
+                  }),
         Comment: $resource('/api/v1/comments/:collectionCtrl:id/:memberCtrl', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',

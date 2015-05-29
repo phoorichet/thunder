@@ -17,7 +17,19 @@ class PlansController < ApplicationController
 
   # GET /plans/new
   def new
-    @plan = @book.plans.new
+    copy_from_id = params[:uid]
+    if copy_from_id != nil 
+      cloned_plan = Plan.find(copy_from_id)
+      if cloned_plan 
+        attrs = cloned_plan.copied_attributes
+        @plan = @book.plans.new(attrs)
+      else
+        @plan = @book.plans.new
+      end
+      
+    else
+      @plan = @book.plans.new
+    end
   end
 
   # GET /plans/new_from_master
@@ -36,6 +48,10 @@ class PlansController < ApplicationController
 
     respond_to do |format|
       if @plan.save
+        if plan_params[:reference_id] != nil
+          reference_plan = Plan.find(plan_params[:reference_id])
+          
+        end
         format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
@@ -142,7 +158,7 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id, :master_plan_id, :reference_id)
+      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id, :master_plan_id, :reference_id, :tag_list)
     end
 
     def set_book

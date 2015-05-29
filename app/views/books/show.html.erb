@@ -38,13 +38,6 @@
     </tbody>
   </table>
 
-  <%= link_to 'Add new plan', new_book_plan_path(@book) %>
-  <br/>
-  <%= link_to 'Add new plan from master', new_from_master_book_plans_path(@book) %>
-
-  <br/>
-  <br/>
-
-
-<%= link_to 'Edit', edit_insured_user_book_path(@book.insured_user, @book) %> |
+<%= link_to 'Add new plan', new_book_plan_path(@book) %><br/>
+<%= link_to 'Edit', edit_insured_user_book_path(@book.insured_user, @book) %> <br>
 <%= link_to 'Back', insured_user_path(@book.insured_user) %>

@@ -24,6 +24,12 @@
     <%= f.datetime_select :end_at, :include_blank => true, class: "form-control" %>
   </div>
   <div class="form-group">
+    <%= f.label :tag_list, class: 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :tag_list, :value => "#{@plan.tag_list}", class: "form-control thunder-taginput", "data-role" => "tagsinput" %>
+    </div>
+  </div>
+  <div class="form-group">
     <%= f.submit 'submit', class: 'btn btn-primary' %>
   </div>
 <% end %>

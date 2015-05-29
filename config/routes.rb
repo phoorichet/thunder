@@ -91,6 +91,7 @@ Rails.application.routes.draw do
 
       get 'coverages/search' => 'coverages#search'
       get 'riders/search' => 'riders#search'
+      get 'plans/search' => 'plans#search'
 
       resources :insured_users do
         resources :books

@@ -1,0 +1,42 @@
+'use strict';
+
+(function(){
+  
+  var module = angular.module('thunder.searchPlan.controllers', 
+    [ 
+      'thunder.api.services', 
+    ]
+  );
+
+  module.controller('SearchPlanController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
+    function($scope, Api, $filter, $location, $modal, $state){
+
+        $scope.plan_list = [];
+
+        $scope.search = function(){
+            // get and parse params.
+            var tag_list = $scope.tag_list || null;
+
+            var params = {
+              tag_list: tag_list,
+            };
+
+            Api.Plan.search(params, function(data){
+                $scope.plan_list = data;
+                console.log(data);
+            }, function(error){
+
+            })            
+        }
+
+        $scope.fetchPlan =  function(id){
+            var newAbsUrl = $location.absUrl().split('?')[0] + "?uid=" + id
+            console.log(newAbsUrl);
+            window.location.href = newAbsUrl;
+        }
+
+
+    }
+  ]) // end module
+
+}());

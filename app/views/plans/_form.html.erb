@@ -1,39 +1,67 @@
-<%= form_for([@plan.book, @plan]) do |f| %>
-  <% if @plan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+<div class="row">
+  <div class="col-lg-6">
+    <%= form_for([@plan.book, @plan], html: {class: "form-horizontal"}) do |f| %>
+      <% if @plan.errors.any? %>
+        <div class="alert alert-danger alert-dismissable" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
 
-      <ul>
-      <% @plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @plan.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :name, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :plan_type, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :plan_type, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :begin_at, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.date_select :begin_at, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_at, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.date_select :end_at, :include_blank => true, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :reference_id , class: 'col-lg-2 control-label'%>
+        <div class="col-lg-10">
+          <%= f.text_field :reference_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :tag_list, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.text_field :tag_list, :value => "#{@plan.tag_list}", class: "form-control thunder-taginput", "data-role" => "tagsinput" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <%= f.submit 'submit', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div class="form-group">
-    <%= f.label :plan_type %><br>
-    <%= f.text_field :plan_type, class: "form-control" %>
+
+  <div class="col-lg-6">
+    <h3>Search from master plan</h3>
+    <p>Rider ID: {{ plan_id }}</p>
+    <search-plan-panel id="planSearch" uid="plan_id">
+    </search-plan-panel>
   </div>
-  <div class="form-group">
-    <%= f.label :begin_at %><br>
-    <%= f.datetime_select :begin_at, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :end_at %><br>
-    <%= f.datetime_select :end_at, :include_blank => true, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :reference_id , class: 'col-lg-2 control-label'%>
-    <div class="col-lg-10">
-      <%= f.text_field :reference_id, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.submit 'submit', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>

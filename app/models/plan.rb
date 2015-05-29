@@ -20,4 +20,9 @@ class Plan < ActiveRecord::Base
 		attrs
 	end
 
+	# Deep copy clones all the pland details, riders, coverages associated with it.
+	def deep_copy
+
+	end
+
 end
