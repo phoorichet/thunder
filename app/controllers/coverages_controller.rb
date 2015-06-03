@@ -1,4 +1,5 @@
 class CoveragesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_rider, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
                                       :show_master, :edit_master, :update_master, :destroy_master]

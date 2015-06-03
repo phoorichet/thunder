@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_book, only: [:index, :new, :show, :edit, :update, :destroy, :create, :new_from_master]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :set_master_plan, only: [:show_master, :edit_master, :update_master, :destroy_master]

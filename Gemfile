@@ -49,8 +49,9 @@ group :production do
     
 end
 
-# devise
+# devise and its extension
 gem 'devise'
+gem 'devise_security_extension'
 
 # Ancestry
 gem 'ancestry'

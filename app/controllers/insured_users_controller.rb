@@ -1,5 +1,7 @@
 class InsuredUsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_insured_user, only: [:show, :edit, :update, :destroy, :create_parent]
+
 
   # GET /insured_users
   # GET /insured_users.json
