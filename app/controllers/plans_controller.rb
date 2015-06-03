@@ -46,13 +46,28 @@ class PlansController < ApplicationController
   # POST /plans.json
   def create
     @plan = @book.plans.new(plan_params)
+    if plan_params[:reference_id] != nil
+          @reference_plan = Plan.find(plan_params[:reference_id]) 
+    end
 
     respond_to do |format|
       if @plan.save
-        if plan_params[:reference_id] != nil
-          reference_plan = Plan.find(plan_params[:reference_id])
-          
+        # copy all the riders, and coverages to the new plan
+        if @reference_plan != nil
+          # copy riders
+          @reference_plan.riders.each do |rider|
+            new_rider = @plan.riders.new(rider.copied_attributes)
+            new_rider.save
+
+            # copy coverage
+            rider.coverages.each do |coverage|
+              new_coverage = new_rider.coverages.new(coverage.copied_attributes)
+              new_coverage.save
+            end
+          end
+
         end
+
         format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else

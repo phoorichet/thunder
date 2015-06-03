@@ -83,6 +83,8 @@ class CoveragesController < ApplicationController
   def redirect_after_destroy(rider)
     if rider.is_master?
       master_rider_path(rider)
+    elsif rider.plan
+      plan_rider_path(rider.plan, rider)
     else
       rider_path(rider)
     end
