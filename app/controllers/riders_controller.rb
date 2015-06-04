@@ -3,7 +3,7 @@ class RidersController < ApplicationController
   before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
-  before_action :breadcrumb, only: [:index, :show, :edit]
+  # before_action :breadcrumb, only: [:index, :show, :edit]
 
   # GET /riders
   # GET /riders.json
@@ -121,9 +121,9 @@ class RidersController < ApplicationController
     respond_to do |format|
       if @rider.save
         format.html { redirect_to master_rider_path(@rider), notice: 'Rider was successfully created.' }
-        format.json { render :show, status: :created, location: @rider }
+        format.json { render :show_master, status: :created, location: @rider }
       else
-        format.html { render :new }
+        format.html { render :new_master }
         format.json { render json: @rider.errors, status: :unprocessable_entity }
       end
     end
@@ -135,9 +135,9 @@ class RidersController < ApplicationController
     respond_to do |format|
       if @rider.update(rider_params)
         format.html { redirect_to master_rider_path(@rider), notice: 'Rider was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rider }
+        format.json { render :show_master, status: :ok, location: @rider }
       else
-        format.html { render :edit }
+        format.html { render :edit_master }
         format.json { render json: @rider.errors, status: :unprocessable_entity }
       end
     end
@@ -151,6 +151,12 @@ class RidersController < ApplicationController
       format.html { redirect_to masters_riders_path, notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Get data and configurations for visualization
+  def search
+    tag_list = params[:tag_list]
+    @riders = Rider.master.tagged_with(tag_list)
   end
 
   # breadcrumb enable breadcrumb in the view

@@ -158,9 +158,7 @@ module Api
       # Get data and configurations for visualization
       def search
         tag_list = params[:tag_list]
-        results = Plan.master.tagged_with(tag_list)
-                            
-        respond_with results
+        @plans = Plan.master.tagged_with(tag_list)
       end
       
       private

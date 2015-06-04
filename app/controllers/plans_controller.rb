@@ -3,7 +3,7 @@ class PlansController < ApplicationController
   before_action :set_book, only: [:index, :new, :show, :edit, :update, :destroy, :create, :new_from_master]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :set_master_plan, only: [:show_master, :edit_master, :update_master, :destroy_master]
-  before_action :breadcrumb, only: [:index, :show, :edit]
+  # before_action :breadcrumb, only: [:index, :show, :edit]
 
   # GET /plans
   # GET /plans.json
@@ -133,9 +133,9 @@ class PlansController < ApplicationController
     respond_to do |format|
       if @plan.save
         format.html { redirect_to master_plan_path(@plan), notice: 'Plan was successfully created.' }
-        format.json { render :show, status: :created, location: @plan }
+        format.json { render :show_master, status: :created, location: @plan }
       else
-        format.html { render :new }
+        format.html { render :new_master }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
       end
     end
@@ -147,9 +147,9 @@ class PlansController < ApplicationController
     respond_to do |format|
       if @plan.update(plan_params)
         format.html { redirect_to master_plan_path(@plan), notice: 'Plan was successfully updated.' }
-        format.json { render :show, status: :ok, location: @plan }
+        format.json { render :show_master, status: :ok, location: @plan }
       else
-        format.html { render :edit }
+        format.html { render :edit_master }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
       end
     end
@@ -163,6 +163,12 @@ class PlansController < ApplicationController
       format.html { redirect_to masters_plans_path, notice: 'plan was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Get data and configurations for visualization
+  def search
+    tag_list = params[:tag_list]
+    @plans = Plan.master.tagged_with(tag_list)
   end
 
   # breadcrumb enable breadcrumb in the view

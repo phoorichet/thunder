@@ -7,7 +7,7 @@
   module.factory('Api', [ '$resource',   
     function($resource) {
       return {
-        InsuredUser: $resource('/api/v1/insured_users/:collectionCtrl:id/:memberCtrl', {
+        InsuredUser: $resource('/insured_users/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
@@ -43,7 +43,7 @@
                       isArray: true
                     },
                   }),
-        Coverage: $resource('/api/v1/coverages/:collectionCtrl:id/:memberCtrl', {
+        Coverage: $resource('/coverages/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
@@ -61,7 +61,7 @@
                       isArray: true
                     },                    
                   }),
-        Rider: $resource('/api/v1/riders/:collectionCtrl:id/:memberCtrl', {
+        Rider: $resource('/riders/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
@@ -79,7 +79,7 @@
                       isArray: true
                     },                    
                   }),
-        Plan: $resource('/api/v1/plans/:collectionCtrl:id/:memberCtrl', {
+        Plan: $resource('/plans/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
@@ -96,70 +96,6 @@
                       },
                       isArray: true
                     },                    
-                  }),
-        Comment: $resource('/api/v1/comments/:collectionCtrl:id/:memberCtrl', {
-                    id: '@id',
-                    collectionCtrl: '@collectionCtrl',
-                    memberCtrl: '@memberCtrl'
-                  }, {
-                    index: {
-                      method: 'GET',
-                      isArray: true,
-                      responseType: 'json'
-                    },
-                    create: {
-                      method: 'POST',
-                      isArray: false
-                    },
-                  }),
-        Like: $resource('/api/v1/likes/:collectionCtrl:id/:memberCtrl', {
-                    id: '@id',
-                    collectionCtrl: '@collectionCtrl',
-                    memberCtrl: '@memberCtrl'
-                  }, {
-                    index: {
-                      method: 'GET',
-                      isArray: true,
-                      responseType: 'json'
-                    },
-                    create: {
-                      method: 'POST',
-                      isArray: false
-                    },
-                  }),
-        Instagram: $resource('/api/v1/instagrams/:collectionCtrl:id/:memberCtrl', {
-                    id: '@id',
-                    collectionCtrl: '@collectionCtrl',
-                    memberCtrl: '@memberCtrl'
-                  }, {
-                    index: {
-                      method: 'GET',
-                      isArray: true,
-                      responseType: 'json'
-                    },
-                    metric: {
-                      method: 'GET',
-                      params: {
-                        collectionCtrl: 'metric'
-                      },
-                      isArray: true
-                    },
-                    mapreduce: {
-                      method: 'GET',
-                      params: {
-                        // collectionCtrl: 'metric2'
-                        memberCtrl: 'mapreduce'
-                      },
-                      isArray: true
-                    },
-                    mapreduce_join_mslocation: {
-                      method: 'GET',
-                      params: {
-                        // collectionCtrl: 'metric2'
-                        memberCtrl: 'mapreduce_join_mslocation'
-                      },
-                      isArray: true
-                    },
                   }),
       }// end return
     } // end function

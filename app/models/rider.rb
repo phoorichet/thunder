@@ -4,6 +4,8 @@ class Rider < ActiveRecord::Base
 
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 
+	validates :name, presence: true
+
 	scope :master, ->(){ where(rider_type: 'master')}
 
 	def is_master?

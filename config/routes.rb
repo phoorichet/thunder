@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   patch 'coverages/masters/:id'    => 'coverages#update_master'
   delete 'coverages/masters/:id'   => 'coverages#destroy_master'
 
+  get 'coverages/search' => 'coverages#search'
+  get 'riders/search' => 'riders#search'
+  get 'plans/search' => 'plans#search'
+
   # end custom routes
 
   resources :insured_users do

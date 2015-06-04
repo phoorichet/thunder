@@ -69,7 +69,7 @@
 <% if @rider.plan.is_master? %>
   <%= link_to 'Back To Master Plan', master_plan_path(@rider.plan) %>
 <% elsif %>
-  <%= link_to 'Back To book', insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book) %>
+  <%= link_to 'Back To plan', book_plan_path(@rider.plan.book, @rider.plan) %>
 <% end %>
 
 

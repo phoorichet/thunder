@@ -150,9 +150,7 @@ module Api
       # Get data and configurations for visualization
       def search
         tag_list = params[:tag_list]
-        results = Rider.master.tagged_with(tag_list)
-                            
-        respond_with results
+        @riders = Rider.master.tagged_with(tag_list)
       end
 
       private

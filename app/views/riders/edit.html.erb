@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @rider %> |
-<%= link_to 'Back', riders_path %>
+<%= link_to 'Show', plan_rider_path(@rider.plan, @rider) %> <br>
+<%= link_to 'Back to rider', plan_rider_path(@rider.plan, @rider) %>

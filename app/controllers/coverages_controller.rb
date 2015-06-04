@@ -3,7 +3,7 @@ class CoveragesController < ApplicationController
   before_action :set_rider, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
                                       :show_master, :edit_master, :update_master, :destroy_master]
-  before_action :breadcrumb, only: [:index, :show, :edit]
+  # before_action :breadcrumb, only: [:index, :show, :edit]
 
 
   # GET /coverages
@@ -124,9 +124,9 @@ class CoveragesController < ApplicationController
     respond_to do |format|
       if @coverage.save
         format.html { redirect_to master_coverage_path(@coverage), notice: 'Coverage was successfully created.' }
-        format.json { render :show, status: :created, location: @coverage }
+        format.json { render :show_master, status: :created, location: @coverage }
       else
-        format.html { render :new }
+        format.html { render :new_master }
         format.json { render json: @coverage.errors, status: :unprocessable_entity }
       end
     end
@@ -138,9 +138,9 @@ class CoveragesController < ApplicationController
     respond_to do |format|
       if @coverage.update(coverage_params)
         format.html { redirect_to master_coverage_path(@coverage), notice: 'Coverage was successfully updated.' }
-        format.json { render :show, status: :ok, location: @coverage }
+        format.json { render :show_master, status: :ok, location: @coverage }
       else
-        format.html { render :edit }
+        format.html { render :edit_master }
         format.json { render json: @coverage.errors, status: :unprocessable_entity }
       end
     end
@@ -156,7 +156,13 @@ class CoveragesController < ApplicationController
     end
   end
 
-    # breadcrumb enable breadcrumb in the view
+  # Get data and configurations for visualization
+  def search
+    tag_list = params[:tag_list]
+    @coverages = Coverage.master.tagged_with(tag_list)
+  end
+
+  # breadcrumb enable breadcrumb in the view
   def breadcrumb
     add_breadcrumb "insured_users", insured_users_path
     add_breadcrumb @coverage.rider.plan.book.insured_user.first_name, insured_user_path(@coverage.rider.plan.book.insured_user)
