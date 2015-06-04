@@ -1,6 +1,7 @@
 module Api
   module V1
     class PlansController < ApplicationController
+      include DeviseTokenAuth::Concerns::SetUserByToken
       respond_to :json
       
       before_action :authenticate_user!

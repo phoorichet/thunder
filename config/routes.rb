@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
-
-  # mount_devise_token_auth_for 'User', at: 'auth'
   # custom routes must be placed in the first order so that it override 
   # routes in resources.
   # 
@@ -60,6 +57,7 @@ Rails.application.routes.draw do
   end
 
 
+  devise_for :users
 
   # API V1
   namespace :api, defaults: {:format=> 'json'} do
