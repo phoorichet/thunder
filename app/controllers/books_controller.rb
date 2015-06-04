@@ -2,6 +2,8 @@ class BooksController < ApplicationController
   before_action :set_insured_user
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
+
+
   # GET /books
   # GET /books.json
   def index
@@ -12,6 +14,9 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb @book.insured_user.first_name, insured_user_path(@book.insured_user)
+    add_breadcrumb @book.number, insured_user_book_path(@book.insured_user, @book)
   end
 
   # GET /books/new

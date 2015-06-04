@@ -1,6 +1,7 @@
 class InsuredUsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_insured_user, only: [:show, :edit, :update, :destroy, :create_parent]
+  before_action :breadcrumb, only: [:show, :edit]
 
 
   # GET /insured_users
@@ -82,6 +83,11 @@ class InsuredUsersController < ApplicationController
         format.json { render json: @insured_user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def breadcrumb
+    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb @insured_user.first_name, insured_user_path(@insured_user)
   end
 
   private

@@ -72,3 +72,6 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
+# Breadcrumb
+gem "breadcrumbs_on_rails"
+

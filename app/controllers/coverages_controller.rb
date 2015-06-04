@@ -3,6 +3,7 @@ class CoveragesController < ApplicationController
   before_action :set_rider, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
                                       :show_master, :edit_master, :update_master, :destroy_master]
+  before_action :breadcrumb, only: [:index, :show, :edit]
 
 
   # GET /coverages
@@ -153,6 +154,16 @@ class CoveragesController < ApplicationController
       format.html { redirect_to masters_coverages_path, notice: 'Coverage was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+    # breadcrumb enable breadcrumb in the view
+  def breadcrumb
+    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb @coverage.rider.plan.book.insured_user.first_name, insured_user_path(@coverage.rider.plan.book.insured_user)
+    add_breadcrumb @coverage.rider.plan.book.number, insured_user_book_path(@coverage.rider.plan.book.insured_user, @coverage.rider.plan.book)
+    add_breadcrumb @coverage.rider.plan.name, book_plan_path(@coverage.rider.plan.book, @coverage.rider.plan)
+    add_breadcrumb @coverage.rider.name, plan_rider_path(@coverage.rider.plan, @coverage.rider)
+    add_breadcrumb @coverage.name, rider_coverage_path(@coverage.rider, @coverage)
   end
 
 

@@ -71,6 +71,10 @@
       <% end %>
     <% end %>
     
+    <ol class="breadcrumb">
+      <%= render_breadcrumbs :tag => :li, :separator => "" %>
+    </ol>
+
 		<%= yield %>		
 
  </div>

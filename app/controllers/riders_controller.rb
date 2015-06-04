@@ -3,6 +3,7 @@ class RidersController < ApplicationController
   before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
+  before_action :breadcrumb, only: [:index, :show, :edit]
 
   # GET /riders
   # GET /riders.json
@@ -150,6 +151,15 @@ class RidersController < ApplicationController
       format.html { redirect_to masters_riders_path, notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # breadcrumb enable breadcrumb in the view
+  def breadcrumb
+    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb @rider.plan.book.insured_user.first_name, insured_user_path(@rider.plan.book.insured_user)
+    add_breadcrumb @rider.plan.book.number, insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book)
+    add_breadcrumb @rider.plan.name, book_plan_path(@rider.plan.book, @rider.plan)
+    add_breadcrumb @rider.name, plan_rider_path(@rider.plan, @rider)
   end
 
   private
