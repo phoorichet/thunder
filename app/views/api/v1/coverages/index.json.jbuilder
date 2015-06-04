@@ -13,5 +13,5 @@ json.array!(@coverages) do |coverage|
   :coverage_type,
   :tag_list
 
-  json.url coverage_url(coverage, format: :json)
+  json.url api_v1_rider_coverage_url(coverage.rider, coverage, format: :json)
 end

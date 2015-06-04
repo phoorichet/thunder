@@ -14,17 +14,11 @@ json.extract! @insured_user,
 :created_at, 
 :updated_at
 
-json.riders do |rider|
-	json.name rider.name
-end
-
 json.books @insured_user.books do |book|
 	json.begin_at book.begin_at
 	json.end_at book.end_at
 
-	json.plan book.plans do |plan|
-		json.extract! plan, :name, :begin_at, :end_at
-	end
+	json.url api_v1_insured_user_book_url(book.insured_user, book, format: :json)
 end
 
 json.parents @insured_user.parents do |parent|
