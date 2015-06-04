@@ -67,7 +67,6 @@ class PlansController < ApplicationController
               new_coverage.save
             end
           end
-
         end
 
         format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully created.' }
