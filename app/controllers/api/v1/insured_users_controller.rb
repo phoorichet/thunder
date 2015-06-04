@@ -2,7 +2,8 @@ module Api
   module V1
     class InsuredUsersController < ApplicationController
       respond_to :json
-
+      
+      before_action :authenticate_user!
       before_action :set_insured_user, only: [:show, :edit, :update, :destroy, :create_parent]
 
       # GET /insured_users

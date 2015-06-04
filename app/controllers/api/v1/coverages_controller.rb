@@ -2,6 +2,8 @@ module Api
   module V1
     class CoveragesController < ApplicationController
       respond_to :json
+
+      before_action :authenticate_user!
       before_action :set_rider, only: [:index, :new, :show, :edit, :create, :update, :destroy]
       before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
                                       :show_master, :edit_master, :update_master, :destroy_master]

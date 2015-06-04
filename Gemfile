@@ -49,9 +49,11 @@ group :production do
     
 end
 
-# devise and its extension
+# devise and its extensions
 gem 'devise'
 gem 'devise_security_extension'
+gem 'devise_token_auth'
+gem 'omniauth'
 
 # Ancestry
 gem 'ancestry'
@@ -74,4 +76,6 @@ gem 'bootstrap-kaminari-views'
 
 # Breadcrumb
 gem "breadcrumbs_on_rails"
+
+
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
 
+  # mount_devise_token_auth_for 'User', at: 'auth'
   # custom routes must be placed in the first order so that it override 
   # routes in resources.
   # 
@@ -58,9 +60,12 @@ Rails.application.routes.draw do
   end
 
 
+
   # API V1
   namespace :api, defaults: {:format=> 'json'} do
     namespace :v1 do
+
+      mount_devise_token_auth_for 'User', at: 'auth'
 
       get  'plans/masters'         => 'plans#index_master', as: :masters_plans
       get  'plans/masters/new'     => 'plans#new_master', as: :new_master_plan
@@ -124,7 +129,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  
   # resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

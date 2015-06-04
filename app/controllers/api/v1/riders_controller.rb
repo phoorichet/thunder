@@ -2,6 +2,8 @@ module Api
   module V1
     class RidersController < ApplicationController
       respond_to :json
+
+      before_action :authenticate_user!
       before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
       before_action :set_rider, only: [:show, :edit, :update, :destroy]
       before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
