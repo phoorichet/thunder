@@ -48,7 +48,7 @@ class PlansController < ApplicationController
   # POST /plans.json
   def create
     @plan = @book.plans.new(plan_params)
-    if plan_params[:reference_id] != nil
+    if plan_params[:reference_id] != ""
           @reference_plan = Plan.find(plan_params[:reference_id]) 
     end
 
@@ -69,6 +69,15 @@ class PlansController < ApplicationController
           end
         end
 
+        # if this plan is main_plan and there is existing main plan, it will
+        # change the existing plan to normal plan
+        if @plan.is_main?
+          @book.main_plans.where("id != ?", @plan.id).each do |plan|
+            plan.is_main = false
+            plan.save
+          end
+        end
+
         format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
@@ -83,6 +92,15 @@ class PlansController < ApplicationController
   def update
     respond_to do |format|
       if @plan.update(plan_params)
+        # if this plan is main_plan and there is existing main plan, it will
+        # change the existing plan to normal plan
+        if @plan.is_main?
+          @book.main_plans.where("id != ?", @plan.id).each do |plan|
+            plan.is_main = false
+            plan.save
+          end
+        end
+
         format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully updated.' }
         format.json { render :show, status: :ok, location: @plan }
       else
@@ -189,7 +207,8 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, :book_id, :master_plan_id, :reference_id, :tag_list)
+      params.require(:plan).permit(:name, :plan_type, :begin_at, :end_at, 
+        :book_id, :master_plan_id, :reference_id, :tag_list, :is_main)
     end
 
     def set_book

@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       collection do
         get  'new_from_master'
         post 'create_from_master'
+        get 'new_main'
       end
     end
   end

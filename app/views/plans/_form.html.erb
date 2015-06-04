@@ -21,6 +21,13 @@
         </div>
       </div>
       <div class="form-group">
+        <%= f.label 'main plan', class: 'col-lg-2 control-label' %>
+        <div class="col-lg-10">
+          <%= f.check_box "is_main", {:class => ""}, true, false %>
+        </div>
+      </div>
+      
+      <div class="form-group">
         <%= f.label :plan_type, class: 'col-lg-2 control-label' %>
         <div class="col-lg-10">
           <%= f.text_field :plan_type, class: "form-control" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604054517) do
+ActiveRecord::Schema.define(version: 20150604192035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150604054517) do
     t.datetime "begin_at"
     t.datetime "end_at"
     t.string   "number"
-    t.integer  "main_rider_id"
+    t.integer  "main_plan_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -84,10 +84,11 @@ ActiveRecord::Schema.define(version: 20150604054517) do
     t.datetime "begin_at"
     t.datetime "end_at"
     t.integer  "book_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "master_plan_id"
     t.integer  "reference_id"
+    t.boolean  "is_main",        default: false
   end
 
   add_index "plans", ["plan_type"], name: "index_plans_on_plan_type", using: :btree
