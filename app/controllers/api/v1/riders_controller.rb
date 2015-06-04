@@ -60,10 +60,8 @@ module Api
                                                   coverage_end_at: coverage.coverage_end_at)
               end
             end
-            format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
-            format.json { render :show, status: :created, location: @rider }
+            format.json { render :show, status: :created, location: api_v1_plan_rider_url(@rider.plan, @rider) }
           else
-            format.html { render :new }
             format.json { render json: @rider.errors, status: :unprocessable_entity }
           end
         end
@@ -74,10 +72,8 @@ module Api
       def update
         respond_to do |format|
           if @rider.update(rider_params)
-            format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully updated.' }
-            format.json { render :show, status: :ok, location: @rider }
+            format.json { render :show, status: :ok, location: api_v1_plan_rider_url(@rider.plan, @rider) }
           else
-            format.html { render :edit }
             format.json { render json: @rider.errors, status: :unprocessable_entity }
           end
         end
@@ -88,7 +84,6 @@ module Api
       def destroy
         @rider.destroy
         respond_to do |format|
-          format.html { redirect_to [@rider.plan.book, @rider.plan], notice: 'Rider was successfully destroyed.' }
           format.json { head :no_content }
         end
       end
@@ -124,10 +119,8 @@ module Api
 
         respond_to do |format|
           if @rider.save
-            format.html { redirect_to master_rider_path(@rider), notice: 'Rider was successfully created.' }
-            format.json { render :show, status: :created, location: @rider }
+            format.json { render :show, status: :created, location: api_v1_master_rider_url(@rider) }
           else
-            format.html { render :new }
             format.json { render json: @rider.errors, status: :unprocessable_entity }
           end
         end
@@ -138,10 +131,8 @@ module Api
       def update_master
         respond_to do |format|
           if @rider.update(rider_params)
-            format.html { redirect_to master_rider_path(@rider), notice: 'Rider was successfully updated.' }
-            format.json { render :show, status: :ok, location: @rider }
+            format.json { render :show, status: :ok, location: api_v1_master_rider_url(@rider) }
           else
-            format.html { render :edit }
             format.json { render json: @rider.errors, status: :unprocessable_entity }
           end
         end
@@ -152,7 +143,6 @@ module Api
       def destroy_master
         @rider.destroy
         respond_to do |format|
-          format.html { redirect_to masters_riders_path, notice: 'Rider was successfully destroyed.' }
           format.json { head :no_content }
         end
       end

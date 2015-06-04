@@ -69,10 +69,8 @@ module Api
               end
             end
 
-            format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully created.' }
-            format.json { render :show, status: :created, location: @plan }
+            format.json { render :show, status: :created, location: api_v1_book_plan_url(@plan.book, @plan) }
           else
-            format.html { render :new }
             format.json { render json: @plan.errors, status: :unprocessable_entity }
           end
         end
@@ -83,10 +81,8 @@ module Api
       def update
         respond_to do |format|
           if @plan.update(plan_params)
-            format.html { redirect_to [@plan.book, @plan], notice: 'Plan was successfully updated.' }
-            format.json { render :show, status: :ok, location: @plan }
+            format.json { render :show, status: :ok, location: api_v1_book_plan_url(@plan.book, @plan)  }
           else
-            format.html { render :edit }
             format.json { render json: @plan.errors, status: :unprocessable_entity }
           end
         end
@@ -97,7 +93,6 @@ module Api
       def destroy
         @plan.destroy
         respond_to do |format|
-          format.html { redirect_to [@plan.book.insured_user, @plan.book], notice: 'Plan was successfully destroyed.' }
           format.json { head :no_content }
         end
       end
@@ -132,10 +127,8 @@ module Api
 
         respond_to do |format|
           if @plan.save
-            format.html { redirect_to master_plan_path(@plan), notice: 'Plan was successfully created.' }
-            format.json { render :show, status: :created, location: @plan }
+            format.json { render :show, status: :created, location: api_v1_master_plan_url(@plan)  }
           else
-            format.html { render :new }
             format.json { render json: @plan.errors, status: :unprocessable_entity }
           end
         end
@@ -146,10 +139,8 @@ module Api
       def update_master
         respond_to do |format|
           if @plan.update(plan_params)
-            format.html { redirect_to master_plan_path(@plan), notice: 'Plan was successfully updated.' }
-            format.json { render :show, status: :ok, location: @plan }
+            format.json { render :show, status: :ok, location: api_v1_master_plan_url(@plan) }
           else
-            format.html { render :edit }
             format.json { render json: @plan.errors, status: :unprocessable_entity }
           end
         end
@@ -160,7 +151,6 @@ module Api
       def destroy_master
         @plan.destroy
         respond_to do |format|
-          format.html { redirect_to masters_plans_path, notice: 'plan was successfully destroyed.' }
           format.json { head :no_content }
         end
       end

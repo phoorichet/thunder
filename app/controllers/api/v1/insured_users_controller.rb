@@ -34,10 +34,8 @@ module Api
         @insured_user = InsuredUser.new(insured_user_params)
         respond_to do |format|
           if @insured_user.save
-            format.html { redirect_to @insured_user, notice: 'Insured user was successfully created.' }
             format.json { render :show, status: :created, location: @insured_user }
           else
-            format.html { render :new }
             format.json { render json: @insured_user.errors, status: :unprocessable_entity }
           end
         end
@@ -53,10 +51,8 @@ module Api
             #   @insured_user.spouse = InsuredUser.find(@insured_user.spouse_id)
             # end
             
-            format.html { redirect_to @insured_user, notice: 'Insured user was successfully updated.' }
             format.json { render :show, status: :ok, location: @insured_user }
           else
-            format.html { render :edit }
             format.json { render json: @insured_user.errors, status: :unprocessable_entity }
           end
         end
@@ -67,7 +63,6 @@ module Api
       def destroy
         @insured_user.destroy
         respond_to do |format|
-          format.html { redirect_to insured_users_url, notice: 'Insured user was successfully destroyed.' }
           format.json { head :no_content }
         end
       end
@@ -79,7 +74,6 @@ module Api
         @insured_user.parent = parent
         respond_to do |format|
           if @insured_user.save
-            format.html { redirect_to @insured_user, notice: 'Insured user was successfully updated.' }
             format.json { render :show, status: :ok, location: @insured_user }
           else
             format.html { render :edit }

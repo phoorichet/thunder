@@ -20,9 +20,6 @@ module Api
       # GET /books/1
       # GET /books/1.json
       def show
-        add_breadcrumb "insured_users", insured_users_path
-        add_breadcrumb @book.insured_user.first_name, insured_user_path(@book.insured_user)
-        add_breadcrumb @book.number, insured_user_book_path(@book.insured_user, @book)
       end
 
       # GET /books/new
@@ -41,10 +38,8 @@ module Api
 
         respond_to do |format|
           if @book.save
-            format.html { redirect_to [@book.insured_user, @book], notice: 'Book was successfully created.' }
-            format.json { render :show, status: :created, location: @book }
+            format.json { render :show, status: :created, location: api_v1_insured_user_book_url(@book.insured_user, @book) }
           else
-            format.html { render :new }
             format.json { render json: @book.errors, status: :unprocessable_entity }
           end
         end
@@ -55,10 +50,8 @@ module Api
       def update
         respond_to do |format|
           if @book.update(book_params)
-            format.html { redirect_to [@book.insured_user, @book], notice: 'Book was successfully updated.' }
-            format.json { render :show, status: :ok, location: @book }
+            format.json { render :show, status: :ok, location: api_v1_insured_user_book_url(@book.insured_user, @book) }
           else
-            format.html { render :edit }
             format.json { render json: @book.errors, status: :unprocessable_entity }
           end
         end
@@ -69,7 +62,6 @@ module Api
       def destroy
         @book.destroy
         respond_to do |format|
-          format.html { redirect_to [@book.insured_user], notice: 'Book was successfully destroyed.' }
           format.json { head :no_content }
         end
       end

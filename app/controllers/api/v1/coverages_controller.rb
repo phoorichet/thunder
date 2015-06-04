@@ -49,10 +49,8 @@ module Api
 
         respond_to do |format|
           if @coverage.save
-            format.html { redirect_to [@coverage.rider, @coverage], notice: 'Coverage was successfully created.' }
-            format.json { render :show, status: :created, location: @coverage }
+            format.json { render :show, status: :created, location: api_v1_rider_coverage_url(@coverage.rider, @coverage) }
           else
-            format.html { render :new }
             format.json { render json: @coverage.errors, status: :unprocessable_entity }
           end
         end
@@ -63,10 +61,8 @@ module Api
       def update
         respond_to do |format|
           if @coverage.update(coverage_params)
-            format.html { redirect_to [@coverage.rider, @coverage], notice: 'Coverage was successfully updated.' }
-            format.json { render :show, status: :ok, location: @coverage }
+            format.json { render :show, status: :ok, location: api_v1_rider_coverage_url(@coverage.rider, @coverage) }
           else
-            format.html { render :edit }
             format.json { render json: @coverage.errors, status: :unprocessable_entity }
           end
         end
@@ -77,8 +73,6 @@ module Api
       def destroy
         @coverage.destroy
         respond_to do |format|
-
-          format.html { redirect_to redirect_after_destroy(@coverage.rider), notice: 'Coverage was successfully destroyed.' }
           format.json { head :no_content }
         end
       end
@@ -123,10 +117,8 @@ module Api
 
         respond_to do |format|
           if @coverage.save
-            format.html { redirect_to master_coverage_path(@coverage), notice: 'Coverage was successfully created.' }
-            format.json { render :show, status: :created, location: @coverage }
+            format.json { render :show, status: :created, location: api_v1_master_coverage_url(@coverage) }
           else
-            format.html { render :new }
             format.json { render json: @coverage.errors, status: :unprocessable_entity }
           end
         end
@@ -137,10 +129,8 @@ module Api
       def update_master
         respond_to do |format|
           if @coverage.update(coverage_params)
-            format.html { redirect_to master_coverage_path(@coverage), notice: 'Coverage was successfully updated.' }
-            format.json { render :show, status: :ok, location: @coverage }
+            format.json { render :show, status: :ok, location: api_v1_master_coverage_url(@coverage) }
           else
-            format.html { render :edit }
             format.json { render json: @coverage.errors, status: :unprocessable_entity }
           end
         end
@@ -151,7 +141,6 @@ module Api
       def destroy_master
         @coverage.destroy
         respond_to do |format|
-          format.html { redirect_to masters_coverages_path, notice: 'Coverage was successfully destroyed.' }
           format.json { head :no_content }
         end
       end
