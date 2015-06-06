@@ -25,7 +25,7 @@ module Api
       def new
         copy_from_id = params[:uid]
         if copy_from_id != nil 
-          cloned_plan = Plan.find(copy_from_id)
+          cloned_plan = Plan.find_by_id(copy_from_id)
           if cloned_plan 
             attrs = cloned_plan.copied_attributes
             @plan = @book.plans.new(attrs)
@@ -51,6 +51,9 @@ module Api
       # POST /plans.json
       def create
         @plan = @book.plans.new(plan_params)
+        if plan_params[:reference_id] != ""
+            @reference_plan = Plan.find_by_id(plan_params[:reference_id]) 
+        end
 
         respond_to do |format|
           if @plan.save

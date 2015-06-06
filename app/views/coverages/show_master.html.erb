@@ -1,5 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
+    <h3>Coverage</h3>
+    <%= link_to 'Edit', edit_master_coverage_path(@coverage) %> 
     <p>
       <strong>Name:</strong>
       <%= @coverage.name %>
@@ -49,8 +51,6 @@
       <strong>Tag list:</strong>
       <%= @coverage.tag_list %>
     </p>
-
-    <%= link_to 'Edit', edit_master_coverage_path(@coverage) %> |
 
     <%= link_to 'Back to Master Coverage', masters_coverages_path %>
   </div>

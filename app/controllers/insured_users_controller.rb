@@ -1,7 +1,7 @@
 class InsuredUsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_insured_user, only: [:show, :edit, :update, :destroy, :create_parent]
-  before_action :breadcrumb, only: [:show, :edit]
+  before_action :breadcrumb, only: [:show, :edit, :index]
 
 
   # GET /insured_users
@@ -87,7 +87,7 @@ class InsuredUsersController < ApplicationController
 
   def breadcrumb
     add_breadcrumb "insured_users", insured_users_path
-    add_breadcrumb @insured_user.first_name, insured_user_path(@insured_user)
+    add_breadcrumb @insured_user.first_name, insured_user_path(@insured_user) if @insured_user
   end
 
   private

@@ -23,8 +23,8 @@ module Api
       # GET /coverages/new
       def new
         copy_from_id = params[:uid]
-        if copy_from_id != nil 
-          cloned_coverage = Coverage.find(copy_from_id)
+        if copy_from_id != ""
+          cloned_coverage = Coverage.find_by_id(copy_from_id)
           if cloned_coverage 
             attrs = cloned_coverage.copied_attributes
             @coverage = @rider.coverages.new(attrs)

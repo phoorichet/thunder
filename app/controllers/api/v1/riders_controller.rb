@@ -24,8 +24,8 @@ module Api
       # GET /riders/new
       def new
         copy_from_id = params[:uid]
-        if copy_from_id != nil 
-          cloned_rider = Rider.find(copy_from_id)
+        if copy_from_id != "" 
+          cloned_rider = Rider.find_by_id(copy_from_id)
           if cloned_rider 
             attrs = cloned_rider.copied_attributes
             @rider = @plan.riders.new(attrs)
@@ -50,14 +50,16 @@ module Api
         respond_to do |format|
           if @rider.save
             # Deep clone coverage in the reference rider
-            if rider_params[:reference_id] != nil
-              reference_rider = Rider.find(rider_params[:reference_id])
-              reference_rider.coverages.each do |coverage| 
-                @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
-                                                  assured_amount: coverage.assured_amount, description: coverage.category,
-                                                  premium_amount: coverage.premium_amount,
-                                                  premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
-                                                  coverage_end_at: coverage.coverage_end_at)
+            if rider_params[:reference_id] != ""
+              reference_rider = Rider.find_by_id(rider_params[:reference_id])
+              if reference_rider
+                reference_rider.coverages.each do |coverage| 
+                  @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
+                                                    assured_amount: coverage.assured_amount, description: coverage.category,
+                                                    premium_amount: coverage.premium_amount,
+                                                    premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
+                                                    coverage_end_at: coverage.coverage_end_at)
+                end
               end
             end
             format.json { render :show, status: :created, location: api_v1_plan_rider_url(@rider.plan, @rider) }

@@ -2,7 +2,7 @@
   <div class="col-lg-12">
     <h3>Master Plan</h3>
 
-    <%= link_to 'Edit', edit_master_plan_path(@plan), class: 'btn btn-default' %>
+    <%= link_to 'Edit', edit_master_plan_path(@plan) %>
 
     <p>
       <strong>Name:</strong>
@@ -81,13 +81,13 @@
       </tbody>
     </table>
 
-    <%= link_to 'Add new rider', new_plan_rider_path(@plan), class: 'btn btn-default' %>
+    <%= link_to 'Add new rider', new_plan_rider_path(@plan) %>
 
     <br>
     <br>
     <hr>
 
-    <%= link_to 'Back to Master Plan', masters_plans_path, class: 'btn btn-default' %> 
+    <%= link_to 'Back to Master Plan', masters_plans_path %> 
   </div>
 </div>
 

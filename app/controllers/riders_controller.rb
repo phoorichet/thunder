@@ -3,7 +3,7 @@ class RidersController < ApplicationController
   before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
-  # before_action :breadcrumb, only: [:index, :show, :edit]
+  before_action :breadcrumb, only: [:index, :show, :edit]
 
   # GET /riders
   # GET /riders.json
@@ -20,8 +20,8 @@ class RidersController < ApplicationController
   # GET /riders/new
   def new
     copy_from_id = params[:uid]
-    if copy_from_id != nil 
-      cloned_rider = Rider.find(copy_from_id)
+    if copy_from_id != "" 
+      cloned_rider = Rider.find_by_id(copy_from_id)
       if cloned_rider 
         attrs = cloned_rider.copied_attributes
         @rider = @plan.riders.new(attrs)
@@ -46,14 +46,16 @@ class RidersController < ApplicationController
     respond_to do |format|
       if @rider.save
         # Deep clone coverage in the reference rider
-        if rider_params[:reference_id] != nil
-          reference_rider = Rider.find(rider_params[:reference_id])
-          reference_rider.coverages.each do |coverage| 
-            @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
-                                              assured_amount: coverage.assured_amount, description: coverage.category,
-                                              premium_amount: coverage.premium_amount,
-                                              premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
-                                              coverage_end_at: coverage.coverage_end_at)
+        if rider_params[:reference_id] != ""
+          reference_rider = Rider.find_by_id(rider_params[:reference_id])
+          if reference_rider
+            reference_rider.coverages.each do |coverage| 
+              @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
+                                                assured_amount: coverage.assured_amount, description: coverage.category,
+                                                premium_amount: coverage.premium_amount,
+                                                premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
+                                                coverage_end_at: coverage.coverage_end_at)
+            end
           end
         end
         format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
@@ -162,10 +164,10 @@ class RidersController < ApplicationController
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
     add_breadcrumb "insured_users", insured_users_path
-    add_breadcrumb @rider.plan.book.insured_user.first_name, insured_user_path(@rider.plan.book.insured_user)
-    add_breadcrumb @rider.plan.book.number, insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book)
-    add_breadcrumb @rider.plan.name, book_plan_path(@rider.plan.book, @rider.plan)
-    add_breadcrumb @rider.name, plan_rider_path(@rider.plan, @rider)
+    add_breadcrumb @rider.plan.book.insured_user.first_name, insured_user_path(@rider.plan.book.insured_user) if @rider.plan.book.insured_user
+    add_breadcrumb @rider.plan.book.number, insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book) if @rider.plan.book
+    add_breadcrumb @rider.plan.name, book_plan_path(@rider.plan.book, @rider.plan) if @rider.plan
+    add_breadcrumb @rider.name, plan_rider_path(@rider.plan, @rider) if @rider
   end
 
   private

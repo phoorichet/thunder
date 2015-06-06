@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_insured_user
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :breadcrumb, only: [:show, :edit, :update]
 
 
 
@@ -15,9 +16,6 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    add_breadcrumb "insured_users", insured_users_path
-    add_breadcrumb @book.insured_user.first_name, insured_user_path(@book.insured_user)
-    add_breadcrumb @book.number, insured_user_book_path(@book.insured_user, @book)
   end
 
   # GET /books/new
@@ -67,6 +65,12 @@ class BooksController < ApplicationController
       format.html { redirect_to [@book.insured_user], notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def breadcrumb
+    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb @book.insured_user.first_name, insured_user_path(@book.insured_user) if @book.insured_user
+    add_breadcrumb @book.number, insured_user_book_path(@book.insured_user, @book) if @book.number
   end
 
   private

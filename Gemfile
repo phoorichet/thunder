@@ -77,5 +77,7 @@ gem 'bootstrap-kaminari-views'
 # Breadcrumb
 gem "breadcrumbs_on_rails"
 
+# Bootstrap generator
+gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
 
 
