@@ -4,6 +4,7 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :set_master_plan, only: [:show_master, :edit_master, :update_master, :destroy_master]
   before_action :breadcrumb, only: [:index, :show, :edit]
+  before_action :breadcrumb_master, only: [:index_master, :show_master, :edit_master]
 
   # GET /plans
   # GET /plans.json
@@ -191,10 +192,16 @@ class PlansController < ApplicationController
 
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
-    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb "Users", insured_users_path
     add_breadcrumb @plan.book.insured_user.first_name, insured_user_path(@plan.book.insured_user) if @plan.book.insured_user
     add_breadcrumb @plan.book.number, insured_user_book_path(@plan.book.insured_user, @plan.book) if @plan.book
     add_breadcrumb @plan.name, book_plan_path(@plan.book, @plan) if @plan
+  end
+
+  # breadcrumb enable breadcrumb in the view
+  def breadcrumb_master
+    add_breadcrumb "Master plan", master_plans_path
+    add_breadcrumb @plan.name, master_plan_path(@plan) if @plan
   end
 
   

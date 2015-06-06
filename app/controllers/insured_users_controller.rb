@@ -86,7 +86,7 @@ class InsuredUsersController < ApplicationController
   end
 
   def breadcrumb
-    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb "Users", insured_users_path
     add_breadcrumb @insured_user.first_name, insured_user_path(@insured_user) if @insured_user
   end
 

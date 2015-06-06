@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require typeahead.js/dist/typeahead.bundle
+//= require bootstrap
 //= require bootstrap-tagsinput/dist/bootstrap-tagsinput
+//= require typeahead.js/dist/typeahead.bundle
 //= require angular
 //= require angular-resource
 //= require angular-bootstrap
@@ -22,5 +23,4 @@
 //= require angular-animate
 //= require moment
 //= require skrollr
-//= require bootstrap
 //= require_tree .

@@ -68,7 +68,7 @@ class BooksController < ApplicationController
   end
 
   def breadcrumb
-    add_breadcrumb "insured_users", insured_users_path
+    add_breadcrumb "Users", insured_users_path
     add_breadcrumb @book.insured_user.first_name, insured_user_path(@book.insured_user) if @book.insured_user
     add_breadcrumb @book.number, insured_user_book_path(@book.insured_user, @book) if @book.number
   end

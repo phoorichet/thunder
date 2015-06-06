@@ -4,6 +4,7 @@ class CoveragesController < ApplicationController
   before_action :set_coverage, only: [:show, :edit, :update, :destroy, 
                                       :show_master, :edit_master, :update_master, :destroy_master]
   before_action :breadcrumb, only: [:index, :show, :edit]
+  before_action :breadcrumb_master, only: [:index_master, :show_master, :edit_master]
 
 
   # GET /coverages
@@ -27,7 +28,7 @@ class CoveragesController < ApplicationController
         attrs = cloned_coverage.copied_attributes
         @coverage = @rider.coverages.new(attrs)
       else
-        # @coverage = @rider.coverages.new
+        @coverage = @rider.coverages.new
       end
       
     else
@@ -164,12 +165,48 @@ class CoveragesController < ApplicationController
 
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
-    add_breadcrumb "insured_users", insured_users_path
-    add_breadcrumb @coverage.rider.plan.book.insured_user.first_name, insured_user_path(@coverage.rider.plan.book.insured_user)
-    add_breadcrumb @coverage.rider.plan.book.number, insured_user_book_path(@coverage.rider.plan.book.insured_user, @coverage.rider.plan.book) if @coverage and @coverage.rider and @coverage.rider.plan and @coverage.rider.plan.book
-    add_breadcrumb @coverage.rider.plan.name, book_plan_path(@coverage.rider.plan.book, @coverage.rider.plan) if @coverage and @coverage.rider and @coverage.rider.plan
-    add_breadcrumb @coverage.rider.name, plan_rider_path(@coverage.rider.plan, @coverage.rider) if @coverage and @coverage.rider
-    add_breadcrumb @coverage.name, rider_coverage_path(@coverage.rider, @coverage) if @coverage
+    
+    # add_breadcrumb "master plan", master_riders_path if @coverage.rider.plan.is_master?
+
+    
+    if @coverage.rider.plan 
+      add_breadcrumb "Master plan", master_riders_path if @coverage.rider.plan.is_master?
+
+      if @coverage.rider.plan.book
+        # normal rider
+        add_breadcrumb "User", insured_users_path
+        add_breadcrumb @coverage.rider.plan.book.insured_user.first_name, insured_user_path(@coverage.rider.plan.book.insured_user)
+        add_breadcrumb @coverage.rider.plan.book.number, insured_user_book_path(@coverage.rider.plan.book.insured_user, @coverage.rider.plan.book)
+      else
+        # master rider
+        if @coverage.rider.plan.is_master?
+          add_breadcrumb @coverage.rider.plan.name, master_plan_path(@coverage.rider.plan) 
+        end
+      end
+      add_breadcrumb @coverage.rider.plan.name, book_plan_path(@coverage.rider.plan.book, @coverage.rider.plan)
+      add_breadcrumb @coverage.rider.name, plan_rider_path(@coverage.rider.plan, @coverage.rider) if @coverage and @coverage.rider
+    else
+      if @coverage.rider
+        # master rider
+        if @coverage.rider.is_master?
+          add_breadcrumb "Master Rider", master_riders_path
+          add_breadcrumb @coverage.rider.name, master_rider_path(@coverage.rider)
+        end
+      else
+        # master coverage itself
+        
+      end
+
+    end
+    
+    #coverage
+    add_breadcrumb @coverage.name, rider_coverage_path(@coverage.rider, @coverage)
+  end
+
+  # breadcrumb enable breadcrumb in the view
+  def breadcrumb_master
+    add_breadcrumb "Master coverage", master_coverages_path
+    add_breadcrumb @coverage.name, master_coverage_path(@coverage) if @coverage
   end
 
 
