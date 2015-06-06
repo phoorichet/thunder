@@ -1,67 +1,92 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h3>Plan</h3>
+    <%= link_to 'Edit', edit_book_plan_path(@plan.book, @plan) %>
+    <p>
+      <strong>Name:</strong>
+      <%= @plan.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @plan.name %>
-</p>
+    <p>
+      <strong>Minimum Age:</strong>
+      <%= @plan.minimum_age %>
+    </p>
 
-<p>
-  <strong>Plan type:</strong>
-  <%= @plan.plan_type %>
-</p>
+    <p>
+      <strong>Maxmimum Age:</strong>
+      <%= @plan.maximum_age %>
+    </p>
 
-<p>
-  <strong>Begin at:</strong>
-  <%= @plan.begin_at %>
-</p>
+    <p>
+      <strong>Consider Year:</strong>
+      <%= @plan.consider_year %>
+    </p>
 
-<p>
-  <strong>End at:</strong>
-  <%= @plan.end_at %>
-</p>
+    <p>
+      <strong>Consider Gender:</strong>
+      <%= @plan.consider_gender %>
+    </p>
 
-<p>
-  <strong>Is Main:</strong>
-  <%= @plan.is_main %>
-</p>
+    <p>
+      <strong>Paid Period Lenght:</strong>
+      <%= @plan.paid_period_length %>
+    </p>
 
-<p>
-  <strong>Tags:</strong>
-  <%= @plan.tag_list %>
-</p>
+    <p>
+      <strong>Protection Length:</strong>
+      <%= @plan.protection_length %>
+    </p>
 
+    <p>
+      <strong>Group:</strong>
+      <%= @plan.group %>
+    </p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Code name</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <p>
+      <strong>Company:</strong>
+      <%= @plan.company %>
+    </p>
 
-  <tbody>
-    <% @plan.riders.each do |rider| %>
-      <tr>
-        <td><%= rider.name %></td>
-        <td><%= rider.description %></td>
-        <td><%= rider.status %></td>
-        <td><%= rider.code_name %></td>
-        <td><%= rider.tag_list %></td>
-        <td><%= link_to 'Show', [rider.plan, rider] %></td>
-        <td><%= link_to 'Edit', edit_plan_rider_path(rider.plan, rider) %></td>
-        <td><%= link_to 'Destroy', [rider.plan, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'Add new rider from master', new_plan_rider_path(@plan) %>
-
-<br>
+    <p>
+      <strong>Tags:</strong>
+      <%= @plan.tag_list %>
+    </p>
 
 
-<%= link_to 'Edit', edit_book_plan_path(@plan.book, @plan) %> |
-<%= link_to 'Back', insured_user_book_path(@plan.book.insured_user, @plan.book) %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Code name</th>
+          <th>Tags</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @plan.riders.each do |rider| %>
+          <tr>
+            <td><%= rider.name %></td>
+            <td><%= rider.description %></td>
+            <td><%= rider.status %></td>
+            <td><%= rider.code_name %></td>
+            <td><%= rider.tag_list %></td>
+            <td><%= link_to 'Show', [rider.plan, rider] %></td>
+            <td><%= link_to 'Edit', edit_plan_rider_path(rider.plan, rider) %></td>
+            <td><%= link_to 'Destroy', [rider.plan, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Add new rider from master', new_plan_rider_path(@plan) %>
+
+    <br>
+
+    <%= link_to 'Back to Book', insured_user_book_path(@plan.book.insured_user, @plan.book) %>
+  </div>
+</div>
+
+

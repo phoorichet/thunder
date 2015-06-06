@@ -1,3 +1,5 @@
+<h3>Book</h3>
+<%= link_to 'Edit', edit_insured_user_book_path(@book.insured_user, @book) %> <br>
 <p>
   <strong>Number:</strong>
   <%= @book.number %>
@@ -18,8 +20,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Begin at</th>
-      <th>End at</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,8 +28,6 @@
     <% if @book.main_plan %>
       <tr>
         <td><%= @book.main_plan.name %></td>
-        <td><%= @book.main_plan.begin_at %></td>
-        <td><%= @book.main_plan.end_at %></td>
         <td><%= link_to 'Show', book_plan_path(@book, @book.main_plan) %></td>
         <td><%= link_to 'Edit', edit_book_plan_path(@book, @book.main_plan) %></td>
         <td><%= link_to 'Destroy', [@book, @book.main_plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -46,8 +44,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Begin at</th>
-      <th>End at</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -56,8 +52,6 @@
     <% @book.not_main_plans.each do |plan| %>
       <tr>
         <td><%= plan.name %></td>
-        <td><%= plan.begin_at %></td>
-        <td><%= plan.end_at %></td>
         <td><%= link_to 'Show', book_plan_path(plan.book, plan) %></td>
         <td><%= link_to 'Edit', edit_book_plan_path(plan.book, plan) %></td>
         <td><%= link_to 'Destroy', [plan.book, plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -67,5 +61,4 @@
 </table>
 
 <%= link_to 'Add new plan', new_book_plan_path(@book) %><br/>
-<%= link_to 'Edit', edit_insured_user_book_path(@book.insured_user, @book) %> <br>
 <%= link_to 'Back', insured_user_path(@book.insured_user) %>

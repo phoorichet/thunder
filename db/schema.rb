@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150606074148) do
+ActiveRecord::Schema.define(version: 20150606082513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20150606074148) do
 
   create_table "books", force: :cascade do |t|
     t.integer  "insured_user_id"
-    t.datetime "begin_at"
-    t.datetime "end_at"
+    t.date     "begin_at"
+    t.date     "end_at"
     t.string   "number"
     t.integer  "main_plan_id"
     t.datetime "created_at",      null: false

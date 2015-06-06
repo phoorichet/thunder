@@ -14,8 +14,11 @@
         </div>
       <% end %>
 
+      
       <div class="form-group">
-        <%= f.label :name, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-2">
+          <%= f.label :name, class: 'control-label' %>
+        </div>
         <div class="col-lg-10">
           <%= f.text_field :name, class: "form-control" %>
         </div>
@@ -26,31 +29,78 @@
           <%= f.check_box "is_main", {:class => ""}, true, false %>
         </div>
       </div>
-      
       <div class="form-group">
-        <%= f.label :plan_type, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-2">
+          <%= f.label :minimum_age, class: 'control-label' %>
+        </div>
         <div class="col-lg-10">
-          <%= f.text_field :plan_type, class: "form-control" %>
+          <%= f.text_field :minimum_age, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :begin_at, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-2">
+          <%= f.label :maximum_age, class: 'control-label' %>
+        </div>
         <div class="col-lg-10">
-          <%= f.date_select :begin_at, class: "form-control" %>
+          <%= f.text_field :maximum_age, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :end_at, class: 'col-lg-2 control-label' %>
+        <div class="col-lg-2">
+          <%= f.label :consider_year, class: 'control-label' %>
+        </div>
         <div class="col-lg-10">
-          <%= f.date_select :end_at, :include_blank => true, class: "form-control" %>
+          <%= f.text_field :consider_year, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :consider_gender, class: 'control-label' %>
+        </div>
+        <div class="col-lg-10">
+          <%= f.text_field :consider_gender, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :paid_period_length, class: 'control-label' %>
+        </div>
+        <div class="col-lg-10">
+          <%= f.text_field :paid_period_length, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :protection_length, class: 'control-label' %>
+        </div>
+        <div class="col-lg-10">
+          <%= f.text_field :protection_length, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :group, class: 'control-label' %>
+        </div>
+        <div class="col-lg-10">
+          <%= f.text_field :group, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :company, class: 'control-label' %>
+        </div>
+        <div class="col-lg-10">
+          <%= f.text_field :company, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group hide">
         <%= f.label :reference_id , class: 'col-lg-2 control-label'%>
         <div class="col-lg-10">
           <%= f.text_field :reference_id, class: "form-control" %>
         </div>
       </div>
+
       <div class="form-group">
         <%= f.label :tag_list, class: 'col-lg-2 control-label' %>
         <div class="col-lg-10">

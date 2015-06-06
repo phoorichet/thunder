@@ -26,8 +26,18 @@ class Plan < ActiveRecord::Base
 	def copied_attributes
 		attrs = {}
 		attrs[:name] = self.name
-		attrs[:reference_id] = self.id
+		attrs[:minimum_age] = self.minimum_age
+		attrs[:maximum_age] = self.maximum_age
+		attrs[:consider_year] = self.consider_year
+		attrs[:consider_gender] = self.consider_gender
+		attrs[:paid_period_length] = self.paid_period_length
+		attrs[:protection_length] = self.protection_length
+		attrs[:group] = self.group
+		attrs[:company] = self.company
 		attrs[:tag_list] = self.tag_list
+
+		# Ref ID
+		attrs[:reference_id] = self.id
 
 		attrs
 	end
