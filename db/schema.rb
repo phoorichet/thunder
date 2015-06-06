@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604192035) do
+ActiveRecord::Schema.define(version: 20150606074148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,14 +81,24 @@ ActiveRecord::Schema.define(version: 20150604192035) do
   create_table "plans", force: :cascade do |t|
     t.string   "name"
     t.string   "plan_type"
-    t.datetime "begin_at"
-    t.datetime "end_at"
+    t.date     "begin_at"
+    t.date     "end_at"
     t.integer  "book_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "master_plan_id"
     t.integer  "reference_id"
-    t.boolean  "is_main",        default: false
+    t.boolean  "is_main",            default: false
+    t.integer  "minimum_age"
+    t.integer  "maximum_age"
+    t.string   "consider_year"
+    t.string   "consider_gender"
+    t.boolean  "have_surrender"
+    t.boolean  "have_dividend"
+    t.integer  "paid_period_length"
+    t.integer  "protection_length"
+    t.string   "group"
+    t.string   "company"
   end
 
   add_index "plans", ["plan_type"], name: "index_plans_on_plan_type", using: :btree
