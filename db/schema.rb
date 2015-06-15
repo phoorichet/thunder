@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615133337) do
+ActiveRecord::Schema.define(version: 20150615172053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150615133337) do
     t.float    "height"
     t.float    "weight"
     t.string   "occupation"
+    t.string   "user_type"
   end
 
   add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
@@ -178,10 +179,14 @@ ActiveRecord::Schema.define(version: 20150615133337) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.text     "tokens"
+    t.datetime "last_activity_at"
+    t.datetime "expired_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["expired_at"], name: "index_users_on_expired_at", using: :btree
+  add_index "users", ["last_activity_at"], name: "index_users_on_last_activity_at", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 

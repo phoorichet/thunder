@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # https://github.com/lynndylanhurley/devise_token_auth#example-disable-email-confirmation
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
-         :session_limitable
+         :session_limitable, :expirable
 
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
