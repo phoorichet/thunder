@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_many :companies
+  has_many :workings
+  has_many :companies, through: :workings
 
   before_validation do
     self.uid = email if uid.blank?

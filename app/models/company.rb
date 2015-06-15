@@ -1,3 +1,4 @@
 class Company < ActiveRecord::Base
-	belongs_to :user
+	has_many :workings
+	has_many :users, through: :workings
 end
