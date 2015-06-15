@@ -65,8 +65,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users do
-    resources :companies
+    member do
+      get 'new_company' => 'users#new_company', as: :new_company
+      post 'company'    => 'users#create_company', as: :company
+      delete 'company/:company_id'  => 'users#destroy_company', as: :delete_company
+    end
   end
+  resources :companies
 
   # API V1
   namespace :api, defaults: {:format=> 'json'} do

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :new_company, :create_company, :destroy_company]
 
   # GET /users
   # GET /users.json
@@ -59,6 +59,44 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+
+  # GET /users/1/new_company
+  def new_company
+    @company = @user.companies.new
+  end
+
+  # POST /users/1/company
+  def create_company
+    id = params[:company][:id]
+    @company = Company.find_by(id: id)
+    @user.companies.append(@company)
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'Company was successfully added.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /users/1/company/1
+  def destroy_company
+    @company = Company.find_by(id: params[:company_id])
+
+    respond_to do |format|
+      if @user.companies.delete @company
+        format.html { redirect_to user_path(@user), notice: 'Company was successfully removed.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+      
     end
   end
 

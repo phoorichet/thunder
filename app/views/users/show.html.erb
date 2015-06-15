@@ -11,7 +11,7 @@
 </p>
 
 <div class="page-header">
-  <%= link_to new_user_company_path(@user), class: 'btn btn-primary' do %>
+  <%= link_to new_company_user_path(@user), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New Company
   <% end %>
@@ -24,17 +24,13 @@
       <tr>
         <th>Name</th>
         <th></th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @user.companies) do |company| %>
         <td><%= company.name %></td>
-        <td><%= link_to 'Show', user_company_path(company.user, company) %></td>
-        <td><%= link_to 'Edit', edit_user_company_path(company.user, company) %></td>
-        <td><%= link_to 'Destroy', user_company_path(company.user, company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', delete_company_user_path(@user, company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>
