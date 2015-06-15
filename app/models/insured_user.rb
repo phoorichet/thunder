@@ -71,4 +71,16 @@ class InsuredUser < ActiveRecord::Base
         result
     end
 
+    # return all the plan associatd with the user books
+    def plans
+        result = []
+        self.books.each do |book|
+            book.plans.each do |plan|
+                result << plan
+            end
+        end
+
+        result
+    end
+
 end

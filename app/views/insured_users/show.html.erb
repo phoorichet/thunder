@@ -147,29 +147,23 @@
 
 				<section class="summary">
 					<h1 class="text-center">Summary</h1>
-					<h3>Riders</h3>
+					<h3>Plan</h3>
 
 					<table class="table table-hover">
 					  <thead>
 					    <tr>
 					      <th>Name</th>
-					      <th>Description</th>
-					      <th>Status</th>
-					      <th>Code name</th>
 					      <th colspan="3"></th>
 					    </tr>
 					  </thead>
 
 					  <tbody>
-					    <% @insured_user.riders.each do |rider| %>
+					    <% @insured_user.plans.each do |plan| %>
 					      <tr>
-					        <td><%= rider.name %></td>
-					        <td><%= rider.description %></td>
-					        <td><%= rider.status %></td>
-					        <td><%= rider.code_name %></td>
-					        <td><%= link_to 'Show', [rider.plan, rider] %></td>
-					        <td><%= link_to 'Edit', edit_plan_rider_path(rider.plan, rider) %></td>
-					        <td><%= link_to 'Destroy', [rider.plan, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					        <td><%= plan.name %></td>
+					        <td><%= link_to 'Show', [plan.book, plan] %></td>
+					        <td><%= link_to 'Edit', edit_book_plan_path(plan.book, plan) %></td>
+					        <td><%= link_to 'Destroy', [plan.book, plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
 					      </tr>
 					    <% end %>
 					  </tbody>

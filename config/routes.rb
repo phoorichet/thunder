@@ -64,6 +64,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :users do
+    resources :companies
+  end
+
   # API V1
   namespace :api, defaults: {:format=> 'json'} do
     namespace :v1 do
