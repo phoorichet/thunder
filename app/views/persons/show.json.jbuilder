@@ -1,0 +1,1 @@
+json.extract! @person, :id, :first_name, :last_name, :gender, :date_of_birth, :marital_status, :spouse_id, :income, :national_id, :passport_id, :height, :weight, :occupation, :person_type, :is_smoking, :created_at, :updated_at

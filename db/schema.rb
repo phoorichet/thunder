@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616091810) do
+ActiveRecord::Schema.define(version: 20150616105242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 20150616091810) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.integer  "insured_user_id"
+    t.integer  "person_id"
     t.date     "begin_at"
     t.date     "end_at"
     t.string   "number"
     t.integer  "main_plan_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -85,6 +85,28 @@ ActiveRecord::Schema.define(version: 20150616091810) do
   end
 
   add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
+
+  create_table "persons", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.date     "date_of_birth"
+    t.string   "marital_status"
+    t.integer  "spouse_id"
+    t.float    "income"
+    t.string   "national_id"
+    t.string   "passport_id"
+    t.float    "height"
+    t.float    "weight"
+    t.string   "occupation"
+    t.string   "person_type"
+    t.boolean  "is_smoking"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "ancestry"
+  end
+
+  add_index "persons", ["ancestry"], name: "index_persons_on_ancestry", using: :btree
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"

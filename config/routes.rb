@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :persons
   # custom routes must be placed in the first order so that it override 
   # routes in resources.
   # 

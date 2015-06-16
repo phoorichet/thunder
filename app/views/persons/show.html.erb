@@ -1,0 +1,56 @@
+<div class="page-header">
+  <%= link_to persons_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_person_path(@person), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show person</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>First name:</dt>
+  <dd><%= @person.first_name %></dd>
+
+  <dt>Last name:</dt>
+  <dd><%= @person.last_name %></dd>
+
+  <dt>Gender:</dt>
+  <dd><%= @person.gender %></dd>
+
+  <dt>Date of birth:</dt>
+  <dd><%= @person.date_of_birth %></dd>
+
+  <dt>Marital status:</dt>
+  <dd><%= @person.marital_status %></dd>
+
+  <dt>Spouse:</dt>
+  <dd><%= @person.spouse_id %></dd>
+
+  <dt>Income:</dt>
+  <dd><%= @person.income %></dd>
+
+  <dt>National:</dt>
+  <dd><%= @person.national_id %></dd>
+
+  <dt>Passport:</dt>
+  <dd><%= @person.passport_id %></dd>
+
+  <dt>Height:</dt>
+  <dd><%= @person.height %></dd>
+
+  <dt>Weight:</dt>
+  <dd><%= @person.weight %></dd>
+
+  <dt>Occupation:</dt>
+  <dd><%= @person.occupation %></dd>
+
+  <dt>Person type:</dt>
+  <dd><%= @person.person_type %></dd>
+
+  <dt>Is smoking:</dt>
+  <dd><%= @person.is_smoking %></dd>
+
+</dl>
