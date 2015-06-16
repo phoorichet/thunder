@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_insured_user
+  before_action :set_person
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :breadcrumb, only: [:show, :edit, :update]
 
@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     page = params[:page] || 1
-    @books = @insured_user.books.page(page)
+    @books = @person.books.page(page)
   end
 
   # GET /books/1
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = @insured_user.books.new
+    @book = @person.books.new
   end
 
   # GET /books/1/edit
@@ -30,11 +30,11 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = @insured_user.books.new(book_params)
+    @book = @person.books.new(book_params)
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to [@book.insured_user, @book], notice: 'Book was successfully created.' }
+        format.html { redirect_to [@book.person, @book], notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to [@book.insured_user, @book], notice: 'Book was successfully updated.' }
+        format.html { redirect_to [@book.person, @book], notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -62,15 +62,15 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to [@book.insured_user], notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to [@book.person], notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def breadcrumb
-    add_breadcrumb "Users", insured_users_path
-    add_breadcrumb @book.insured_user.first_name, insured_user_path(@book.insured_user) if @book.insured_user
-    add_breadcrumb @book.number, insured_user_book_path(@book.insured_user, @book) if @book.number
+    add_breadcrumb "Persons", persons_path
+    add_breadcrumb @book.person.first_name, person_path(@book.person) if @book.person
+    add_breadcrumb @book.number, person_book_path(@book.person, @book) if @book.number
   end
 
   private
@@ -84,8 +84,8 @@ class BooksController < ApplicationController
       params.require(:book).permit(:number, :begin_at, :end_at)
     end
 
-    # Set insured_user
-    def set_insured_user
-      @insured_user = InsuredUser.find(params[:insured_user_id])
+    # Set person
+    def set_person
+      @person = Person.find(params[:person_id])
     end
 end

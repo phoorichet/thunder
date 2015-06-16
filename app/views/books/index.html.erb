@@ -1,31 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <%= link_to new_book_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Book
+  <% end %>
+  <h1>Listing books</h1>
+</div>
 
-<h1>Listing Books</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Begin at</th>
-      <th>End at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @books.each do |book| %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
       <tr>
-        <td><%= book.number %></td>
-        <td><%= book.begin_at %></td>
-        <td><%= book.end_at %></td>
-        <td><%= link_to 'Show', book %></td>
+            <th>Number</th>
+            <th>Begin at</th>
+            <th>End at</th>
+            <th>Assured person</th>
+            <th>Payer person</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @books) do |book| %>
+            <td><%= book.number %></td>
+            <td><%= book.begin_at %></td>
+            <td><%= book.end_at %></td>
+            <td><%= book.assured_person_id %></td>
+            <td><%= book.payer_person_id %></td>
+            <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Book', new_book_path %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

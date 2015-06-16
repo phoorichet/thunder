@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :persons
+  resources :books
+  resources :books
   # custom routes must be placed in the first order so that it override 
   # routes in resources.
   # 
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
 
   # end custom routes
 
-  resources :insured_users do
+  resources :persons do
     resources :books
     
     member do 
