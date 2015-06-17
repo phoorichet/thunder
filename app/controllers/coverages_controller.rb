@@ -85,8 +85,8 @@ class CoveragesController < ApplicationController
   def redirect_after_destroy(rider)
     if rider.is_master?
       master_rider_path(rider)
-    elsif rider.plan
-      plan_rider_path(rider.plan, rider)
+    elsif rider.insurance
+      insurance_rider_path(rider.insurance, rider)
     else
       rider_path(rider)
     end
@@ -166,25 +166,25 @@ class CoveragesController < ApplicationController
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
     
-    # add_breadcrumb "master plan", master_riders_path if @coverage.rider.plan.is_master?
+    # add_breadcrumb "master insurance", master_riders_path if @coverage.rider.insurance.is_master?
 
     
-    if @coverage.rider.plan 
-      add_breadcrumb "Master plan", master_riders_path if @coverage.rider.plan.is_master?
+    if @coverage.rider.insurance 
+      add_breadcrumb "Master insurance", master_riders_path if @coverage.rider.insurance.is_master?
 
-      if @coverage.rider.plan.book
+      if @coverage.rider.insurance.book
         # normal rider
-        add_breadcrumb "User", insured_users_path
-        add_breadcrumb @coverage.rider.plan.book.insured_user.first_name, insured_user_path(@coverage.rider.plan.book.insured_user)
-        add_breadcrumb @coverage.rider.plan.book.number, insured_user_book_path(@coverage.rider.plan.book.insured_user, @coverage.rider.plan.book)
+        add_breadcrumb "User", persons_path
+        add_breadcrumb @coverage.rider.insurance.book.person.first_name, person_path(@coverage.rider.insurance.book.person)
+        add_breadcrumb @coverage.rider.insurance.book.number, person_book_path(@coverage.rider.insurance.book.person, @coverage.rider.insurance.book)
       else
         # master rider
-        if @coverage.rider.plan.is_master?
-          add_breadcrumb @coverage.rider.plan.name, master_plan_path(@coverage.rider.plan) 
+        if @coverage.rider.insurance.is_master?
+          add_breadcrumb @coverage.rider.insurance.name, master_insurance_path(@coverage.rider.insurance) 
         end
       end
-      add_breadcrumb @coverage.rider.plan.name, book_plan_path(@coverage.rider.plan.book, @coverage.rider.plan)
-      add_breadcrumb @coverage.rider.name, plan_rider_path(@coverage.rider.plan, @coverage.rider) if @coverage and @coverage.rider
+      add_breadcrumb @coverage.rider.insurance.name, book_insurance_path(@coverage.rider.insurance.book, @coverage.rider.insurance)
+      add_breadcrumb @coverage.rider.name, insurance_rider_path(@coverage.rider.insurance, @coverage.rider) if @coverage and @coverage.rider
     else
       if @coverage.rider
         # master rider

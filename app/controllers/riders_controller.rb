@@ -164,11 +164,11 @@ class RidersController < ApplicationController
 
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
-    add_breadcrumb "Users", insured_users_path if @rider.insurance.book
+    add_breadcrumb "Users", persons_path if @rider.insurance.book
     add_breadcrumb "Master insurance", master_riders_path if @rider.insurance.is_master?
 
-    add_breadcrumb @rider.insurance.book.insured_user.first_name, insured_user_path(@rider.insurance.book.insured_user) if @rider.insurance.book
-    add_breadcrumb @rider.insurance.book.number, insured_user_book_path(@rider.insurance.book.insured_user, @rider.insurance.book) if @rider.insurance.book
+    add_breadcrumb @rider.insurance.book.person.first_name, person_path(@rider.insurance.book.person) if @rider.insurance.book
+    add_breadcrumb @rider.insurance.book.number, person_book_path(@rider.insurance.book.person, @rider.insurance.book) if @rider.insurance.book
     if @rider.insurance.is_master?
       add_breadcrumb @rider.insurance.name, master_insurance_path(@rider.insurance) 
     else

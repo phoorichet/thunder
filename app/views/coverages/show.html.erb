@@ -62,6 +62,6 @@
 <% end -%>
 
 
-<% if  @coverage.rider.plan != nil %>
-<%= link_to 'Back to rider', plan_rider_path(@coverage.rider.plan, @coverage.rider) %>
+<% if  @coverage.rider.insurance != nil %>
+<%= link_to 'Back to rider', insurance_rider_path(@coverage.rider.insurance, @coverage.rider) %>
 <% end -%>

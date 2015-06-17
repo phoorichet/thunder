@@ -2,16 +2,16 @@
 
 (function(){
   
-  var module = angular.module('thunder.searchPlan.controllers', 
+  var module = angular.module('thunder.searchInsurance.controllers', 
     [ 
       'thunder.api.services', 
     ]
   );
 
-  module.controller('SearchPlanController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
+  module.controller('SearchInsuranceController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
     function($scope, Api, $filter, $location, $modal, $state){
 
-        $scope.plan_list = [];
+        $scope.insurance_list = [];
 
         $scope.search = function(){
             // get and parse params.
@@ -21,15 +21,15 @@
               tag_list: tag_list,
             };
 
-            Api.Plan.search(params, function(data){
-                $scope.plan_list = data;
+            Api.Insurance.search(params, function(data){
+                $scope.insurance_list = data;
                 console.log(data);
             }, function(error){
 
             })            
         }
 
-        $scope.fetchPlan =  function(id){
+        $scope.fetchInsurance =  function(id){
             var newAbsUrl = $location.absUrl().split('?')[0] + "?uid=" + id
             console.log(newAbsUrl);
             window.location.href = newAbsUrl;

@@ -6,5 +6,5 @@
 <% if @coverage.rider.rider_type == 'master' %>
 <%= link_to 'Back to master rider', master_rider_path(@coverage.rider) %>
 <% elsif %>
-<%= link_to 'Back to rider', plan_rider_path(@coverage.rider.plan, @coverage.rider) %>
+<%= link_to 'Back to rider', insurance_rider_path(@coverage.rider.insurance, @coverage.rider) %>
 <% end %>

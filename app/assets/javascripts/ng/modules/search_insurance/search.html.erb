@@ -1,16 +1,16 @@
 <section>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchPlanModal-{{id}}">
-    Search plan
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchInsuranceModal-{{id}}">
+    Search insurance
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="searchPlanModal-{{id}}" tabindex="-1" role="dialog" aria-labelledby="searchPlanModalLabel-{{id}}" aria-hidden="true">
+  <div class="modal fade" id="searchInsuranceModal-{{id}}" tabindex="-1" role="dialog" aria-labelledby="searchInsuranceModalLabel-{{id}}" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="searchPlanModalLabel-{{id}}">Search Plan</h4>
+          <h4 class="modal-title" id="searchInsuranceModalLabel-{{id}}">Search Insurance</h4>
         </div>
         <div class="modal-body">
 
@@ -27,18 +27,18 @@
             </div>
           </div>
 
-          <p>selected plan id : {{uid}}</p>
+          <p>selected insurance id : {{uid}}</p>
 <!--           <div ng-repeat="user in user_list" > 
             <input type="radio" ng-model="uid" ng-value="{{user.id}}">{{user.first_name}} {{ user.last_name}}
           </div> -->
           <select ng-model="uid">
-            <option ng-repeat="plan in plan_list" value="{{plan.id}}">{{plan.name}}</option>
+            <option ng-repeat="insurance in insurance_list" value="{{insurance.id}}">{{insurance.name}}</option>
           </select>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="fetchPlan(uid)">Set</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="fetchInsurance(uid)">Set</button>
         </div>
       </div>
     </div>

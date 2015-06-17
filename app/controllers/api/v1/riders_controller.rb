@@ -5,7 +5,7 @@ module Api
       respond_to :json
 
       before_action :authenticate_user!
-      before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
+      before_action :set_insurance, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
       before_action :set_rider, only: [:show, :edit, :update, :destroy]
       before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
 
@@ -13,7 +13,7 @@ module Api
       # GET /riders.json
       def index
         page = params[:page] || 1
-        @riders = @plan.riders.page(page)
+        @riders = @insurance.riders.page(page)
       end
 
       # GET /riders/1
@@ -28,13 +28,13 @@ module Api
           cloned_rider = Rider.find_by_id(copy_from_id)
           if cloned_rider 
             attrs = cloned_rider.copied_attributes
-            @rider = @plan.riders.new(attrs)
+            @rider = @insurance.riders.new(attrs)
           else
-            @rider = @plan.riders.new
+            @rider = @insurance.riders.new
           end
           
         else
-          @rider = @plan.riders.new
+          @rider = @insurance.riders.new
         end
       end
 
@@ -45,7 +45,7 @@ module Api
       # POST /riders
       # POST /riders.json
       def create
-        @rider = @plan.riders.new(rider_params)
+        @rider = @insurance.riders.new(rider_params)
 
         respond_to do |format|
           if @rider.save
@@ -62,7 +62,7 @@ module Api
                 end
               end
             end
-            format.json { render :show, status: :created, location: api_v1_plan_rider_url(@rider.plan, @rider) }
+            format.json { render :show, status: :created, location: api_v1_insurance_rider_url(@rider.insurance, @rider) }
           else
             format.json { render json: @rider.errors, status: :unprocessable_entity }
           end
@@ -74,7 +74,7 @@ module Api
       def update
         respond_to do |format|
           if @rider.update(rider_params)
-            format.json { render :show, status: :ok, location: api_v1_plan_rider_url(@rider.plan, @rider) }
+            format.json { render :show, status: :ok, location: api_v1_insurance_rider_url(@rider.insurance, @rider) }
           else
             format.json { render json: @rider.errors, status: :unprocessable_entity }
           end
@@ -166,8 +166,8 @@ module Api
           params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list)
         end
 
-        def set_plan
-          @plan = Plan.find(params[:plan_id])
+        def set_insurance
+          @insurance = Plan.find(params[:insurance_id])
         end
 
         def set_master_rider

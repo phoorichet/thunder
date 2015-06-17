@@ -2,13 +2,13 @@
 
 (function(){
   
-  var module = angular.module('thunder.searchInsuredUser.controllers', 
+  var module = angular.module('thunder.searchPerson.controllers', 
     [ 
       'thunder.api.services', 
     ]
   );
 
-  module.controller('SearchInsuredUserController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
+  module.controller('SearchPersonController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
     function($scope, Api, $filter, $location, $modal, $state){
 
         $scope.user_list = [];
@@ -23,7 +23,7 @@
               last_name: lastname,
             };
 
-            Api.InsuredUser.search(params, function(data){
+            Api.Person.search(params, function(data){
                 $scope.user_list = data;
                 console.log(data);
             }, function(error){

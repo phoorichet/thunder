@@ -7,7 +7,7 @@
   module.factory('Api', [ '$resource',   
     function($resource) {
       return {
-        InsuredUser: $resource('/insured_users/:collectionCtrl:id/:memberCtrl.json', {
+        Person: $resource('/persons/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
@@ -79,7 +79,7 @@
                       isArray: true
                     },                    
                   }),
-        Plan: $resource('/plans/:collectionCtrl:id/:memberCtrl.json', {
+        Insurance: $resource('/insurances/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'
