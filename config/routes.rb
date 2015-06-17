@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :books
-  resources :books
   # custom routes must be placed in the first order so that it override 
   # routes in resources.
   # 
@@ -46,7 +44,7 @@ Rails.application.routes.draw do
   end
 
   resources :books do 
-    resources :plans do
+    resources :insurances do
       collection do
         get  'new_from_master'
         post 'create_from_master'
@@ -55,7 +53,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :plans do
+  resources :insurances do
     resources :riders
   end
 

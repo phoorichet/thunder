@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616182718) do
+ActiveRecord::Schema.define(version: 20150617061656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,26 @@ ActiveRecord::Schema.define(version: 20150616182718) do
   end
 
   add_index "coverages", ["coverage_type"], name: "index_coverages_on_coverage_type", using: :btree
+
+  create_table "insurances", force: :cascade do |t|
+    t.string   "name"
+    t.float    "amount"
+    t.float    "premium"
+    t.integer  "protection_length"
+    t.integer  "paid_period_length"
+    t.string   "consider_year"
+    t.string   "consider_gender"
+    t.string   "company"
+    t.integer  "reference_id"
+    t.integer  "book_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "minimum_age"
+    t.integer  "maximum_age"
+    t.string   "group"
+    t.boolean  "is_main"
+    t.string   "insurance_type"
+  end
 
   create_table "insured_users", force: :cascade do |t|
     t.string   "first_name"

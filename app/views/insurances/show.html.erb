@@ -1,0 +1,47 @@
+<div class="page-header">
+  <%= link_to person_book_path(@insurance.book.person, @insurance.book), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_book_insurance_path(@insurance.book, @insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show insurance</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @insurance.name %></dd>
+
+  <dt>Type:</dt>
+  <dd><%= @insurance.insurance_type %></dd>
+
+  <dt>Amount:</dt>
+  <dd><%= @insurance.amount %></dd>
+
+  <dt>Premium:</dt>
+  <dd><%= @insurance.premium %></dd>
+
+  <dt>Protection length:</dt>
+  <dd><%= @insurance.protection_length %></dd>
+
+  <dt>Paid preriod length:</dt>
+  <dd><%= @insurance.paid_period_length %></dd>
+
+  <dt>Consider year:</dt>
+  <dd><%= @insurance.consider_year %></dd>
+
+  <dt>Consider gender:</dt>
+  <dd><%= @insurance.consider_gender %></dd>
+
+  <dt>Company:</dt>
+  <dd><%= @insurance.company %></dd>
+
+  <dt>Reference:</dt>
+  <dd><%= @insurance.reference_id %></dd>
+
+  <dt>Book:</dt>
+  <dd><%= @insurance.book_id %></dd>
+
+</dl>

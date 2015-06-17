@@ -29,7 +29,11 @@
 </dl>
 
 <div class="page-header">
-  <h1>Plans</h1>
+  <%= link_to new_main_book_insurances_path(@book), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Add
+  <% end %>
+  <h1>Main Insurance</h1>
 </div>
 
 <h3>Main Plan</h3>
@@ -42,12 +46,12 @@
   </thead>
 
   <tbody>
-    <% if @book.main_plan %>
+    <% if @book.main_insurance %>
       <tr>
-        <td><%= @book.main_plan.name %></td>
-        <td><%= link_to 'Show', book_plan_path(@book, @book.main_plan) %></td>
-        <td><%= link_to 'Edit', edit_book_plan_path(@book, @book.main_plan) %></td>
-        <td><%= link_to 'Destroy', [@book, @book.main_plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= @book.main_insurance.name %></td>
+        <td><%= link_to 'Show', book_insurance_path(@book, @book.main_insurance) %></td>
+        <td><%= link_to 'Edit', edit_book_insurance_path(@book, @book.main_insurance) %></td>
+        <td><%= link_to 'Destroy', [@book, @book.main_insurance], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -56,7 +60,14 @@
 
 
 
-<h3>Orther Plan Listing</h3>
+<div class="page-header">
+  <%= link_to new_book_insurance_path(@book), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Add
+  <% end %>
+  <h1>Rider Insurance</h1>
+</div>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -66,16 +77,16 @@
   </thead>
 
   <tbody>
-    <% @book.not_main_plans.each do |plan| %>
+    <% @book.rider_insurances.each do |insurance| %>
       <tr>
-        <td><%= plan.name %></td>
-        <td><%= link_to 'Show', book_plan_path(plan.book, plan) %></td>
-        <td><%= link_to 'Edit', edit_book_plan_path(plan.book, plan) %></td>
-        <td><%= link_to 'Destroy', [plan.book, plan], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= insurance.name %></td>
+        <td><%= link_to 'Show', book_insurance_path(insurance.book, insurance) %></td>
+        <td><%= link_to 'Edit', edit_book_insurance_path(insurance.book, insurance) %></td>
+        <td><%= link_to 'Destroy', [insurance.book, insurance], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Add new plan', new_book_plan_path(@book) %><br/>
+<%= link_to 'Add new insurance', new_book_insurance_path(@book) %><br/>
 <%= link_to 'Back', person_path(@book.person) %>
