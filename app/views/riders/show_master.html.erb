@@ -33,14 +33,9 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Key</th>
+      <th>Value</th>
       <th>Description</th>
-      <th>Assured amount</th>
-      <th>Category</th>
-      <th>Premium amount</th>
-      <th>Premium unit</th>
-      <th>Coverage unit</th>
-      <th>Coverage end at</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -48,14 +43,9 @@
   <tbody>
     <% @rider.coverages.each do |coverage| %>
       <tr>
-        <td><%= coverage.name %></td>
+        <td><%= coverage.key %></td>
+        <td><%= coverage.value %></td>
         <td><%= coverage.description %></td>
-        <td><%= coverage.assured_amount %></td>
-        <td><%= coverage.category %></td>
-        <td><%= coverage.premium_amount %></td>
-        <td><%= coverage.premium_unit %></td>
-        <td><%= coverage.coverage_unit %></td>
-        <td><%= coverage.coverage_end_at %></td>
         <td><%= link_to 'Show', rider_coverage_path(coverage.rider, coverage) %></td>
         <td><%= link_to 'Edit', edit_rider_coverage_path(coverage.rider, coverage) %></td>
         <td><%= link_to 'Destroy', [coverage.rider, coverage], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -63,6 +53,7 @@
     <% end %>
   </tbody>
 </table>
+
 
 <%= link_to 'Add coverage', new_rider_coverage_path(@rider) %>
 <br/>

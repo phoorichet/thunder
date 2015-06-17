@@ -1,67 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <% if  @coverage.rider.is_master? %>
+    <%= link_to master_rider_path(@coverage.rider),  class: 'btn btn-default'  do %> 
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>    
+  <% end -%>
 
-<p>
-  <strong>Name:</strong>
-  <%= @coverage.name %>
-</p>
+  <% if  @coverage.rider.insurance != nil %>
+    <%= link_to insurance_rider_path(@coverage.rider.insurance, @coverage.rider),  class: 'btn btn-default'  do %> 
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>    
+  <% end -%>
 
-<p>
-  <strong>Description:</strong>
-  <%= @coverage.description %>
-</p>
+  <%= link_to edit_rider_coverage_path(@coverage.rider, @coverage), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show coverage</h1>
+</div>
 
-<p>
-  <strong>Assured amount:</strong>
-  <%= @coverage.assured_amount %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Key:</dt>
+  <dd><%= @coverage.key %></dd>
 
-<p>
-  <strong>Category:</strong>
-  <%= @coverage.category %>
-</p>
+  <dt>Value:</dt>
+  <dd><%= @coverage.value %></dd>
 
-<p>
-  <strong>Rider:</strong>
-  <%= @coverage.rider_id %>
-</p>
+  <dt>Desciption:</dt>
+  <dd><%= @coverage.description %></dd>
 
-<p>
-  <strong>Premium amount:</strong>
-  <%= @coverage.premium_amount %>
-</p>
+  <dt>Tag List:</dt>
+  <dd><%= @coverage.tag_list %></dd>
 
-<p>
-  <strong>Premium unit:</strong>
-  <%= @coverage.premium_unit %>
-</p>
+</dl>
 
-<p>
-  <strong>Coverage unit:</strong>
-  <%= @coverage.coverage_unit %>
-</p>
-
-<p>
-  <strong>Coverage end at:</strong>
-  <%= @coverage.coverage_end_at %>
-</p>
-
-<p>
-  <strong>Tag list:</strong>
-  <%= @coverage.tag_list %>
-</p>
-
-<p>
-  <strong>Reference:</strong>
-  <%= @coverage.reference_id %>
-</p>
-
-<%= link_to 'Edit', edit_rider_coverage_path(@coverage.rider, @coverage) %> |
-
-<% if  @coverage.rider.is_master? %>
-<%= link_to 'Back to master rider', master_rider_path(@coverage.rider) %> |
-<% end -%>
-
-
-<% if  @coverage.rider.insurance != nil %>
-<%= link_to 'Back to rider', insurance_rider_path(@coverage.rider.insurance, @coverage.rider) %>
-<% end -%>

@@ -5,7 +5,7 @@ class Coverage < ActiveRecord::Base
 
 	scope :master, ->(){where(coverage_type: 'master')}
 
-	validates :name, presence: true
+	validates :key, presence: true
 
 	default_scope { order(id: :asc)}
 
@@ -16,17 +16,11 @@ class Coverage < ActiveRecord::Base
 	# copied_attributes copies only some attributes and return as a hash
 	def copied_attributes
 		attrs = {}
-		attrs[:name] = self.name
-		attrs[:assured_amount] = self.assured_amount
-		attrs[:category] = self.category
-		attrs[:premium_amount] = self.premium_amount
-		attrs[:premium_unit] = self.premium_unit
-		attrs[:coverage_unit] = self.coverage_unit
-		attrs[:coverage_end_at] = self.coverage_end_at
+		attrs[:key] = self.key
+		attrs[:value] = self.value
 		attrs[:description] = self.description
 		attrs[:reference_id] = self.id
 		attrs[:tag_list] = self.tag_list
-
 
 		attrs
 	end

@@ -12,14 +12,10 @@
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Tags</th>
-          <th>Assured amount</th>
-          <th>Premium amount</th>
-          <th>Premium unit</th>
-          <th>Coverage unit</th>
-          <th>Coverage end at</th>
+          <th>Key</th>
+          <th>Value</th>
+          <th>Description</th>
+          <th>Tag List</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -27,14 +23,10 @@
       <tbody>
         <% @coverages.each do |coverage| %>
           <tr>
-            <td><%= coverage.name %></td>
-            <td><%= coverage.category %></td>
+            <td><%= coverage.key %></td>
+            <td><%= coverage.value %></td>
+            <td><%= coverage.description %></td>
             <td><%= coverage.tag_list %></td>
-            <td><%= coverage.assured_amount %></td>
-            <td><%= coverage.premium_amount %></td>
-            <td><%= coverage.premium_unit %></td>
-            <td><%= coverage.coverage_unit %></td>
-            <td><%= coverage.coverage_end_at %></td>
             <td><%= link_to 'Show', master_coverage_path(coverage) %></td>
             <td><%= link_to 'Edit', edit_master_coverage_path(coverage) %></td>
             <td><%= link_to 'Destroy', master_coverage_path(coverage), method: :delete, data: { confirm: 'Are you sure?' } %></td>

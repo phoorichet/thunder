@@ -1,60 +1,30 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h3>Coverage</h3>
-    <%= link_to 'Edit', edit_master_coverage_path(@coverage) %> 
-    <p>
-      <strong>Name:</strong>
-      <%= @coverage.name %>
-    </p>
+<div class="page-header">
+  <%= link_to masters_coverages_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %> 
 
-    <p>
-      <strong>Description:</strong>
-      <%= @coverage.description %>
-    </p>
-
-    <p>
-      <strong>Assured amount:</strong>
-      <%= @coverage.assured_amount %>
-    </p>
-
-    <p>
-      <strong>Category:</strong>
-      <%= @coverage.category %>
-    </p>
-
-    <p>
-      <strong>Rider:</strong>
-      <%= @coverage.rider_id %>
-    </p>
-
-    <p>
-      <strong>Premium amount:</strong>
-      <%= @coverage.premium_amount %>
-    </p>
-
-    <p>
-      <strong>Premium unit:</strong>
-      <%= @coverage.premium_unit %>
-    </p>
-
-    <p>
-      <strong>Coverage unit:</strong>
-      <%= @coverage.coverage_unit %>
-    </p>
-
-    <p>
-      <strong>Coverage end at:</strong>
-      <%= @coverage.coverage_end_at %>
-    </p>
-
-    <p>
-      <strong>Tag list:</strong>
-      <%= @coverage.tag_list %>
-    </p>
-
-    <%= link_to 'Back to Master Coverage', masters_coverages_path %>
-  </div>
+  <%= link_to edit_master_coverage_path(@coverage), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show coverage</h1>
 </div>
+
+<dl class="dl-horizontal">
+  <dt>Key:</dt>
+  <dd><%= @coverage.key %></dd>
+
+  <dt>Value:</dt>
+  <dd><%= @coverage.value %></dd>
+
+  <dt>Desciption:</dt>
+  <dd><%= @coverage.description %></dd>
+
+  <dt>Tag List:</dt>
+  <dd><%= @coverage.tag_list %></dd>
+
+</dl>
 
 
 

@@ -32,7 +32,7 @@
             <input type="radio" ng-model="uid" ng-value="{{user.id}}">{{user.first_name}} {{ user.last_name}}
           </div> -->
           <select ng-model="uid">
-            <option ng-repeat="coverage in coverage_list" value="{{coverage.id}}">{{coverage.name}}</option>
+            <option ng-repeat="coverage in coverage_list" value="{{coverage.id}}">{{coverage.key}}</option>
           </select>
 
         </div>

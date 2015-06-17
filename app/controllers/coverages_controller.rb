@@ -183,7 +183,7 @@ class CoveragesController < ApplicationController
           add_breadcrumb @coverage.rider.insurance.name, master_insurance_path(@coverage.rider.insurance) 
         end
       end
-      add_breadcrumb @coverage.rider.insurance.name, book_insurance_path(@coverage.rider.insurance.book, @coverage.rider.insurance)
+      # add_breadcrumb @coverage.rider.insurance.name, book_insurance_path(@coverage.rider.insurance.book, @coverage.rider.insurance)
       add_breadcrumb @coverage.rider.name, insurance_rider_path(@coverage.rider.insurance, @coverage.rider) if @coverage and @coverage.rider
     else
       if @coverage.rider
@@ -200,13 +200,13 @@ class CoveragesController < ApplicationController
     end
     
     #coverage
-    add_breadcrumb @coverage.name, rider_coverage_path(@coverage.rider, @coverage)
+    add_breadcrumb @coverage.key, rider_coverage_path(@coverage.rider, @coverage)
   end
 
   # breadcrumb enable breadcrumb in the view
   def breadcrumb_master
     add_breadcrumb "Master coverage", master_coverages_path
-    add_breadcrumb @coverage.name, master_coverage_path(@coverage) if @coverage
+    add_breadcrumb @coverage.key, master_coverage_path(@coverage) if @coverage
   end
 
 
@@ -218,9 +218,7 @@ class CoveragesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coverage_params
-      params.require(:coverage).permit(:name, :description, :coverage_amount, :category, 
-        :rider_id, :rider_id, :premium_amount, :premium_unit, :coverage_unit, 
-        :coverage_end_at, :tag_list, :reference_id)
+      params.require(:coverage).permit(:key, :description, :value, :tag_list, :reference_id)
     end
 
     # Get metric
