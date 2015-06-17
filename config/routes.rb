@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   # custom routes must be placed in the first order so that it override 
   # routes in resources.
   # 
-  get  'plans/masters'         => 'plans#index_master', as: :masters_plans
-  get  'plans/masters/new'     => 'plans#new_master', as: :new_master_plan
-  post 'plans/masters'         => 'plans#create_master', as: :master_plans
-  get 'plans/masters/:id'      => 'plans#show_master', as: :master_plan
-  get 'plans/masters/:id/edit' => 'plans#edit_master', as: :edit_master_plan
-  put 'plans/masters/:id'      => 'plans#update_master'
-  patch 'plans/masters/:id'    => 'plans#update_master'
-  delete 'plans/masters/:id'   => 'plans#destroy_master'
+  get  'insurances/masters'         => 'insurances#index_master', as: :masters_insurances
+  get  'insurances/masters/new'     => 'insurances#new_master', as: :new_master_insurance
+  post 'insurances/masters'         => 'insurances#create_master', as: :master_insurances
+  get 'insurances/masters/:id'      => 'insurances#show_master', as: :master_insurance
+  get 'insurances/masters/:id/edit' => 'insurances#edit_master', as: :edit_master_insurance
+  put 'insurances/masters/:id'      => 'insurances#update_master'
+  patch 'insurances/masters/:id'    => 'insurances#update_master'
+  delete 'insurances/masters/:id'   => 'insurances#destroy_master'
 
   get  'riders/masters'         => 'riders#index_master', as: :masters_riders
   get  'riders/masters/new'     => 'riders#new_master', as: :new_master_rider
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get 'coverages/search' => 'coverages#search'
   get 'riders/search' => 'riders#search'
-  get 'plans/search' => 'plans#search'
+  get 'insurances/search' => 'insurances#search'
 
   # end custom routes
 
@@ -79,14 +79,14 @@ Rails.application.routes.draw do
 
       mount_devise_token_auth_for 'User', at: 'auth'
 
-      get  'plans/masters'         => 'plans#index_master', as: :masters_plans
-      get  'plans/masters/new'     => 'plans#new_master', as: :new_master_plan
-      post 'plans/masters'         => 'plans#create_master', as: :master_plans
-      get 'plans/masters/:id'      => 'plans#show_master', as: :master_plan
-      get 'plans/masters/:id/edit' => 'plans#edit_master', as: :edit_master_plan
-      put 'plans/masters/:id'      => 'plans#update_master'
-      patch 'plans/masters/:id'    => 'plans#update_master'
-      delete 'plans/masters/:id'   => 'plans#destroy_master'
+      get  'insurances/masters'         => 'insurances#index_master', as: :masters_insurances
+      get  'insurances/masters/new'     => 'insurances#new_master', as: :new_master_insurance
+      post 'insurances/masters'         => 'insurances#create_master', as: :master_insurances
+      get 'insurances/masters/:id'      => 'insurances#show_master', as: :master_insurance
+      get 'insurances/masters/:id/edit' => 'insurances#edit_master', as: :edit_master_insurance
+      put 'insurances/masters/:id'      => 'insurances#update_master'
+      patch 'insurances/masters/:id'    => 'insurances#update_master'
+      delete 'insurances/masters/:id'   => 'insurances#destroy_master'
 
       get  'riders/masters'         => 'riders#index_master', as: :masters_riders
       get  'riders/masters/new'     => 'riders#new_master', as: :new_master_rider
@@ -108,7 +108,7 @@ Rails.application.routes.draw do
 
       get 'coverages/search' => 'coverages#search'
       get 'riders/search' => 'riders#search'
-      get 'plans/search' => 'plans#search'
+      get 'insurances/search' => 'insurances#search'
 
       resources :insured_users do
         resources :books
@@ -122,7 +122,7 @@ Rails.application.routes.draw do
       end
 
       resources :books do 
-        resources :plans do
+        resources :insurances do
           collection do
             get  'new_from_master'
             post 'create_from_master'
@@ -130,7 +130,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :plans do
+      resources :insurances do
         resources :riders
       end
 

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>New Plan From Master Plan</h1>    
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= form_for([@insurance.book, @insurance]) do |f| %>
+      <% if @insurance.errors.any? %>
+        <div id="error_exinsuranceation">
+          <h2><%= pluralize(@insurance.errors.count, "error") %> prohibited this insurance from being saved:</h2>
+
+          <ul>
+          <% @insurance.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :insurance_type %><br>
+        <%= f.text_field :insurance_type, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :begin_at %><br>
+        <%= f.date_select :begin_at, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_at %><br>
+        <%= f.date_select :end_at, :include_blank => true, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.submit 'submit', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label 'Master Plan' %>
+      <%= f.collection_select(:master_insurance_id, Plan.master.all, :id, :name) %>
+    </div>
+  </div>
+</div>
+

@@ -1,6 +1,6 @@
 <h3>Rider</h3>
 
-<%= link_to 'Edit', edit_plan_rider_path(@rider.plan, @rider) %> <br>
+<%= link_to 'Edit', edit_insurance_rider_path(@rider.insurance, @rider) %> <br>
 
 <p>
   <strong>Name:</strong>
@@ -67,10 +67,10 @@
 <%= link_to 'Add coverage', new_rider_coverage_path(@rider) %>
 <br/>
 
-<% if @rider.plan.is_master? %>
-  <%= link_to 'Back To Master Plan', master_plan_path(@rider.plan) %>
+<% if @rider.insurance.is_master? %>
+  <%= link_to 'Back To Master Plan', master_insurance_path(@rider.insurance) %>
 <% elsif %>
-  <%= link_to 'Back To plan', book_plan_path(@rider.plan.book, @rider.plan) %>
+  <%= link_to 'Back To insurance', book_insurance_path(@rider.insurance.book, @rider.insurance) %>
 <% end %>
 
 

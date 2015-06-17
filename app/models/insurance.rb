@@ -14,10 +14,21 @@ class Insurance < ActiveRecord::Base
 	validates :paid_period_length, numericality: { only_integer: true, greater_than_or_equal_to: 0}
 	validates :protection_length, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+	# insurance type must be ['master', 'main', 'rider']
+	validates :insurance_type, inclusion: { in: %w(master main rider) }
+
+	validate :main_insurance_can_have_only_one
+
 	# Scopes
 	scope :master, ->(){ where(insurance_type: 'master') }
 	scope :main,  ->(){ where(insurance_type: 'main') }
 	scope :rider,  ->(){ where(insurance_type: 'rider') }
+
+	def main_insurance_can_have_only_one
+		if self.book and self.book.has_main_insurance?
+			errors.add(:insurance_type, "This book alreay have the main insurance. Please removed it first to proceed!")
+		end
+	end
 
 	# is_mater retrun true if the plan type is 'master'
 	def is_master?

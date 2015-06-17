@@ -45,3 +45,37 @@
   <dd><%= @insurance.book_id %></dd>
 
 </dl>
+
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Code name</th>
+          <th>Tags</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @insurance.riders.each do |rider| %>
+          <tr>
+            <td><%= rider.name %></td>
+            <td><%= rider.description %></td>
+            <td><%= rider.status %></td>
+            <td><%= rider.code_name %></td>
+            <td><%= rider.tag_list %></td>
+            <td><%= link_to 'Show', [rider.insurance, rider] %></td>
+            <td><%= link_to 'Edit', edit_insurance_rider_path(rider.insurance, rider) %></td>
+            <td><%= link_to 'Destroy', [rider.insurance, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Add new rider from master', new_insurance_rider_path(@insurance) %>
+
+    <br>
+
+    <%= link_to 'Back to Book', person_book_path(@insurance.book.person, @insurance.book) %>

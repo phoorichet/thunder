@@ -1,102 +1,109 @@
-<%= form_for([@insurance.book, @insurance], html: { class: "form-horizontal", role: "form" }) do |f| %>
-  <% if @insurance.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@insurance.errors.count, "error") %> prohibited this insurance from being saved:</h4>
+<div class="row">
 
-      <ul>
-      <% @insurance.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+  <div class="col-lg-8">
+    <%= form_for([@insurance.book, @insurance], html: { class: "form-horizontal", role: "form" }) do |f| %>
+      <% if @insurance.errors.any? %>
+        <div class="alert alert-danger alert-dismissable" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4><%= pluralize(@insurance.errors.count, "error") %> prohibited this insurance from being saved:</h4>
+
+          <ul>
+          <% @insurance.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :name, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= f.label :name, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+       <div class="form-group">
+        <%= f.label :type, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :insurance_type, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :amount, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :amount, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :premium, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :premium, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-2 control-label">
+          <%= f.label :minimum_age, class: 'control-label' %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :minimum_age, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-2 control-label">
+          <%= f.label :maximum_age, class: 'control-label' %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :maximum_age, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :protection_length, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.number_field :protection_length, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :paid_period_length, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.number_field :paid_period_length, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :consider_year, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :consider_year, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :consider_gender, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :consider_gender, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :company, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :company, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :reference_id, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.number_field :reference_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-   <div class="form-group">
-    <%= f.label :type, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :insurance_type, class: "form-control" %>
-    </div>
+
+
+  <div class="col-lg-4">
+    <h3>Search from master plan</h3>
+    <p>Rider ID: {{ plan_id }}</p>
+    <search-plan-panel id="planSearch" uid="plan_id">
+    </search-plan-panel>
   </div>
-  <div class="form-group">
-    <%= f.label :amount, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :amount, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :premium, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :premium, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2 control-label">
-      <%= f.label :minimum_age, class: 'control-label' %>
-    </div>
-    <div class="col-sm-10">
-      <%= f.text_field :minimum_age, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-2 control-label">
-      <%= f.label :maximum_age, class: 'control-label' %>
-    </div>
-    <div class="col-sm-10">
-      <%= f.text_field :maximum_age, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :protection_length, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :protection_length, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :paid_period_length, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :paid_period_length, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :consider_year, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :consider_year, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :consider_gender, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :consider_gender, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :company, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :company, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :reference_id, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :reference_id, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :book_id, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :book_id, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+</div>

@@ -1,6 +1,6 @@
 class RidersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_plan, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
+  before_action :set_insurance, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
   before_action :breadcrumb, only: [:index, :show, :edit]
@@ -10,7 +10,7 @@ class RidersController < ApplicationController
   # GET /riders.json
   def index
     page = params[:page] || 1
-    @riders = @plan.riders.page(page)
+    @riders = @insurance.riders.page(page)
   end
 
   # GET /riders/1
@@ -25,13 +25,13 @@ class RidersController < ApplicationController
       cloned_rider = Rider.find_by_id(copy_from_id)
       if cloned_rider 
         attrs = cloned_rider.copied_attributes
-        @rider = @plan.riders.new(attrs)
+        @rider = @insurance.riders.new(attrs)
       else
-        @rider = @plan.riders.new
+        @rider = @insurance.riders.new
       end
       
     else
-      @rider = @plan.riders.new
+      @rider = @insurance.riders.new
     end
   end
 
@@ -42,7 +42,7 @@ class RidersController < ApplicationController
   # POST /riders
   # POST /riders.json
   def create
-    @rider = @plan.riders.new(rider_params)
+    @rider = @insurance.riders.new(rider_params)
 
     respond_to do |format|
       if @rider.save
@@ -59,7 +59,7 @@ class RidersController < ApplicationController
             end
           end
         end
-        format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully created.' }
+        format.html { redirect_to [@rider.insurance, @rider], notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new }
@@ -73,7 +73,7 @@ class RidersController < ApplicationController
   def update
     respond_to do |format|
       if @rider.update(rider_params)
-        format.html { redirect_to [@rider.plan, @rider], notice: 'Rider was successfully updated.' }
+        format.html { redirect_to [@rider.insurance, @rider], notice: 'Rider was successfully updated.' }
         format.json { render :show, status: :ok, location: @rider }
       else
         format.html { render :edit }
@@ -87,7 +87,7 @@ class RidersController < ApplicationController
   def destroy
     @rider.destroy
     respond_to do |format|
-      format.html { redirect_to [@rider.plan.book, @rider.plan], notice: 'Rider was successfully destroyed.' }
+      format.html { redirect_to [@rider.insurance.book, @rider.insurance], notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -164,17 +164,17 @@ class RidersController < ApplicationController
 
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
-    add_breadcrumb "Users", insured_users_path if @rider.plan.book
-    add_breadcrumb "Master plan", master_riders_path if @rider.plan.is_master?
+    add_breadcrumb "Users", insured_users_path if @rider.insurance.book
+    add_breadcrumb "Master insurance", master_riders_path if @rider.insurance.is_master?
 
-    add_breadcrumb @rider.plan.book.insured_user.first_name, insured_user_path(@rider.plan.book.insured_user) if @rider.plan.book
-    add_breadcrumb @rider.plan.book.number, insured_user_book_path(@rider.plan.book.insured_user, @rider.plan.book) if @rider.plan.book
-    if @rider.plan.is_master?
-      add_breadcrumb @rider.plan.name, master_plan_path(@rider.plan) 
+    add_breadcrumb @rider.insurance.book.insured_user.first_name, insured_user_path(@rider.insurance.book.insured_user) if @rider.insurance.book
+    add_breadcrumb @rider.insurance.book.number, insured_user_book_path(@rider.insurance.book.insured_user, @rider.insurance.book) if @rider.insurance.book
+    if @rider.insurance.is_master?
+      add_breadcrumb @rider.insurance.name, master_insurance_path(@rider.insurance) 
     else
-      add_breadcrumb @rider.plan.name, book_plan_path(@rider.plan.book, @rider.plan)
+      add_breadcrumb @rider.insurance.name, book_insurance_path(@rider.insurance.book, @rider.insurance)
     end
-    add_breadcrumb @rider.name, plan_rider_path(@rider.plan, @rider) if @rider
+    add_breadcrumb @rider.name, insurance_rider_path(@rider.insurance, @rider) if @rider
   end
 
   # breadcrumb enable breadcrumb in the view
@@ -194,8 +194,8 @@ class RidersController < ApplicationController
       params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list)
     end
 
-    def set_plan
-      @plan = Plan.find(params[:plan_id])
+    def set_insurance
+      @insurance = Insurance.find(params[:insurance_id])
     end
 
     def set_master_rider

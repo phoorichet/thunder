@@ -21,4 +21,9 @@ class Book < ActiveRecord::Base
 		self.insurances.rider
 	end
 
+	# check if the book has main insurance
+	def has_main_insurance?
+		self.insurances.main.limit(1).first != nil
+	end
+
 end

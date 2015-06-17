@@ -91,14 +91,14 @@ class InsurancesController < ApplicationController
           end
         end
 
-        # if this insurance is main_insurance and there is existing main insurance, it will
-        # change the existing insurance to normal insurance
-        if @insurance.is_main?
-          @book.main_insurances.where("id != ?", @insurance.id).each do |insurance|
-            insurance.is_main = false
-            insurance.save
-          end
-        end
+        # # if this insurance is main_insurance and there is existing main insurance, it will
+        # # change the existing insurance to normal insurance
+        # if @insurance.is_main?
+        #   @book.main_insurances.where("id != ?", @insurance.id).each do |insurance|
+        #     insurance.is_main = false
+        #     insurance.save
+        #   end
+        # end
 
         format.html { redirect_to [@insurance.book, @insurance], notice: 'Insurance was successfully created.' }
         format.json { render :show, status: :created, location: @insurance }

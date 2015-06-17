@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to insurances_path, class: 'btn btn-default' do %>
+  <%= link_to person_book_path(@insurance.book.person, @insurance.book), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <h1>New mian insurance</h1>
+  <h1>New main insurance</h1>
 </div>
 
 <%= render 'form' %>

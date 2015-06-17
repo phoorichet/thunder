@@ -1,6 +1,6 @@
 class Rider < ActiveRecord::Base
 	has_many :coverages, :dependent => :destroy
-	belongs_to :plan
+	belongs_to :insurance
 
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 
