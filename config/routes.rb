@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :insurances do
     resources :riders
     resources :dividends
+    resources :returns
   end
 
   resources :riders do
@@ -134,6 +135,7 @@ Rails.application.routes.draw do
       resources :insurances do
         resources :riders 
 		    resources :dividends
+        resources :returns
       end
 
       resources :riders do

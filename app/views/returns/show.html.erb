@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to returns_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_return_path(@return), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show return</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Year:</dt>
+  <dd><%= @return.year %></dd>
+
+  <dt>Age:</dt>
+  <dd><%= @return.age %></dd>
+
+  <dt>Amount:</dt>
+  <dd><%= @return.amount %></dd>
+
+</dl>
