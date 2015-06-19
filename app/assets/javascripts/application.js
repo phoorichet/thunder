@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require bootstrap
 //= require bootstrap-tagsinput/dist/bootstrap-tagsinput
 //= require typeahead.js/dist/typeahead.bundle
 //= require angular

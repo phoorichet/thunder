@@ -7,7 +7,6 @@
   		'thunder.searchInsurance.controllers', 
 	    'thunder.searchInsurance.directives', 
 	    'thunder.api.services', 
-	    'ui.bootstrap',
 	  ]
 	);
   
