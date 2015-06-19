@@ -19,14 +19,14 @@
       </tr>
     </thead>
 
-    <tbody>
-      <%= content_tag_for(:tr, @returns) do |return| %>
-            <td><%= return.year %></td>
-            <td><%= return.age %></td>
-            <td><%= return.amount %></td>
-            <td><%= link_to 'Show', return %></td>
-        <td><%= link_to 'Edit', edit_return_path(return) %></td>
-        <td><%= link_to 'Destroy', return, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <tbody>
+      <%= content_tag_for(:tr, @insurance.returns) do |r| %>
+        <td><%= r.year %></td>
+        <td><%= r.age %></td>
+        <td><%= r.amount %></td>
+        <td><%= link_to 'Show', insurance_return_path(r.insurance, r) %></td>
+        <td><%= link_to 'Edit', edit_insurance_return_path(r.insurance, r) %></td>
+        <td><%= link_to 'Destroy', [r.insurance, r], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>
