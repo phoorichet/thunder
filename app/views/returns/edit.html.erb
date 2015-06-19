@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to returns_path, class: 'btn btn-default' do %>
+  <%= link_to insurance_returns_path(@return.insurance), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <%= link_to @return, class: 'btn btn-primary' do %>
+  <%= link_to [@return.insurance, @return], class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-info-sign"></span>
     Show
   <% end %>

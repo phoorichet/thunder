@@ -1,10 +1,12 @@
 class ReturnsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_return, only: [:show, :edit, :update, :destroy]
+  before_action :set_insurance
 
   # GET /returns
   # GET /returns.json
   def index
-    @returns = Return.all
+    @returns = @insurance.returns.all
   end
 
   # GET /returns/1
@@ -14,7 +16,7 @@ class ReturnsController < ApplicationController
 
   # GET /returns/new
   def new
-    @return = Return.new
+    @return = @insurance.returns.new
   end
 
   # GET /returns/1/edit
@@ -24,12 +26,12 @@ class ReturnsController < ApplicationController
   # POST /returns
   # POST /returns.json
   def create
-    @return = Return.new(return_params)
+    @return = @insurance.returns.new(return_params)
 
     respond_to do |format|
       if @return.save
-        format.html { redirect_to @return, notice: 'Return was successfully created.' }
-        format.json { render :show, status: :created, location: @return }
+        format.html { redirect_to [@return.insurance, @return], notice: 'Return was successfully created.' }
+        format.json { render :show, status: :created, location: [@return.insurance, @return] }
       else
         format.html { render :new }
         format.json { render json: @return.errors, status: :unprocessable_entity }
@@ -42,8 +44,8 @@ class ReturnsController < ApplicationController
   def update
     respond_to do |format|
       if @return.update(return_params)
-        format.html { redirect_to @return, notice: 'Return was successfully updated.' }
-        format.json { render :show, status: :ok, location: @return }
+        format.html { redirect_to [@return.insurance, @return], notice: 'Return was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@return.insurance, @return] }
       else
         format.html { render :edit }
         format.json { render json: @return.errors, status: :unprocessable_entity }
@@ -56,7 +58,7 @@ class ReturnsController < ApplicationController
   def destroy
     @return.destroy
     respond_to do |format|
-      format.html { redirect_to returns_url, notice: 'Return was successfully destroyed.' }
+      format.html { redirect_to book_insurance_url(@return.insurance.book, @return.insurance), notice: 'Return was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +72,9 @@ class ReturnsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def return_params
       params.require(:return).permit(:year, :age, :amount)
+    end
+
+    def set_insurance
+      @insurance = Insurance.find(params[:insurance_id])
     end
 end

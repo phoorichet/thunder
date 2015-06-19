@@ -58,7 +58,7 @@ class DividendsController < ApplicationController
   def destroy
     @dividend.destroy
     respond_to do |format|
-      format.html { redirect_to insurance_url(@dividend.insurance), notice: 'Dividend was successfully destroyed.' }
+      format.html { redirect_to book_insurance_url(@dividend.insurance.book, @dividend.insurance), notice: 'Dividend was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -74,7 +74,7 @@ class DividendsController < ApplicationController
       params.require(:dividend).permit(:year, :age, :amount)
     end
 
-     def set_insurance
+    def set_insurance
       @insurance = Insurance.find(params[:insurance_id])
     end
 end
