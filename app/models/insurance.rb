@@ -2,6 +2,7 @@ class Insurance < ActiveRecord::Base
 	# Relations with other models
 	belongs_to :book
 	has_many :riders, :dependent => :destroy
+	has_many :dividends, :dependent => :destroy
 
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 

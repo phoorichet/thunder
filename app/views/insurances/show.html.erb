@@ -46,36 +46,77 @@
 
 </dl>
 
-<table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Code name</th>
-          <th>Tags</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @insurance.riders.each do |rider| %>
-          <tr>
-            <td><%= rider.name %></td>
-            <td><%= rider.description %></td>
-            <td><%= rider.status %></td>
-            <td><%= rider.code_name %></td>
-            <td><%= rider.tag_list %></td>
-            <td><%= link_to 'Show', [rider.insurance, rider] %></td>
-            <td><%= link_to 'Edit', edit_insurance_rider_path(rider.insurance, rider) %></td>
-            <td><%= link_to 'Destroy', [rider.insurance, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="page-header">
+  <%= link_to new_insurance_rider_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Rider
+  <% end %>
+  <h1>Listing Riders</h1>
+</div>
 
-    <%= link_to 'Add new rider from master', new_insurance_rider_path(@insurance) %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Code name</th>
+      <th>Tags</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-    <br>
+  <tbody>
+    <% @insurance.riders.each do |rider| %>
+      <tr>
+        <td><%= rider.name %></td>
+        <td><%= rider.description %></td>
+        <td><%= rider.status %></td>
+        <td><%= rider.code_name %></td>
+        <td><%= rider.tag_list %></td>
+        <td><%= link_to 'Show', [rider.insurance, rider] %></td>
+        <td><%= link_to 'Edit', edit_insurance_rider_path(rider.insurance, rider) %></td>
+        <td><%= link_to 'Destroy', [rider.insurance, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>
 
-    <%= link_to 'Back to Book', person_book_path(@insurance.book.person, @insurance.book) %>
+
+<div class="page-header">
+  <%= link_to new_insurance_dividend_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Dividend
+  <% end %>
+  <h1>Listing dividends</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Age</th>
+        <th>Amount</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.dividends) do |dividend| %>
+        <td><%= dividend.year %></td>
+        <td><%= dividend.age %></td>
+        <td><%= dividend.amount %></td>
+        <td><%= link_to 'Show', insurance_dividend_path(dividend.insurance, dividend) %></td>
+        <td><%= link_to 'Edit', edit_insurance_dividend_path(dividend.insurance, dividend) %></td>
+        <td><%= link_to 'Destroy', [dividend.insurance, dividend], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

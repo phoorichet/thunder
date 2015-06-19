@@ -9,7 +9,9 @@ json.extract! @rider,
 
 json.coverages @rider.coverages do |coverage|
 		json.id coverage.id
-		json.name coverage.name
+		json.key coverage.key
+		json.value coverage.value
+		json.description coverage.description
 		json.tag_list coverage.tag_list
 		json.url api_v1_rider_coverage_url(coverage.rider, coverage, format: :json)
 end

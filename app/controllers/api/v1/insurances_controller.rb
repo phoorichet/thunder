@@ -1,12 +1,13 @@
 module Api
   module V1
     class InsurancesController < ApplicationController
+      include DeviseTokenAuth::Concerns::SetUserByToken
+      respond_to :json
+
       before_action :authenticate_user!
       before_action :set_book, only: [:index, :new, :show, :edit, :update, :destroy, :create, :new_from_master, :new_main]
       before_action :set_insurance, only: [:show, :edit, :update, :destroy]
       before_action :set_master_insurance, only: [:show_master, :edit_master, :update_master, :destroy_master]
-      before_action :breadcrumb, only: [:index, :show, :edit]
-      before_action :breadcrumb_master, only: [:index_master, :show_master, :edit_master]
 
       # GET /insurances
       # GET /insurances.json
@@ -212,21 +213,6 @@ module Api
         tag_list = params[:tag_list]
         @insurances = Insurance.master.tagged_with(tag_list)
       end
-
-      # breadcrumb enable breadcrumb in the view
-      def breadcrumb
-        add_breadcrumb "Users", persons_path
-        add_breadcrumb @insurance.book.person.first_name, person_path(@insurance.book.person) if @insurance.book.person
-        add_breadcrumb @insurance.book.number, person_book_path(@insurance.book.person, @insurance.book) if @insurance.book
-        add_breadcrumb @insurance.name, book_insurance_path(@insurance.book, @insurance) if @insurance
-      end
-
-      # breadcrumb enable breadcrumb in the view
-      def breadcrumb_master
-        add_breadcrumb "Master insurance", master_insurances_path
-        add_breadcrumb @insurance.name, master_insurance_path(@insurance) if @insurance
-      end
-
       
 
       private

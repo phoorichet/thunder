@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  age: 1
+  dividend: 1.5
+  insurance_id: 1
+
+two:
+  year: 1
+  age: 1
+  dividend: 1.5
+  insurance_id: 1

@@ -5,7 +5,7 @@ module Api
       respond_to :json
       
       before_action :authenticate_user!
-      before_action :set_insured_user
+      before_action :set_person
       before_action :set_book, only: [:show, :edit, :update, :destroy]
 
 
@@ -14,7 +14,7 @@ module Api
       # GET /books.json
       def index
         page = params[:page] || 1
-        @books = @insured_user.books.page(page)
+        @books = @person.books.page(page)
       end
 
       # GET /books/1
@@ -24,7 +24,7 @@ module Api
 
       # GET /books/new
       def new
-        @book = @insured_user.books.new
+        @book = @person.books.new
       end
 
       # GET /books/1/edit
@@ -34,11 +34,11 @@ module Api
       # POST /books
       # POST /books.json
       def create
-        @book = @insured_user.books.new(book_params)
+        @book = @person.books.new(book_params)
 
         respond_to do |format|
           if @book.save
-            format.json { render :show, status: :created, location: api_v1_insured_user_book_url(@book.insured_user, @book) }
+            format.json { render :show, status: :created, location: api_v1_person_book_url(@book.person, @book) }
           else
             format.json { render json: @book.errors, status: :unprocessable_entity }
           end
@@ -50,7 +50,7 @@ module Api
       def update
         respond_to do |format|
           if @book.update(book_params)
-            format.json { render :show, status: :ok, location: api_v1_insured_user_book_url(@book.insured_user, @book) }
+            format.json { render :show, status: :ok, location: api_v1_person_book_url(@book.person, @book) }
           else
             format.json { render json: @book.errors, status: :unprocessable_entity }
           end
@@ -77,9 +77,9 @@ module Api
           params.require(:book).permit(:number, :begin_at, :end_at)
         end
 
-        # Set insured_user
-        def set_insured_user
-          @insured_user = InsuredUser.find(params[:insured_user_id])
+        # Set person
+        def set_person
+          @person = Person.find(params[:person_id])
         end
 
 

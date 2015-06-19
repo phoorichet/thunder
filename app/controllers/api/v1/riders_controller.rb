@@ -167,7 +167,7 @@ module Api
         end
 
         def set_insurance
-          @insurance = Plan.find(params[:insurance_id])
+          @insurance = Insurance.find(params[:insurance_id])
         end
 
         def set_master_rider

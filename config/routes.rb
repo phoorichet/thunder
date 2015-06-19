@@ -55,6 +55,7 @@ Rails.application.routes.draw do
 
   resources :insurances do
     resources :riders
+    resources :dividends
   end
 
   resources :riders do
@@ -110,9 +111,9 @@ Rails.application.routes.draw do
       get 'riders/search' => 'riders#search'
       get 'insurances/search' => 'insurances#search'
 
-      resources :insured_users do
+      resources :persons do
         resources :books
-        
+
         collection do
           get 'search'
         end
@@ -131,17 +132,18 @@ Rails.application.routes.draw do
       end
 
       resources :insurances do
-        resources :riders
+        resources :riders 
+		    resources :dividends
       end
 
       resources :riders do
         resources :coverages
       end
-      
+
     end
   end
 
-  
+
   # resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

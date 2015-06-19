@@ -1,0 +1,13 @@
+<div class="page-header">
+  <%= link_to book_insurance_path(@dividend.insurance.book, @dividend.insurance), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to [@dividend.insurance, @dividend], class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing dividend</h1>
+</div>
+
+<%= render 'form' %>

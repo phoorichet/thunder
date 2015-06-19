@@ -1,6 +1,6 @@
 json.extract! @coverage, 
 :id, 
-:name, 
-:value
+:key, 
+:value,
 :description, 
 :tag_list
