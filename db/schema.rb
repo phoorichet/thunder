@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619055946) do
+ActiveRecord::Schema.define(version: 20150619062859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,15 @@ ActiveRecord::Schema.define(version: 20150619055946) do
   end
 
   add_index "plans", ["plan_type"], name: "index_plans_on_plan_type", using: :btree
+
+  create_table "protections", force: :cascade do |t|
+    t.integer  "year"
+    t.integer  "age"
+    t.float    "amount"
+    t.integer  "insurance_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "returns", force: :cascade do |t|
     t.integer  "year"

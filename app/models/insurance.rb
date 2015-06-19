@@ -4,6 +4,7 @@ class Insurance < ActiveRecord::Base
 	has_many :riders, :dependent => :destroy
 	has_many :dividends, :dependent => :destroy
 	has_many :returns, :dependent => :destroy
+	has_many :protections, :dependent => :destroy
 
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 

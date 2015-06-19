@@ -1,0 +1,9 @@
+<div class="page-header">
+  <%= link_to book_insurance_path(@protection.insurance.book, @protection.insurance), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <h1>New protection</h1>
+</div>
+
+<%= render 'form' %>

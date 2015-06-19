@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :riders
     resources :dividends
     resources :returns
+    resources :protections
   end
 
   resources :riders do
@@ -136,6 +137,7 @@ Rails.application.routes.draw do
         resources :riders 
 		    resources :dividends
         resources :returns
+        resources :protections
       end
 
       resources :riders do

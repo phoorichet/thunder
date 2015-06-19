@@ -162,6 +162,41 @@
     </table>
   </div>
 
+  <div class="page-header">
+  <%= link_to new_insurance_protection_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Protection
+  <% end %>
+  <h1>Listing protections</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Age</th>
+        <th>Amount</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.protections) do |protection| %>
+        <td><%= protection.year %></td>
+        <td><%= protection.age %></td>
+        <td><%= protection.amount %></td>
+        <td><%= link_to 'Show', [protection.insurance, protection] %></td>
+        <td><%= link_to 'Edit', edit_insurance_protection_path(protection.insurance, protection) %></td>
+        <td><%= link_to 'Destroy', [protection.insurance, protection], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
 
 <% end %>
 
