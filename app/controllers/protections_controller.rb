@@ -71,7 +71,7 @@ class ProtectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def protection_params
-      params.require(:protection).permit(:year, :age, :amount)
+      params.require(:protection).permit(:year, :age, :amount, :coverage_rate)
     end
 
     def set_insurance

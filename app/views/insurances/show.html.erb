@@ -142,7 +142,7 @@
         <tr>
               <th>Year</th>
               <th>Age</th>
-              <th>Amount</th>
+              <th>Rate</th>
               <th></th>
           <th></th>
           <th></th>
@@ -153,7 +153,7 @@
         <%= content_tag_for(:tr, @insurance.returns) do |r| %>
           <td><%= r.year %></td>
           <td><%= r.age %></td>
-          <td><%= r.amount %></td>
+          <td><%= r.rate %></td>
           <td><%= link_to 'Show', insurance_return_path(r.insurance, r) %></td>
           <td><%= link_to 'Edit', edit_insurance_return_path(r.insurance, r) %></td>
           <td><%= link_to 'Destroy', [r.insurance, r], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -176,7 +176,7 @@
       <tr>
         <th>Year</th>
         <th>Age</th>
-        <th>Amount</th>
+        <th>Coverage Rate</th>
         <th></th>
         <th></th>
         <th></th>
@@ -187,7 +187,7 @@
       <%= content_tag_for(:tr, @insurance.protections) do |protection| %>
         <td><%= protection.year %></td>
         <td><%= protection.age %></td>
-        <td><%= protection.amount %></td>
+        <td><%= protection.coverage_rate %></td>
         <td><%= link_to 'Show', [protection.insurance, protection] %></td>
         <td><%= link_to 'Edit', edit_insurance_protection_path(protection.insurance, protection) %></td>
         <td><%= link_to 'Destroy', [protection.insurance, protection], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -236,7 +236,7 @@
             <td><%= surrender.eti_year %></td>
             <td><%= surrender.eti_day %></td>
             <td><%= surrender.etipe %></td>
-            <td><%= link_to 'Show', insurnace_surrender_path(surrender.insurance, surrender) %></td>
+            <td><%= link_to 'Show', insurance_surrender_path(surrender.insurance, surrender) %></td>
             <td><%= link_to 'Edit', edit_insurance_surrender_path(surrender.insurance, surrender) %></td>
             <td><%= link_to 'Destroy', [surrender.insurance, surrender], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>

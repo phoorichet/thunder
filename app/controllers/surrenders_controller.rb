@@ -30,7 +30,7 @@ class SurrendersController < ApplicationController
 
     respond_to do |format|
       if @surrender.save
-        format.html { redirect_to [@surrender.insurance, @insurance], notice: 'Surrender was successfully created.' }
+        format.html { redirect_to [@surrender.insurance, @surrender], notice: 'Surrender was successfully created.' }
         format.json { render :show, status: :created, location: [@surrender.insurance, @surrender] }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class SurrendersController < ApplicationController
   def update
     respond_to do |format|
       if @surrender.update(surrender_params)
-        format.html { redirect_to [@surrender.insurance, @insurance], notice: 'Surrender was successfully updated.' }
+        format.html { redirect_to [@surrender.insurance, @surrender], notice: 'Surrender was successfully updated.' }
         format.json { render :show, status: :ok, location: [@surrender.insurance, @surrender] }
       else
         format.html { render :edit }

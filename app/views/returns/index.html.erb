@@ -12,7 +12,7 @@
       <tr>
             <th>Year</th>
             <th>Age</th>
-            <th>Amount</th>
+            <th>Rate</th>
             <th></th>
         <th></th>
         <th></th>
@@ -23,7 +23,7 @@
       <%= content_tag_for(:tr, @insurance.returns) do |r| %>
         <td><%= r.year %></td>
         <td><%= r.age %></td>
-        <td><%= r.amount %></td>
+        <td><%= r.rate %></td>
         <td><%= link_to 'Show', insurance_return_path(r.insurance, r) %></td>
         <td><%= link_to 'Edit', edit_insurance_return_path(r.insurance, r) %></td>
         <td><%= link_to 'Destroy', [r.insurance, r], method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -12,7 +12,7 @@
       <tr>
         <th>Year</th>
         <th>Age</th>
-        <th>Amount</th>
+        <th>Coverate Rate</th>
         <th></th>
         <th></th>
         <th></th>
@@ -23,7 +23,7 @@
       <%= content_tag_for(:tr, @protections) do |protection| %>
         <td><%= protection.year %></td>
         <td><%= protection.age %></td>
-        <td><%= protection.amount %></td>
+        <td><%= protection.coverage_rate %></td>
         <td><%= link_to 'Show', [protection.insurance, protection] %></td>
         <td><%= link_to 'Edit', edit_insurance_protection_path(protection.insurance, protection) %></td>
         <td><%= link_to 'Destroy', [protection.insurance, protection], method: :delete, data: { confirm: 'Are you sure?' } %></td>
