@@ -196,6 +196,55 @@
   </table>
 </div>
 
+<div class="page-header">
+  <%= link_to new_insurance_surrender_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Surrender
+  <% end %>
+  <h1>Listing surrenders</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Surrender type</th>
+            <th>Year</th>
+            <th>Assured age</th>
+            <th>Cv</th>
+            <th>Rpu</th>
+            <th>Ecv</th>
+            <th>Eti</th>
+            <th>Eti year</th>
+            <th>Eti day</th>
+            <th>Etipe</th>
+            <th></th>
+            <th></th>
+            <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.surrenders) do |surrender| %>
+            <td><%= surrender.surrender_type %></td>
+            <td><%= surrender.year %></td>
+            <td><%= surrender.assured_age %></td>
+            <td><%= surrender.cv %></td>
+            <td><%= surrender.rpu %></td>
+            <td><%= surrender.ecv %></td>
+            <td><%= surrender.eti %></td>
+            <td><%= surrender.eti_year %></td>
+            <td><%= surrender.eti_day %></td>
+            <td><%= surrender.etipe %></td>
+            <td><%= link_to 'Show', insurnace_surrender_path(surrender.insurance, surrender) %></td>
+            <td><%= link_to 'Edit', edit_insurance_surrender_path(surrender.insurance, surrender) %></td>
+            <td><%= link_to 'Destroy', [surrender.insurance, surrender], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
 
 
 <% end %>

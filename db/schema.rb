@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619062859) do
+ActiveRecord::Schema.define(version: 20150623023328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,6 +192,22 @@ ActiveRecord::Schema.define(version: 20150619062859) do
   end
 
   add_index "riders", ["rider_type"], name: "index_riders_on_rider_type", using: :btree
+
+  create_table "surrenders", force: :cascade do |t|
+    t.string   "surrender_type"
+    t.integer  "year"
+    t.integer  "assured_age"
+    t.string   "cv"
+    t.string   "rpu"
+    t.string   "ecv"
+    t.string   "eti"
+    t.integer  "eti_year"
+    t.integer  "eti_day"
+    t.string   "etipe"
+    t.integer  "insurance_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
