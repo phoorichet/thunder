@@ -76,7 +76,7 @@ module Api
 
 		    # Never trust parameters from the scary internet, only allow the white list through.
 		    def return_params
-		      params.require(:return).permit(:year, :age, :amount)
+		      params.require(:return).permit(:year, :age, :amount, :rate)
 		    end
 
 		    def set_insurance
