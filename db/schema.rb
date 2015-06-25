@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623053921) do
+ActiveRecord::Schema.define(version: 20150625041842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 20150623053921) do
     t.integer  "insurance_id"
     t.integer  "reference_id"
     t.string   "code_name"
+    t.integer  "book_id"
   end
 
   add_index "riders", ["rider_type"], name: "index_riders_on_rider_type", using: :btree

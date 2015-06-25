@@ -1,6 +1,7 @@
 class Book < ActiveRecord::Base
 	belongs_to :person
 	has_many :insurances, :dependent => :destroy
+	has_many :riders, :dependent => :destroy
 
 	validates :number, presence: true
 

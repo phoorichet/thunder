@@ -51,10 +51,10 @@ Rails.application.routes.draw do
         get 'new_main'
       end
     end
+    resources :riders
   end
 
-  resources :insurances do
-    resources :riders
+  resources :insurances do 
     resources :dividends
     resources :returns
     resources :protections
@@ -126,6 +126,7 @@ Rails.application.routes.draw do
       end
 
       resources :books do 
+        resources :riders 
         resources :insurances do
           collection do
             get  'new_from_master'
@@ -135,7 +136,6 @@ Rails.application.routes.draw do
       end
 
       resources :insurances do
-        resources :riders 
 		    resources :dividends
         resources :returns
         resources :protections

@@ -20,9 +20,9 @@
         <td><%= rider.status %></td>
         <td><%= rider.code_name %></td>
         <td><%= rider.tag_list %></td>
-        <td><%= link_to 'Show', [rider.insurance, rider] %></td>
-        <td><%= link_to 'Edit', edit_insurance_rider_path(rider.insurance, rider) %></td>
-        <td><%= link_to 'Destroy', [rider.insurance, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [rider.book, rider] %></td>
+        <td><%= link_to 'Edit', edit_book_rider_path(rider.book, rider) %></td>
+        <td><%= link_to 'Destroy', [rider.book, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

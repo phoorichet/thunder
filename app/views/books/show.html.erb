@@ -74,7 +74,7 @@
 
 
 <div class="page-header">
-  <%= link_to new_book_insurance_path(@book), class: 'btn btn-primary' do %>
+  <%= link_to new_book_rider_path(@book), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     Add
   <% end %>
@@ -82,38 +82,32 @@
 </div>
 
 <div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Premium</th>
-            <th>Protection length</th>
-            <th>Paid preriod length</th>
-            <th>Consider year</th>
-            <th>Consider gender</th>
-            <th>Company</th>
-            <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Code name</th>
+      <th>Tags</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <%= content_tag_for(:tr, @book.rider_insurances) do |insurance| %>
-            <td><%= insurance.name %></td>
-            <td><%= insurance.amount %></td>
-            <td><%= insurance.premium %></td>
-            <td><%= insurance.protection_length %></td>
-            <td><%= insurance.paid_period_length %></td>
-            <td><%= insurance.consider_year %></td>
-            <td><%= insurance.consider_gender %></td>
-            <td><%= insurance.company %></td>
-            <td><%= link_to 'Show', book_insurance_path(insurance.book, insurance) %></td>
-            <td><%= link_to 'Edit', edit_book_insurance_path(insurance.book, insurance) %></td>
-            <td><%= link_to 'Destroy', [insurance.book, insurance], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
-  </table>
+  <tbody>
+    <% @book.riders.each do |rider| %>
+      <tr>
+        <td><%= rider.name %></td>
+        <td><%= rider.description %></td>
+        <td><%= rider.status %></td>
+        <td><%= rider.code_name %></td>
+        <td><%= rider.tag_list %></td>
+        <td><%= link_to 'Show', [rider.book, rider] %></td>
+        <td><%= link_to 'Edit', edit_book_rider_path(rider.book, rider) %></td>
+        <td><%= link_to 'Destroy', [rider.book, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
 

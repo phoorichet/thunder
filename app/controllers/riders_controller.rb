@@ -1,6 +1,6 @@
 class RidersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_insurance, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
+  before_action :set_book, only: [:index, :new, :show, :edit, :create, :update, :destroy, :new_from_master, :create_from_master]
   before_action :set_rider, only: [:show, :edit, :update, :destroy]
   before_action :set_master_rider, only: [:show_master, :edit_master, :update_master, :destroy_master]
   before_action :breadcrumb, only: [:index, :show, :edit]
@@ -10,7 +10,7 @@ class RidersController < ApplicationController
   # GET /riders.json
   def index
     page = params[:page] || 1
-    @riders = @insurance.riders.page(page)
+    @riders = @book.riders.page(page)
   end
 
   # GET /riders/1
@@ -25,13 +25,13 @@ class RidersController < ApplicationController
       cloned_rider = Rider.find_by_id(copy_from_id)
       if cloned_rider 
         attrs = cloned_rider.copied_attributes
-        @rider = @insurance.riders.new(attrs)
+        @rider = @book.riders.new(attrs)
       else
-        @rider = @insurance.riders.new
+        @rider = @book.riders.new
       end
       
     else
-      @rider = @insurance.riders.new
+      @rider = @book.riders.new
     end
   end
 
@@ -42,7 +42,7 @@ class RidersController < ApplicationController
   # POST /riders
   # POST /riders.json
   def create
-    @rider = @insurance.riders.new(rider_params)
+    @rider = @book.riders.new(rider_params)
 
     respond_to do |format|
       if @rider.save
@@ -51,15 +51,12 @@ class RidersController < ApplicationController
           reference_rider = Rider.find_by_id(rider_params[:reference_id])
           if reference_rider
             reference_rider.coverages.each do |coverage| 
-              @rider.coverages <<  Coverage.new(name: coverage.name, description: coverage.description,
-                                                assured_amount: coverage.assured_amount, description: coverage.category,
-                                                premium_amount: coverage.premium_amount,
-                                                premium_unit: coverage.premium_unit, coverage_unit: coverage.coverage_unit,
-                                                coverage_end_at: coverage.coverage_end_at)
+              @rider.coverages <<  Coverage.new(key: coverage.key, description: coverage.description,
+                                                value: coverage.value)
             end
           end
         end
-        format.html { redirect_to [@rider.insurance, @rider], notice: 'Rider was successfully created.' }
+        format.html { redirect_to [@rider.book, @rider], notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new }
@@ -73,7 +70,7 @@ class RidersController < ApplicationController
   def update
     respond_to do |format|
       if @rider.update(rider_params)
-        format.html { redirect_to [@rider.insurance, @rider], notice: 'Rider was successfully updated.' }
+        format.html { redirect_to [@rider.book, @rider], notice: 'Rider was successfully updated.' }
         format.json { render :show, status: :ok, location: @rider }
       else
         format.html { render :edit }
@@ -87,7 +84,7 @@ class RidersController < ApplicationController
   def destroy
     @rider.destroy
     respond_to do |format|
-      format.html { redirect_to [@rider.insurance.book, @rider.insurance], notice: 'Rider was successfully destroyed.' }
+      format.html { redirect_to [@rider.book.person, @rider.book], notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -164,17 +161,17 @@ class RidersController < ApplicationController
 
   # breadcrumb enable breadcrumb in the view
   def breadcrumb
-    add_breadcrumb "Users", persons_path if @rider.insurance.book
-    add_breadcrumb "Master insurance", master_riders_path if @rider.insurance.is_master?
+    add_breadcrumb "Users", persons_path if @rider.book
+    add_breadcrumb "Master book", master_riders_path if @rider.is_master?
 
-    add_breadcrumb @rider.insurance.book.person.first_name, person_path(@rider.insurance.book.person) if @rider.insurance.book
-    add_breadcrumb @rider.insurance.book.number, person_book_path(@rider.insurance.book.person, @rider.insurance.book) if @rider.insurance.book
-    if @rider.insurance.is_master?
-      add_breadcrumb @rider.insurance.name, master_insurance_path(@rider.insurance) 
+    add_breadcrumb @rider.book.person.first_name, person_path(@rider.book.person) if @rider.book
+    add_breadcrumb @rider.book.number, person_book_path(@rider.book.person, @rider.book) if @rider.book
+    if @rider.is_master?
+      add_breadcrumb @rider.book.number, master_book_path(@rider.book) 
     else
-      add_breadcrumb @rider.insurance.name, book_insurance_path(@rider.insurance.book, @rider.insurance)
+      add_breadcrumb @rider.book.number, book_rider_path(@rider.book, @rider)
     end
-    add_breadcrumb @rider.name, insurance_rider_path(@rider.insurance, @rider) if @rider
+    add_breadcrumb @rider.name, book_rider_path(@rider.book, @rider) if @rider
   end
 
   # breadcrumb enable breadcrumb in the view
@@ -194,8 +191,8 @@ class RidersController < ApplicationController
       params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list)
     end
 
-    def set_insurance
-      @insurance = Insurance.find(params[:insurance_id])
+    def set_book
+      @book = Book.find(params[:book_id])
     end
 
     def set_master_rider
