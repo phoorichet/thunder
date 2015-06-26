@@ -20,6 +20,8 @@ class Rider < ActiveRecord::Base
 		attrs[:description] = self.description
 		attrs[:status] = self.status
 		attrs[:code_name] = self.code_name
+		attrs[:premium] = self.premium
+		attrs[:amount] = self.amount
 		attrs[:reference_id] = self.id
 		attrs[:tag_list] = self.tag_list
 

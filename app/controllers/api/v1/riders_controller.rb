@@ -163,7 +163,7 @@ module Api
 
         # Never trust parameters from the scary internet, only allow the white list through.
         def rider_params
-          params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list)
+          params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list, :premium, :amount)
         end
 
         def set_insurance

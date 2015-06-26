@@ -4,6 +4,8 @@ json.extract! @rider,
 :description, 
 :status, 
 :code_name, 
+:premium, 
+:amount, 
 :created_at, 
 :updated_at
 
