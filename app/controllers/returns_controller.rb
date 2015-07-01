@@ -58,8 +58,16 @@ class ReturnsController < ApplicationController
   def destroy
     @return.destroy
     respond_to do |format|
-      format.html { redirect_to book_insurance_url(@return.insurance.book, @return.insurance), notice: 'Return was successfully destroyed.' }
+      format.html { redirect_to redirect_after_destroy(@return), notice: 'Return was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def redirect_after_destroy(d)
+    if d.insurance.is_master?
+      master_insurance_path(d.insurance)
+    else
+      book_insurance_path(d.insurance.book, d.insurance)
     end
   end
 

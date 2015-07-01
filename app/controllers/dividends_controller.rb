@@ -58,8 +58,16 @@ class DividendsController < ApplicationController
   def destroy
     @dividend.destroy
     respond_to do |format|
-      format.html { redirect_to book_insurance_url(@dividend.insurance.book, @dividend.insurance), notice: 'Dividend was successfully destroyed.' }
+      format.html { redirect_to redirect_after_destroy(@dividend), notice: 'Dividend was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def redirect_after_destroy(d)
+    if d.insurance.is_master?
+      master_insurance_path(d.insurance)
+    else
+      book_insurance_path(d.insurance.book, d.insurance)
     end
   end
 
