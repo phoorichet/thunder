@@ -1,8 +1,16 @@
 <div class="page-header">
-  <%= link_to book_insurance_path(@dividend.insurance.book, @dividend.insurance), class: 'btn btn-default' do %>
+<% if @dividend.insurance.is_master? %>
+  <%= link_to master_insurance_path(@dividend.insurance), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
+<% else %>
+   <%= link_to book_insurance_path(@dividend.insurance.book, @dividend.insurance), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+<% end %>
+
   <%= link_to edit_insurance_dividend_path(@dividend.insurance, @dividend), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit

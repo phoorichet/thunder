@@ -1,8 +1,18 @@
 <div class="page-header">
+
+<% if @protection.insurance.is_master? %>
+  <%= link_to master_insurance_path(@protection.insurance), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+<% else %>
   <%= link_to book_insurance_path(@protection.insurance.book, @protection.insurance), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
+<% end %>
+
+
   <%= link_to edit_insurance_protection_path(@protection.insurance, @protection), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit

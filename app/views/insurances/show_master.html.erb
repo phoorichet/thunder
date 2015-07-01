@@ -1,65 +1,202 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h3>Master Insurance</h3>
-
-    <%= link_to 'Edit', edit_master_insurance_path(@insurance) %>
-
-    <p>
-      <strong>Name:</strong>
-      <%= @insurance.name %>
-    </p>
-
-    <p>
-      <strong>Minimum Age:</strong>
-      <%= @insurance.minimum_age %>
-    </p>
-
-    <p>
-      <strong>Maxmimum Age:</strong>
-      <%= @insurance.maximum_age %>
-    </p>
-
-    <p>
-      <strong>Consider Year:</strong>
-      <%= @insurance.consider_year %>
-    </p>
-
-    <p>
-      <strong>Consider Gender:</strong>
-      <%= @insurance.consider_gender %>
-    </p>
-
-    <p>
-      <strong>Paid Period Lenght:</strong>
-      <%= @insurance.paid_period_length %>
-    </p>
-
-    <p>
-      <strong>Protection Length:</strong>
-      <%= @insurance.protection_length %>
-    </p>
-
-    <p>
-      <strong>Group:</strong>
-      <%= @insurance.group %>
-    </p>
-
-    <p>
-      <strong>Company:</strong>
-      <%= @insurance.company %>
-    </p>
-
-    <p>
-      <strong>Tags:</strong>
-      <%= @insurance.tag_list %>
-    </p>
-
-    <br>
-    <br>
-    <hr>
-
-    <%= link_to 'Back to Master Insurances', masters_insurances_path %> 
-  </div>
+<div class="page-header">
+  <%= link_to masters_insurances_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_master_insurance_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show insurance</h1>
 </div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @insurance.name %></dd>
+
+  <dt>Type:</dt>
+  <dd><%= @insurance.insurance_type %></dd>
+
+  <dt>Amount:</dt>
+  <dd><%= @insurance.amount %></dd>
+
+  <dt>Premium:</dt>
+  <dd><%= @insurance.premium %></dd>
+
+  <dt>Protection length:</dt>
+  <dd><%= @insurance.protection_length %></dd>
+
+  <dt>Paid preriod length:</dt>
+  <dd><%= @insurance.paid_period_length %></dd>
+
+  <dt>Consider year:</dt>
+  <dd><%= @insurance.consider_year %></dd>
+
+  <dt>Consider gender:</dt>
+  <dd><%= @insurance.consider_gender %></dd>
+
+  <dt>Company:</dt>
+  <dd><%= @insurance.company %></dd>
+
+  <dt>Group:</dt>
+  <dd><%= @insurance.group %></dd>
+
+  <dt>Tags:</dt>
+  <dd><%= @insurance.tag_list %></dd>
+
+</dl>
+
+
+<div class="page-header">
+  <%= link_to new_insurance_dividend_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Dividend
+  <% end %>
+  <h1>Listing dividends</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Age</th>
+        <th>Amount</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.dividends) do |dividend| %>
+        <td><%= dividend.year %></td>
+        <td><%= dividend.age %></td>
+        <td><%= dividend.amount %></td>
+        <td><%= link_to 'Show', insurance_dividend_path(dividend.insurance, dividend) %></td>
+        <td><%= link_to 'Edit', edit_insurance_dividend_path(dividend.insurance, dividend) %></td>
+        <td><%= link_to 'Destroy', [dividend.insurance, dividend], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="page-header">
+  <%= link_to new_insurance_return_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Return
+  <% end %>
+  <h1>Listing returns</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Year</th>
+            <th>Age</th>
+            <th>Rate</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.returns) do |r| %>
+        <td><%= r.year %></td>
+        <td><%= r.age %></td>
+        <td><%= r.rate %></td>
+        <td><%= link_to 'Show', insurance_return_path(r.insurance, r) %></td>
+        <td><%= link_to 'Edit', edit_insurance_return_path(r.insurance, r) %></td>
+        <td><%= link_to 'Destroy', [r.insurance, r], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="page-header">
+  <%= link_to new_insurance_protection_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Protection
+  <% end %>
+  <h1>Listing protections</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Age</th>
+        <th>Coverage Rate</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.protections) do |protection| %>
+        <td><%= protection.year %></td>
+        <td><%= protection.age %></td>
+        <td><%= protection.coverage_rate %></td>
+        <td><%= link_to 'Show', [protection.insurance, protection] %></td>
+        <td><%= link_to 'Edit', edit_insurance_protection_path(protection.insurance, protection) %></td>
+        <td><%= link_to 'Destroy', [protection.insurance, protection], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="page-header">
+  <%= link_to new_insurance_surrender_path(@insurance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Surrender
+  <% end %>
+  <h1>Listing surrenders</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Surrender type</th>
+            <th>Year</th>
+            <th>Assured age</th>
+            <th>Cv</th>
+            <th>Rpu</th>
+            <th>Ecv</th>
+            <th>Eti</th>
+            <th>Eti year</th>
+            <th>Eti day</th>
+            <th>Etipe</th>
+            <th></th>
+            <th></th>
+            <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @insurance.surrenders) do |surrender| %>
+            <td><%= surrender.surrender_type %></td>
+            <td><%= surrender.year %></td>
+            <td><%= surrender.assured_age %></td>
+            <td><%= surrender.cv %></td>
+            <td><%= surrender.rpu %></td>
+            <td><%= surrender.ecv %></td>
+            <td><%= surrender.eti %></td>
+            <td><%= surrender.eti_year %></td>
+            <td><%= surrender.eti_day %></td>
+            <td><%= surrender.etipe %></td>
+            <td><%= link_to 'Show', insurance_surrender_path(surrender.insurance, surrender) %></td>
+            <td><%= link_to 'Edit', edit_insurance_surrender_path(surrender.insurance, surrender) %></td>
+            <td><%= link_to 'Destroy', [surrender.insurance, surrender], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 
 

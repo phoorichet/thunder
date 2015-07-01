@@ -1,8 +1,17 @@
 <div class="page-header">
-  <%= link_to insurance_surrenders_path(@surrender.insurance), class: 'btn btn-default' do %>
+ 
+<% if @surrender.insurance.is_master? %>
+  <%= link_to master_insurance_path(@surrender.insurance), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
+<% else %>
+  <%= link_to book_insurance_path(@surrender.insurance.book, @surrender.insurance), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+<% end %>
+ 
   <h1>New surrender</h1>
 </div>
 
