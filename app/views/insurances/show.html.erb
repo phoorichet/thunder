@@ -48,50 +48,6 @@
 
 </dl>
 
-
-<% if @insurance.is_rider? %>
-
-<div class="page-header">
-  <%= link_to new_insurance_rider_path(@insurance), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Rider
-  <% end %>
-  <h1>Listing Riders</h1>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Code name</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @insurance.riders.each do |rider| %>
-      <tr>
-        <td><%= rider.name %></td>
-        <td><%= rider.description %></td>
-        <td><%= rider.status %></td>
-        <td><%= rider.code_name %></td>
-        <td><%= rider.tag_list %></td>
-        <td><%= link_to 'Show', [rider.insurance, rider] %></td>
-        <td><%= link_to 'Edit', edit_insurance_rider_path(rider.insurance, rider) %></td>
-        <td><%= link_to 'Destroy', [rider.insurance, rider], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
-
-<% end %>
-
-
 <% if @insurance.is_main? %>
   <div class="page-header">
     <%= link_to new_insurance_dividend_path(@insurance), class: 'btn btn-primary' do %>
