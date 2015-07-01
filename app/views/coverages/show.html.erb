@@ -6,8 +6,8 @@
     <% end %>    
   <% end -%>
 
-  <% if  @coverage.rider.insurance != nil %>
-    <%= link_to insurance_rider_path(@coverage.rider.insurance, @coverage.rider),  class: 'btn btn-default'  do %> 
+  <% if  @coverage.rider.book != nil %>
+    <%= link_to book_rider_path(@coverage.rider.book, @coverage.rider),  class: 'btn btn-default'  do %> 
       <span class="glyphicon glyphicon-list-alt"></span>
       Back
     <% end %>    

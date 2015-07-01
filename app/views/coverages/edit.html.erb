@@ -5,7 +5,7 @@
       Back
     <% end %>    
 	<% else %>  
-     <%= link_to insurance_rider_path(@coverage.rider.insurance, @coverage.rider),  class: 'btn btn-default'  do %> 
+     <%= link_to book_rider_path(@coverage.rider.book, @coverage.rider),  class: 'btn btn-default'  do %> 
       <span class="glyphicon glyphicon-list-alt"></span>
       Back
     <% end %> 
