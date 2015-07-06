@@ -76,29 +76,17 @@ class InsurancesController < ApplicationController
 
     respond_to do |format|
       if @insurance.save
-        # copy all the riders, and coverages to the new insurance
+        # copy dividens, returns, protections, surrenders
         if @reference_insurance != nil
-          # copy riders
-          @reference_insurance.riders.each do |rider|
-            new_rider = @insurance.riders.new(rider.copied_attributes)
-            new_rider.save
-
-            # copy coverage
-            rider.coverages.each do |coverage|
-              new_coverage = new_rider.coverages.new(coverage.copied_attributes)
-              new_coverage.save
-            end
-          end
+          # dividends
+          @reference_insurance.dividends.each { |d| @insurance.dividends.create(d.copied_attributes) }
+          # seturns
+          @reference_insurance.returns.each { |d| @insurance.returns.create(d.copied_attributes) }
+          # protections
+          @reference_insurance.protections.each { |d| @insurance.protections.create(d.copied_attributes) }
+          # surrenders
+          @reference_insurance.surrenders.each { |d| @insurance.surrenders.create(d.copied_attributes) }
         end
-
-        # # if this insurance is main_insurance and there is existing main insurance, it will
-        # # change the existing insurance to normal insurance
-        # if @insurance.is_main?
-        #   @book.main_insurances.where("id != ?", @insurance.id).each do |insurance|
-        #     insurance.is_main = false
-        #     insurance.save
-        #   end
-        # end
 
         format.html { redirect_to [@insurance.book, @insurance], notice: 'Insurance was successfully created.' }
         format.json { render :show, status: :created, location: @insurance }

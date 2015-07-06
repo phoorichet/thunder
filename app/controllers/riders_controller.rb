@@ -50,10 +50,7 @@ class RidersController < ApplicationController
         if rider_params[:reference_id] != ""
           reference_rider = Rider.find_by_id(rider_params[:reference_id])
           if reference_rider
-            reference_rider.coverages.each do |coverage| 
-              @rider.coverages <<  Coverage.new(key: coverage.key, description: coverage.description,
-                                                value: coverage.value)
-            end
+            reference_rider.coverages.each { |d| @rider.coverages.create(d.copied_attributes) }
           end
         end
         format.html { redirect_to [@rider.book, @rider], notice: 'Rider was successfully created.' }
