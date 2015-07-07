@@ -1,9 +1,13 @@
 class Person < ActiveRecord::Base
-		# Tree enabled
-    has_ancestry 
+	# Tree enabled
+    # has_ancestry 
 
     # has_many :addresses, :dependent => :destroy
     has_many :books, :dependent => :destroy
+
+    # self join
+    has_many :children, class_name: "Person", foreign_key: "parent_id"
+    belongs_to :parent, class_name: "Person"
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
