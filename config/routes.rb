@@ -60,6 +60,10 @@ Rails.application.routes.draw do
     
     member do 
       post 'set_parent'
+      get 'new_relation'
+    end
+    collection do
+      get 'search'
     end
   end
 
@@ -135,9 +139,29 @@ Rails.application.routes.draw do
       patch 'coverages/masters/:id'    => 'coverages#update_master'
       delete 'coverages/masters/:id'   => 'coverages#destroy_master'
 
+      get  'pas/masters'         => 'pas#index_master', as: :masters_pas
+      get  'pas/masters/new'     => 'pas#new_master', as: :new_master_pa
+      post 'pas/masters'         => 'pas#create_master', as: :master_pas
+      get 'pas/masters/:id'      => 'pas#show_master', as: :master_pa
+      get 'pas/masters/:id/edit' => 'pas#edit_master', as: :edit_master_pa
+      put 'pas/masters/:id'      => 'pas#update_master'
+      patch 'pas/masters/:id'    => 'pas#update_master'
+      delete 'pas/masters/:id'   => 'pas#destroy_master'
+
+      get 'pa_coverages/masters'          => 'pa_coverages#index_master', as: :masters_pa_coverages
+      get 'pa_coverages/masters/new'      => 'pa_coverages#new_master', as: :new_master_pa_coverage
+      post 'pa_coverages/masters'         => 'pa_coverages#create_master', as: :master_pa_coverages
+      get 'pa_coverages/masters/:id'      => 'pa_coverages#show_master', as: :master_pa_coverage
+      get 'pa_coverages/masters/:id/edit' => 'pa_coverages#edit_master', as: :edit_master_pa_coverage
+      put 'pa_coverages/masters/:id'      => 'pa_coverages#update_master'
+      patch 'pa_coverages/masters/:id'    => 'pa_coverages#update_master'
+      delete 'pa_coverages/masters/:id'   => 'pa_coverages#destroy_master'
+
       get 'coverages/search' => 'coverages#search'
       get 'riders/search' => 'riders#search'
       get 'insurances/search' => 'insurances#search'
+      get 'pas/search' => 'pas#search'
+      get 'pa_coverages/search' => 'pa_coverages#search'
 
       resources :persons do
         resources :books

@@ -80,6 +80,18 @@ class PersonsController < ApplicationController
     end
   end
 
+  # Get data and configurations for visualization
+  def search
+    first_name = params[:first_name]
+    last_name  = params[:last_name]
+
+    @persons = Person.search_first_name(first_name).search_last_name(last_name)
+  end
+
+  def new_relation
+
+  end
+
    def breadcrumb
     add_breadcrumb "Person", persons_path
     add_breadcrumb @person.first_name, person_path(@person) if @person

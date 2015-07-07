@@ -55,6 +55,34 @@
 
 </dl>
 
+<section class="relation">
+  <h1 class="text-center">Relations</h1>
+  <h3>Parent</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Relation</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @person.children.each do |child| %>
+        <tr>
+          <td><%= child.first_name %></td>
+          <td><%= child.last_name %></td>
+          <td><%= "children" %></td>
+          <td><%= link_to 'Show', persons_path(child) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "Add Child", new_relation_person_path(@person) %>
+</section>
+
+
 <section class="book">
   <h1 class="text-center">Books</h1>
   
