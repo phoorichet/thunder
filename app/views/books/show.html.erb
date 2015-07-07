@@ -115,3 +115,39 @@
 </table>
 </div>
 
+
+<div class="page-header">
+  <%= link_to new_book_pa_path(@book), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Add
+  <% end %>
+  <h1>PA Insurance</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Tags</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @book.pas.each do |pa| %>
+      <tr>
+        <td><%= pa.name %></td>
+        <td><%= pa.description %></td>
+        <td><%= pa.status %></td>
+        <td><%= pa.tag_list %></td>
+        <td><%= link_to 'Show', [pa.book, pa] %></td>
+        <td><%= link_to 'Edit', edit_book_pa_path(pa.book, pa) %></td>
+        <td><%= link_to 'Destroy', [pa.book, pa], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,61 @@
+<h3>PA</h3>
+
+<%= link_to 'Edit', edit_book_pa_path(@pa.book, @pa) %> <br>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pa.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pa.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pa.status %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @pa.tag_list %>
+</p>
+
+
+<h1>Listing Coverages</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pa.pacoverages.each do |coverage| %>
+      <tr>
+        <td><%= coverage.key %></td>
+        <td><%= coverage.value %></td>
+        <td><%= coverage.description %></td>
+        <td><%= link_to 'Show', pa_coverage_path(coverage.pa, coverage) %></td>
+        <td><%= link_to 'Edit', edit_pa_coverage_path(coverage.pa, coverage) %></td>
+        <td><%= link_to 'Destroy', [coverage.pa, coverage], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- %= link_to 'Add coverage', new_pa_coverage_path(@pa) % -->
+<br/>
+
+<% if @pa.is_master? %>
+  <%= link_to 'Back To Master PA', master_pa_path(@pa) %>
+<% elsif %>
+  <%= link_to 'Back To book', person_book_path(@pa.book.person, @pa.book) %>
+<% end %>
+
+

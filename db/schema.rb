@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150626090046) do
+ActiveRecord::Schema.define(version: 20150707054750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,17 @@ ActiveRecord::Schema.define(version: 20150626090046) do
   end
 
   add_index "insured_users", ["ancestry"], name: "index_insured_users_on_ancestry", using: :btree
+
+  create_table "pas", force: :cascade do |t|
+    t.string   "name"
+    t.string   "status"
+    t.integer  "book_id"
+    t.string   "pa_type"
+    t.integer  "reference_id"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "persons", force: :cascade do |t|
     t.string   "first_name"

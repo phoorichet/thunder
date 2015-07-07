@@ -20,6 +20,15 @@ Rails.application.routes.draw do
   patch 'riders/masters/:id'    => 'riders#update_master'
   delete 'riders/masters/:id'   => 'riders#destroy_master'
 
+  get  'pas/masters'         => 'pas#index_master', as: :masters_pas
+  get  'pas/masters/new'     => 'pas#new_master', as: :new_master_pa
+  post 'pas/masters'         => 'pas#create_master', as: :master_pas
+  get 'pas/masters/:id'      => 'pas#show_master', as: :master_pa
+  get 'pas/masters/:id/edit' => 'pas#edit_master', as: :edit_master_pa
+  put 'pas/masters/:id'      => 'pas#update_master'
+  patch 'pas/masters/:id'    => 'pas#update_master'
+  delete 'pas/masters/:id'   => 'pas#destroy_master'
+
   get 'coverages/masters'          => 'coverages#index_master', as: :masters_coverages
   get 'coverages/masters/new'      => 'coverages#new_master', as: :new_master_coverage
   post 'coverages/masters'         => 'coverages#create_master', as: :master_coverages
@@ -52,6 +61,7 @@ Rails.application.routes.draw do
       end
     end
     resources :riders
+    resources :pas
   end
 
   resources :insurances do 
