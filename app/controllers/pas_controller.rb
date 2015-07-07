@@ -50,7 +50,7 @@ class PasController < ApplicationController
         if pa_params[:reference_id] != ""
           reference_pa = Pa.find_by_id(pa_params[:reference_id])
           if reference_pa
-            reference_pa.coverages.each { |d| @pa.coverages.create(d.copied_attributes) }
+            reference_pa.pa_coverages.each { |d| @pa.pa_coverages.create(d.copied_attributes) }
           end
         end
         format.html { redirect_to [@pa.book, @pa], notice: 'Pa was successfully created.' }

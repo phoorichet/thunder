@@ -1,0 +1,21 @@
+<div class="page-header">
+  <% if  @pa_coverage.pa.is_master? %>
+    <%= link_to master_pa_path(@pa_coverage.pa),  class: 'btn btn-default'  do %> 
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>    
+	<% else %>  
+     <%= link_to book_pa_path(@pa_coverage.pa.book, @pa_coverage.pa),  class: 'btn btn-default'  do %> 
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %> 
+  <% end -%>
+
+  <%= link_to [@pa_coverage.pa, @pa_coverage], class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing Coverage</h1>
+</div>
+
+<%= render 'form' %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key: MyString
+  pa_id: 1
+  description: MyText
+  coverage_type: MyString
+  reference_id: 1
+  value: MyString
+
+two:
+  key: MyString
+  pa_id: 1
+  description: MyText
+  coverage_type: MyString
+  reference_id: 1
+  value: MyString

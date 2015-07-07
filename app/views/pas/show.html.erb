@@ -36,20 +36,20 @@
   </thead>
 
   <tbody>
-    <% @pa.pacoverages.each do |coverage| %>
+    <% @pa.pa_coverages.each do |pa_coverage| %>
       <tr>
-        <td><%= coverage.key %></td>
-        <td><%= coverage.value %></td>
-        <td><%= coverage.description %></td>
-        <td><%= link_to 'Show', pa_coverage_path(coverage.pa, coverage) %></td>
-        <td><%= link_to 'Edit', edit_pa_coverage_path(coverage.pa, coverage) %></td>
-        <td><%= link_to 'Destroy', [coverage.pa, coverage], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pa_coverage.key %></td>
+        <td><%= pa_coverage.value %></td>
+        <td><%= pa_coverage.description %></td>
+        <td><%= link_to 'Show', pa_pa_coverage_path(pa_coverage.pa, pa_coverage) %></td>
+        <td><%= link_to 'Edit', edit_pa_pa_coverage_path(pa_coverage.pa, pa_coverage) %></td>
+        <td><%= link_to 'Destroy', [pa_coverage.pa, pa_coverage], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<!-- %= link_to 'Add coverage', new_pa_coverage_path(@pa) % -->
+<%= link_to 'Add Coverage', new_pa_pa_coverage_path(@pa) %>
 <br/>
 
 <% if @pa.is_master? %>

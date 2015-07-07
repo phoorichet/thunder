@@ -1,31 +1,27 @@
-class Pa < ActiveRecord::Base
-	has_many :pa_coverages, :dependent => :destroy
-	belongs_to :book
+class PaCoverage < ActiveRecord::Base
+	belongs_to :pa
 
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 
-	validates :name, presence: true
+	scope :master, ->(){where(coverage_type: 'master')}
 
-	scope :master, ->(){ where(pa_type: 'master')}
+	validates :key, presence: true
+
+	default_scope { order(id: :asc)}
 
 	def is_master?
-		self.pa_type == 'master'
+		self.coverage_type == 'master'
 	end
 
 	# copied_attributes copies only some attributes and return as a hash
 	def copied_attributes
 		attrs = {}
-		attrs[:name] = self.name
+		attrs[:key] = self.key
+		attrs[:value] = self.value
 		attrs[:description] = self.description
-		attrs[:status] = self.status
 		attrs[:reference_id] = self.id
 		attrs[:tag_list] = self.tag_list
 
 		attrs
 	end
-
-	def pacoverages
-		[]
-	end
-
 end

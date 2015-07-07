@@ -1,0 +1,32 @@
+'use strict';
+
+(function(){
+
+  var module = angular.module('thunder.searchPa.directives', ['thunder.searchPa.controllers']);
+  
+  module.directive('searchPaPanel', function(){
+    return {
+      restrict: "AE",
+      replace: true,
+      // template: "<p>Test Directive hahaha</p>",
+      templateUrl: "<%= asset_path 'ng/modules/search_pa/search.html' %>", //'/assets/ng/modules/widget/template.html',
+      scope: {
+        uid: '=',
+      },
+      controller: 'SearchPaController',
+      link: function(scope, element, attributes){        
+        // Set scope attrbute so that we can use in the template
+        scope.attributes = attributes;
+        scope.element = element;
+
+        scope.id = attributes.id;
+
+        // $('.item-modal').on('loaded.bs.modal', function (e) {
+        //   console.log(e.target);
+        // })
+
+      }
+    }
+  });
+
+}());

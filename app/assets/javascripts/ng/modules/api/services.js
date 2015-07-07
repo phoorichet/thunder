@@ -61,7 +61,43 @@
                       isArray: true
                     },                    
                   }),
+         PaCoverage: $resource('/pa_coverages/:collectionCtrl:id/:memberCtrl.json', {
+                    id: '@id',
+                    collectionCtrl: '@collectionCtrl',
+                    memberCtrl: '@memberCtrl'
+                  }, {
+                    index: {
+                      method: 'GET',
+                      isArray: true,
+                      responseType: 'json'
+                    },
+                    search: {
+                      method: 'GET',
+                      params: {
+                        collectionCtrl: 'search'
+                      },
+                      isArray: true
+                    },                    
+                  }),
         Rider: $resource('/riders/:collectionCtrl:id/:memberCtrl.json', {
+                    id: '@id',
+                    collectionCtrl: '@collectionCtrl',
+                    memberCtrl: '@memberCtrl'
+                  }, {
+                    index: {
+                      method: 'GET',
+                      isArray: true,
+                      responseType: 'json'
+                    },
+                    search: {
+                      method: 'GET',
+                      params: {
+                        collectionCtrl: 'search'
+                      },
+                      isArray: true
+                    },                    
+                  }),
+        Pa: $resource('/pas/:collectionCtrl:id/:memberCtrl.json', {
                     id: '@id',
                     collectionCtrl: '@collectionCtrl',
                     memberCtrl: '@memberCtrl'

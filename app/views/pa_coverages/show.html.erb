@@ -1,0 +1,37 @@
+<div class="page-header">
+  <% if  @pa_coverage.pa.is_master? %>
+    <%= link_to master_pa_path(@pa_coverage.pa),  class: 'btn btn-default'  do %> 
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>    
+  <% end -%>
+
+  <% if  @pa_coverage.pa.book != nil %>
+    <%= link_to book_pa_path(@pa_coverage.pa.book, @pa_coverage.pa),  class: 'btn btn-default'  do %> 
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Back
+    <% end %>    
+  <% end -%>
+
+  <%= link_to edit_pa_pa_coverage_path(@pa_coverage.pa, @pa_coverage), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show pa_coverage</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Key:</dt>
+  <dd><%= @pa_coverage.key %></dd>
+
+  <dt>Value:</dt>
+  <dd><%= @pa_coverage.value %></dd>
+
+  <dt>Desciption:</dt>
+  <dd><%= @pa_coverage.description %></dd>
+
+  <dt>Tag List:</dt>
+  <dd><%= @pa_coverage.tag_list %></dd>
+
+</dl>
+

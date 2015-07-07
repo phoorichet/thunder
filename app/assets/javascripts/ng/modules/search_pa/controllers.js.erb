@@ -1,0 +1,42 @@
+'use strict';
+
+(function(){
+  
+  var module = angular.module('thunder.searchPa.controllers', 
+    [ 
+      'thunder.api.services', 
+    ]
+  );
+
+  module.controller('SearchPaController', ['$scope', 'Api', '$filter', '$location', '$modal', '$state',
+    function($scope, Api, $filter, $location, $modal, $state){
+
+        $scope.pa_list = [];
+
+        $scope.search = function(){
+            // get and parse params.
+            var tag_list = $scope.tag_list || null;
+
+            var params = {
+              tag_list: tag_list,
+            };
+
+            Api.Pa.search(params, function(data){
+                $scope.pa_list = data;
+                console.log(data);
+            }, function(error){
+
+            })            
+        }
+
+        $scope.fetchRider =  function(id){
+            var newAbsUrl = $location.absUrl().split('?')[0] + "?uid=" + id
+            console.log(newAbsUrl);
+            window.location.href = newAbsUrl;
+        }
+
+
+    }
+  ]) // end module
+
+}());

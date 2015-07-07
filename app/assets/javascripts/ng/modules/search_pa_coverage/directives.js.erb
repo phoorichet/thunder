@@ -1,0 +1,32 @@
+'use strict';
+
+(function(){
+
+  var module = angular.module('thunder.searchPaCoverage.directives', ['thunder.searchPaCoverage.controllers']);
+  
+  module.directive('searchPaCoveragePanel', function(){
+    return {
+      restrict: "AE",
+      replace: true,
+      // template: "<p>Test Directive hahaha</p>",
+      templateUrl: "<%= asset_path 'ng/modules/search_pa_coverage/search.html' %>", //'/assets/ng/modules/widget/template.html',
+      scope: {
+        uid: '=',
+      },
+      controller: 'SearchPaCoverageController',
+      link: function(scope, element, attributes){        
+        // Set scope attrbute so that we can use in the template
+        scope.attributes = attributes;
+        scope.element = element;
+
+        scope.id = attributes.id;
+
+        // $('.item-modal').on('loaded.bs.modal', function (e) {
+        //   console.log(e.target);
+        // })
+
+      }
+    }
+  });
+
+}());

@@ -1,0 +1,32 @@
+<h1>Listing Coverages</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th>Tag List</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pa_coverages.each do |pa_coverage| %>
+      <tr>
+        <td><%= pa_coverage.key %></td>
+        <td><%= pa_coverage.value %></td>
+        <td><%= pa_coverage.description %></td>
+        <td><%= pa_coverage.tag_list %></td>
+        <td><%= link_to 'Show', pa_pa_coverage(pa_coverage.pa, pa_coverage) %></td>
+        <td><%= link_to 'Edit', edit_pa_pa_coverage_path(pa_coverage.pa, pa_coverage) %></td>
+        <td><%= link_to 'Destroy', pa_coverage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= paginate @pa_coverages, :theme => 'twitter-bootstrap-3' %>
+
+<%= link_to 'New Coverage', new_pa_coverage_path %>

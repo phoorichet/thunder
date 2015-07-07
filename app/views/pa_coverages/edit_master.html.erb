@@ -1,0 +1,14 @@
+<div class="page-header">
+  <%= link_to masters_pa_coverages_path,  class: 'btn btn-default'  do %> 
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>    
+
+  <%= link_to master_pa_coverage_path(@pa_coverage), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing Master Coverage</h1>
+</div>
+
+<%= render 'form_master_edit' %>
