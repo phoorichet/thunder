@@ -185,7 +185,7 @@ class PasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pa_params
-      params.require(:pa).permit(:name, :description, :status, :code_name, :reference_id, :tag_list)
+      params.require(:pa).permit(:name, :description, :status, :premium, :reference_id, :tag_list)
     end
 
     def set_book

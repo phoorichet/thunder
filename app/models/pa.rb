@@ -18,6 +18,7 @@ class Pa < ActiveRecord::Base
 		attrs[:name] = self.name
 		attrs[:description] = self.description
 		attrs[:status] = self.status
+		attrs[:premium] = self.premium
 		attrs[:reference_id] = self.id
 		attrs[:tag_list] = self.tag_list
 

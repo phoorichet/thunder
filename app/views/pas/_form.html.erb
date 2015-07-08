@@ -33,6 +33,12 @@
           </div>
         </div>
         <div class="form-group">
+          <%= f.label :premium, class: 'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.text_field :premium, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
           <%= f.label :tag_list, class: 'col-lg-2 control-label' %>
           <div class="col-lg-10">
             <%= f.text_field :tag_list, :value => "#{@pa.tag_list}", class: "form-control thunder-taginput", "data-role" => "tagsinput" %>
