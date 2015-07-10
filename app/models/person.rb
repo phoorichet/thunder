@@ -1,13 +1,24 @@
 class Person < ActiveRecord::Base
 	# Tree enabled
-    # has_ancestry 
+    has_ancestry 
 
     # has_many :addresses, :dependent => :destroy
     has_many :books, :dependent => :destroy
 
     # self join
-    has_many :children, class_name: "Person", foreign_key: "parent_id"
-    belongs_to :parent, class_name: "Person"
+    # parent-children
+    # has_many :children, class_name: "Person", foreign_key: "parent_id"
+    # belongs_to :parent, class_name: "Person"
+    # # sibling-sib
+    # has_many :siblings, class_name: "Person", foreign_key: "sibling_id"
+    # belongs_to :sib, class_name: "Person"
+    # # spouse-partner
+    has_one :spouse, class_name: "Person", foreign_key: "spouse_id"
+    # belongs_to :partner, class_name: "Person"
+    # employee-employer
+    has_many :employees, class_name: "Person", foreign_key: "employer_id"
+    belongs_to :employer, class_name: "Person"
+
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
@@ -20,45 +31,25 @@ class Person < ActiveRecord::Base
     validates :date_of_birth, presence: true
     # validates :date_of_birth, format: { with: /\d{2}\/\d{2}\/\d{4}/, message: "Invalid date format. Must be dd/mm/yyyy e.g. 14/03/1985"}
 
-    # spouse getter and setter methods allow the user to record spouse, which
-    # ancestry does not support.
-    def spouse
-    	if self.spouse_id == nil 
-    		return nil
-    	else
-    		return Person.find_by(id: self.spouse_id)
-    	end
-    end
-
-    # Make it set twice
-    def spouse=(person)
-    	self.spouse_id = person.id
-        person.spouse_id = self.spouse_id
-        person.save
-        self.save
-    end
-
     def income_formatted
-        if self.income
-            self.income.to_s(:currency, precision: 0)
-        else
-            "N/A"
-        end
+        self.income ? self.income.to_s(:currency, precision: 0) : "N/A"
     end
 
+    # Get all the parents that the person belongs to.
     def parents
-        if self.parent == nil
-            [] 
-        else
-            parents = [self.parent]
-            parents << self.parent.spouse if self.parent.spouse
-            parents
-        end
+        p = self.parent
+        p == nil ? [] : [p, p.spouse].select {|d| d != nil}
     end
 
     # Return only the sibling excluded itself
     def get_siblings
         self.root? ? [] : self.siblings.select { |d| d.id != self.id }
+    end
+
+    # Add child
+    def add_child(child)
+        child.parent_id = self.id
+        child.save
     end
 
     # Shortcut to get all the riders that belong to person's books
