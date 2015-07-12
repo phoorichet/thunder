@@ -115,8 +115,9 @@ class Person < ActiveRecord::Base
         relations = []
         # Parents
         self.parents.map {|d| d.relation_desc = 'parent'; d} .each {|d| relations << d}
-        # Children
+        # self Children
         self.children.map {|d| d.relation_desc = 'child'; d} .each {|d| relations << d}
+        
         # Children
         self.get_siblings.map {|d| d.relation_desc = 'sibling'; d} .each {|d| relations << d}
         # Employee
@@ -128,7 +129,12 @@ class Person < ActiveRecord::Base
         # Spouse
         if self.spouse != nil
             [self.spouse].map {|d| d.relation_desc = 'spouse'; d} .each {|d| relations << d}
+            # spouse children
+            self.spouse.children.map {|d| d.relation_desc = 'child'; d} .each {|d| relations << d}
         end
+
+        # Ancestor
+        self.parents.each {|d| d.parents.map { |f| f.relation_desc = 'ancestor'; f  } .each {|g| relations << g}}
         
         relations
     end
