@@ -87,6 +87,8 @@ GEM
     devise_token_auth (0.1.31)
       devise (~> 3.3)
       rails (~> 4.2)
+    enumerize (0.11.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.5.2)
     globalid (0.3.5)
@@ -210,6 +212,7 @@ DEPENDENCIES
   devise
   devise_security_extension
   devise_token_auth
+  enumerize
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

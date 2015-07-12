@@ -1,6 +1,7 @@
 class PersonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :create_parent]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, 
+                        :create_parent, :new_relation, :create_relation, :delete_relation]
   before_action :breadcrumb, only: [:show, :edit, :index]
 
   # GET /persons
@@ -89,8 +90,93 @@ class PersonsController < ApplicationController
   end
 
   def new_relation
-
   end
+
+  def create_relation
+    id = params[:uid]
+    relation_desc = params[:relation_desc]
+    person = Person.find_by(id: id)
+
+    # Invalid person and relation
+    if person == nil or relation_desc == ""
+      respond_to do |format|
+          @person.errors.add(:relation_desc, "Person or Relation invalid.")
+          format.html { render :new_relation }
+          format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    else
+      case relation_desc.to_sym
+      when :parent
+        @person.create_parent(person)
+      when :child
+        @person.create_child(person)
+      when :sibling
+        @person.create_sibling(person)
+      when :employee
+        @person.create_employee(person)
+      when :employer
+        @person.create_employer(person)
+      when :spouse
+        @person.create_spouse(person)
+      else
+      end
+      
+      respond_to do |format|
+        if person.save
+            format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+            format.json { render :show, status: :ok, location: @person }
+        else
+            format.html { render :new }
+            format.json { render json: @person.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+    
+  end
+
+  def delete_relation
+    id = params[:uid]
+    relation_desc = params[:relation_desc]
+    person = Person.find_by(id: id)
+
+
+    # Invalid person and relation
+    if person == nil or relation_desc == ""
+      respond_to do |format|
+          @person.errors.add(:relation_desc, "Person or Relation invalid.")
+          format.html { render :new_relation }
+          format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    else
+      case relation_desc.to_sym
+      when :parent
+        @person.delete_parent(person)
+      when :child
+        @person.delete_child(person)
+      when :sibling
+        @person.delete_sibling(person)
+      when :employee
+        @person.delete_employee(person)
+      when :employer
+        @person.delete_employer(person)
+      when :spouse
+          @person.delete_spouse(person)
+      else
+      end
+      
+      respond_to do |format|
+        if person.save
+            format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+            format.json { render :show, status: :ok, location: @person }
+        else
+            format.html { render :new }
+            format.json { render json: @person.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+    
+  end
+
 
    def breadcrumb
     add_breadcrumb "Person", persons_path

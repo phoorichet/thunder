@@ -56,9 +56,15 @@
 </dl>
 
 <section class="relation">
-  <h1 class="text-center">Relations</h1>
-  <h3>Parent</h3>
-  <table class="table table-hover">
+  <div class="page-header">
+    <%= link_to new_relation_person_path(@person), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      Add
+    <% end %>
+    <h1>Relations</h1>
+  </div>
+
+  <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
         <th>First Name</th>
@@ -69,17 +75,18 @@
     </thead>
 
     <tbody>
-      <% @person.children.each do |child| %>
+      <% @person.relations.each do |person| %>
         <tr>
-          <td><%= child.first_name %></td>
-          <td><%= child.last_name %></td>
-          <td><%= "children" %></td>
-          <td><%= link_to 'Show', persons_path(child) %></td>
+          <td><%= person.first_name %></td>
+          <td><%= person.last_name %></td>
+          <td><%= person.relation_desc %></td>
+          <td><%= link_to 'Show', person_path(person) %></td>
+          <td><%= link_to 'Destroy', delete_relation_person_path(@person, uid: person.id, relation_desc: person.relation_desc) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to "Add Child", new_relation_person_path(@person) %>
+  
 </section>
 
 

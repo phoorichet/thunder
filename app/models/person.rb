@@ -1,4 +1,5 @@
 class Person < ActiveRecord::Base
+    extend Enumerize
 	# Tree enabled
     has_ancestry 
 
@@ -31,9 +32,15 @@ class Person < ActiveRecord::Base
     validates :date_of_birth, presence: true
     # validates :date_of_birth, format: { with: /\d{2}\/\d{2}\/\d{4}/, message: "Invalid date format. Must be dd/mm/yyyy e.g. 14/03/1985"}
 
+    attr_accessor :relation_desc
+
+    enumerize :relation_desc, in: [:parent, :spouse, :child, :sibling, :employer, :employee]
+
     def income_formatted
         self.income ? self.income.to_s(:currency, precision: 0) : "N/A"
     end
+
+    ############################ RELATION ######################################
 
     # Get all the parents that the person belongs to.
     def parents
@@ -46,11 +53,87 @@ class Person < ActiveRecord::Base
         self.root? ? [] : self.siblings.select { |d| d.id != self.id }
     end
 
-    # Add child
-    def add_child(child)
-        child.parent_id = self.id
-        child.save
+    def create_child(person)
+        person.parent_id = self.id
+        # child.save
     end
+
+    def delete_child(person)
+        person.parent_id = nil
+    end
+
+    def create_parent(person)
+        self.parent_id = person.id
+        self.save
+    end
+
+    def delete_parent(person)
+        self.parent_id = nil
+        self.save
+    end
+
+    def create_sibling(person)
+        person.parent_id = self.parent_id
+    end
+
+    def delete_sibling(person)
+        person.sibling_id = nil
+    end
+
+    def create_employee(person)
+        person.employer_id = self.id
+    end
+
+    def delete_employee(person)
+        person.employer = nil
+    end
+
+    def create_employer(person)
+        self.employer_id = person.id
+        self.save
+    end
+
+    def delete_employer(person)
+        self.employer_id = nil
+        self.save
+    end
+
+    def create_spouse(person)
+        person.spouse_id = self.id
+        self.spouse_id = person.id
+        self.save
+    end
+
+    def delete_spouse(person)
+        person.spouse_id = nil
+        self.spouse_id = nil
+        self.save
+    end
+
+    # Return all relations
+    def relations
+        relations = []
+        # Parents
+        self.parents.map {|d| d.relation_desc = 'parent'; d} .each {|d| relations << d}
+        # Children
+        self.children.map {|d| d.relation_desc = 'child'; d} .each {|d| relations << d}
+        # Children
+        self.get_siblings.map {|d| d.relation_desc = 'sibling'; d} .each {|d| relations << d}
+        # Employee
+        self.employees.map {|d| d.relation_desc = 'employee'; d} .each {|d| relations << d}
+        # Employer
+        if self.employer != nil
+            [self.employer].map {|d| d.relation_desc = 'employer'; d} .each {|d| relations << d}
+        end
+        # Spouse
+        if self.spouse != nil
+            [self.spouse].map {|d| d.relation_desc = 'spouse'; d} .each {|d| relations << d}
+        end
+        
+        relations
+    end
+
+    ############################ END RELATION ##################################
 
     # Shortcut to get all the riders that belong to person's books
     def riders

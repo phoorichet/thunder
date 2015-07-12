@@ -59,8 +59,9 @@ Rails.application.routes.draw do
     resources :books
     
     member do 
-      post 'set_parent'
       get 'new_relation'
+      post 'create_relation'
+      delete 'delete_relation'
     end
     collection do
       get 'search'

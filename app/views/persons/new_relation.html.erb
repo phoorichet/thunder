@@ -1,6 +1,44 @@
+<h1>Add Relation</h1>
 <h3>Search Person</h3>
 <p>Person ID: {{ person_id }}</p>
 
 <search-person-panel 
 	id="personSearch" uid="person_id">
 </search-person-panel>
+
+<%= form_tag(create_relation_person_path(@person), method: "post", class: "form-horizontal") do %>
+	<% if @person.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h4>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="form-group">
+  		<label class="col-sm-2 control-label" for="person_id">id</label>
+    	<div class="col-sm-2">
+      	<input type="text" name="uid" id="uid" class="form-control" ng-model="person_id">
+      </div>
+    </div>
+    <div class="form-group">
+  		<label class="col-sm-2 control-label" for="person_id">Relation Type</label>
+    	<div class="col-sm-2">
+      	<%= select_tag(:relation_desc, options_for_select(Person.relation_desc.options)) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 text-center columns">
+        <%= submit_tag 'submit', class: 'button' %>
+    </div>
+  </div>
+<% end %>
+
+
+
