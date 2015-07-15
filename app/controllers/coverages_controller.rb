@@ -34,6 +34,9 @@ class CoveragesController < ApplicationController
     else
       @coverage = @rider.coverages.new
     end
+
+    # Set parent coverage
+    @coverage.coverage_id = params[:coverage_id]
     
   end
 
@@ -109,7 +112,10 @@ class CoveragesController < ApplicationController
   # GET /coverages/new_master
   def new_master
     @coverage = Coverage.new
+    # Type
     @coverage.coverage_type = 'master'
+    # Set parent coverage
+    @coverage.coverage_id = params[:coverage_id]
   end
 
   # GET /coverages/1/edit_master
@@ -200,7 +206,7 @@ class CoveragesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coverage_params
-      params.require(:coverage).permit(:key, :description, :value, :tag_list, :reference_id)
+      params.require(:coverage).permit(:key, :description, :value, :tag_list, :reference_id, :coverage_id)
     end
 
     # Get metric

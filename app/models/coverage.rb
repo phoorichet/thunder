@@ -1,6 +1,10 @@
 class Coverage < ActiveRecord::Base
 	belongs_to :rider
 
+	# Self relation
+	has_many :sub_coverages, class_name: "Coverage", foreign_key: "coverage_id"
+	belongs_to :coverage, class_name: "Coverage"
+
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 
 	scope :master, ->(){where(coverage_type: 'master')}

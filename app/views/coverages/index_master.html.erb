@@ -14,7 +14,6 @@
         <tr>
           <th>Key</th>
           <th>Value</th>
-          <th>Description</th>
           <th>Tag List</th>
           <th colspan="3"></th>
         </tr>
@@ -23,9 +22,15 @@
       <tbody>
         <% @coverages.each do |coverage| %>
           <tr>
-            <td><%= coverage.key %></td>
+            <td>
+              <p>
+                <%= coverage.key %>
+              </p>
+              <p style="color: grey;">
+                <%= coverage.description %>
+              </p>
+            </td>
             <td><%= coverage.value %></td>
-            <td><%= coverage.description %></td>
             <td><%= coverage.tag_list %></td>
             <td><%= link_to 'Show', master_coverage_path(coverage) %></td>
             <td><%= link_to 'Edit', edit_master_coverage_path(coverage) %></td>

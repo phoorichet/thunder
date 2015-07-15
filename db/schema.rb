@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710184354) do
+ActiveRecord::Schema.define(version: 20150715165738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +58,10 @@ ActiveRecord::Schema.define(version: 20150710184354) do
     t.string   "coverage_type"
     t.integer  "reference_id"
     t.string   "value"
+    t.integer  "coverage_id"
   end
 
+  add_index "coverages", ["coverage_id"], name: "index_coverages_on_coverage_id", using: :btree
   add_index "coverages", ["coverage_type"], name: "index_coverages_on_coverage_type", using: :btree
 
   create_table "dividends", force: :cascade do |t|

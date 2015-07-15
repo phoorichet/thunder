@@ -21,10 +21,10 @@
   <dd><%= @book.end_at %></dd>
 
   <dt>Assured person:</dt>
-  <dd><%= @book.assured_person.fullname %></dd>
+  <dd><%= @book.assured_person.fullname if @book.assured_person %></dd>
 
   <dt>Payer person:</dt>
-  <dd><%= @book.payer_person.fullname %></dd>
+  <dd><%= @book.payer_person.fullname if @book.payer_person %></dd>
 
 </dl>
 
