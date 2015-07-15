@@ -40,6 +40,10 @@ class Person < ActiveRecord::Base
         self.income ? self.income.to_s(:currency, precision: 0) : "N/A"
     end
 
+    def fullname
+        "#{self.first_name} #{self.last_name}"
+    end
+
     ############################ RELATION ######################################
 
     # Get all the parents that the person belongs to.

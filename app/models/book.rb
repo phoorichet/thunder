@@ -4,6 +4,9 @@ class Book < ActiveRecord::Base
 	has_many :riders, :dependent => :destroy
 	has_many :pas, :dependent => :destroy
 
+	belongs_to :assured_person, class_name: "Person", foreign_key: "assured_person_id"
+	belongs_to :payer_person, class_name: "Person", foreign_key: "payer_person_id"
+
 	validates :number, presence: true
 
 	# main_insurance return the insurance associated with this book.

@@ -25,7 +25,6 @@
 
             Api.Person.search(params, function(data){
                 $scope.user_list = data;
-                console.log(data);
             }, function(error){
 
             })            
@@ -36,6 +35,12 @@
             var newAbsUrl = $location.absUrl().split('?')[0] + "?uid=" + id
             console.log(newAbsUrl);
             window.location.href = newAbsUrl;
+        }
+
+        $scope.cleanUp = function(){
+          $scope.uid = null;
+          $scope.firstname = null;
+          $scope.lastname = null;
         }
 
     }

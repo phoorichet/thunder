@@ -37,10 +37,32 @@
           <%= f.date_select :end_at, :include_blank => true, class: "form-control" %>
         </div>
       </div>
+            <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :assured_person_id, class: 'control-label'  %>
+        </div>
+        <div class="col-lg-2">
+          <input class="form-control" type="text" name="book[assured_person_id]" id="book_assured_person_id" ng-model="assured_person_id">
+        </div>
+        <div class="col-lg-2">
+          <search-person-panel  id="assured_person_id_search" uid="assured_person_id"></search-person-panel>
+        </div>
+      </div>
+            <div class="form-group">
+        <div class="col-lg-2">
+          <%= f.label :payer_person, class: 'control-label'  %>
+        </div>
+        <div class="col-lg-2">
+          <input class="form-control" type="text" name="book[payer_person_id]" id="book_payer_person_id" ng-model="payer_person_id">
+        </div>
+        <div class="col-lg-2">
+          <search-person-panel  id="payer_person_id" uid="payer_person_id"></search-person-panel>
+        </div>
+      </div>
       
       <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-          <%= f.submit 'create book', class: "btn btn-primary" %>
+          <%= f.submit 'submit', class: "btn btn-primary" %>
         </div>`
       </div>
     <% end %>
