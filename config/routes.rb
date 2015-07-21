@@ -62,6 +62,11 @@ Rails.application.routes.draw do
       get 'new_relation'
       post 'create_relation'
       delete 'delete_relation'
+
+      # Aggegration views
+      get 'summary'
+      get 'all_books'
+      get 'tax'
     end
     collection do
       get 'search'

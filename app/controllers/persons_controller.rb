@@ -1,24 +1,27 @@
 class PersonsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_person, only: [:show, :edit, :update, :destroy, 
-                        :create_parent, :new_relation, :create_relation, :delete_relation]
+                        :create_parent, :new_relation, :create_relation, 
+                        :delete_relation, :all_books, :summary]
   before_action :breadcrumb, only: [:show, :edit, :index]
 
   # GET /persons
   # GET /persons.json
   def index
     page = params[:page] || 1
-    @persons = Person.page(page).order_by_fist_name
+    @persons = current_user.persons.page(page).order_by_fist_name
   end
 
   # GET /persons/1
   # GET /persons/1.json
   def show
+    page = params[:page] || 1
+    @persons = current_user.persons.page(page).order_by_fist_name
   end
 
   # GET /persons/new
   def new
-    @person = Person.new
+    @person = current_user.persons.new
   end
 
   # GET /persons/1/edit
@@ -28,7 +31,7 @@ class PersonsController < ApplicationController
   # POST /persons
   # POST /persons.json
   def create
-    @person = Person.new(person_params)
+    @person = current_user.persons.new(person_params)
 
     respond_to do |format|
       if @person.save
@@ -68,7 +71,7 @@ class PersonsController < ApplicationController
   # PUT /person/1/set_parent
   # PUT /person/1/set_parent.json
   def set_parent
-    parent = Person.find(person_params[:parent_id])
+    parent = current_user.persons.find(person_params[:parent_id])
     @person.parent = parent
     respond_to do |format|
       if @person.save
@@ -86,7 +89,7 @@ class PersonsController < ApplicationController
     first_name = params[:first_name]
     last_name  = params[:last_name]
 
-    @persons = Person.search_first_name(first_name).search_last_name(last_name)
+    @persons = current_user.persons.search_first_name(first_name).search_last_name(last_name)
   end
 
   def new_relation
@@ -95,7 +98,7 @@ class PersonsController < ApplicationController
   def create_relation
     id = params[:uid]
     relation_desc = params[:relation_desc]
-    person = Person.find_by(id: id)
+    person = current_user.persons.find_by(id: id)
 
     # Invalid person and relation
     if person == nil or relation_desc == ""
@@ -137,7 +140,7 @@ class PersonsController < ApplicationController
   def delete_relation
     id = params[:uid]
     relation_desc = params[:relation_desc]
-    person = Person.find_by(id: id)
+    person = current_user.persons.find_by(id: id)
 
 
     # Invalid person and relation
@@ -177,8 +180,18 @@ class PersonsController < ApplicationController
     
   end
 
+  def summary
+    page = params[:page] || 1
+    @persons = current_user.persons.page(page).order_by_fist_name
+  end
 
-   def breadcrumb
+  def all_books
+    page = params[:page] || 1
+    @persons = current_user.persons.page(page).order_by_fist_name
+  end
+
+
+  def breadcrumb
     add_breadcrumb "Person", persons_path
     add_breadcrumb @person.first_name, person_path(@person) if @person
   end
@@ -186,13 +199,13 @@ class PersonsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Person.find(params[:id])
+      @person = current_user.persons.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).permit(:first_name, :last_name, :gender, :date_of_birth, \
         :marital_status, :spouse_id, :income, :national_id, :passport_id, :height, 
-        :weight, :occupation, :person_type, :is_smoking, :parent_id)
+        :weight, :occupation, :person_type, :is_smoking, :parent_id, :mobile, :company)
     end
 end

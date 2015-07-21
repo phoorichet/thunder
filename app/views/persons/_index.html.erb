@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to new_person_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Person
+    <% end %>
+    <!-- div class="page-header">
+      <%= link_to new_person_path, class: 'btn btn-primary' do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        New Person
+      <% end %>
+      <h1>Listing persons</h1>
+    </div -->
+  </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <% alphabet = "" %>
+        <% @persons.each do |person|%>
+          <% if alphabet != person.first_name.first %>
+              <% alphabet = person.first_name.first %>
+               <div class="row">
+                  <div class="col-xs-4">
+                    <div>
+                      <%= alphabet %>
+                    </div>
+                  </div>
+              </div>
+          <% end %>
+          <div class="row">
+              <div class="col-xs-8 col-xs-offset-4">
+                <div>
+                  <%= link_to person_path(person) do %>
+                    <%= person.first_name %> <%= person.last_name %>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+        <% end %> 
+    </div>
+</div>
+
+

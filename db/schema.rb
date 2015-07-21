@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715165738) do
+ActiveRecord::Schema.define(version: 20150721173610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20150715165738) do
 
   create_table "insurances", force: :cascade do |t|
     t.string   "name"
-    t.float    "amount"
-    t.float    "premium"
+    t.float    "amount",             default: 0.0
+    t.float    "premium",            default: 0.0
     t.integer  "protection_length"
     t.integer  "paid_period_length"
     t.string   "consider_year"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20150715165738) do
     t.string   "company"
     t.integer  "reference_id"
     t.integer  "book_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "minimum_age"
     t.integer  "maximum_age"
     t.string   "group"
@@ -156,6 +156,9 @@ ActiveRecord::Schema.define(version: 20150715165738) do
     t.datetime "updated_at",     null: false
     t.string   "ancestry"
     t.integer  "employer_id"
+    t.integer  "user_id"
+    t.string   "company"
+    t.string   "mobile"
   end
 
   add_index "persons", ["ancestry"], name: "index_persons_on_ancestry", using: :btree

@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+	<li role="presentation">
+  		<%= active_link_to "SUMMARY", summary_person_path(@person) %>
+  </li>
+  <li>
+  		<%= active_link_to "ALL", all_books_person_path(@person) %>
+  </li>
+  <li>
+  		<%= active_link_to "TAX", tax_person_path(@person) %>
+  </li>
+</ul>

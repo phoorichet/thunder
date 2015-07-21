@@ -20,6 +20,8 @@ class Person < ActiveRecord::Base
     has_many :employees, class_name: "Person", foreign_key: "employer_id"
     belongs_to :employer, class_name: "Person"
 
+    belongs_to :user
+
 
     # scopes
     scope :order_by_fist_name, -> { order(first_name: :asc)}
@@ -169,5 +171,9 @@ class Person < ActiveRecord::Base
         end
 
         result
+    end
+
+    def sum_insurance_premium
+        # self.books.reduce(0) {|n, book| book.sum_insurance_premium + n}
     end
 end

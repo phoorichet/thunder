@@ -82,3 +82,6 @@ gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-gener
 
 # Enumerize
 gem 'enumerize'
+
+# Active link_to
+gem 'active_link_to'

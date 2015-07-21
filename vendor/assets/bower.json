@@ -11,6 +11,6 @@
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest",
     "angular-animate": "latest",
-    "skrollr": "latest"
+    "holderjs": "latest"
   }
 }

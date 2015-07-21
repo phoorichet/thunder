@@ -22,4 +22,5 @@
 //= require angular-animate
 //= require moment
 //= require skrollr
+//= require holderjs/holder
 //= require_tree .

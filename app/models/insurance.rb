@@ -47,6 +47,11 @@ class Insurance < ActiveRecord::Base
 		self.insurance_type == 'rider'
 	end
 
+	# TODO
+	def status
+		'active'
+	end
+
 	# copied_attributes copies only some attributes and return as a hash
 	def copied_attributes
 		attrs = {}

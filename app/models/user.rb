@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :workings
   has_many :companies, through: :workings
+  has_many :persons
 
   before_validation do
     self.uid = email if uid.blank?

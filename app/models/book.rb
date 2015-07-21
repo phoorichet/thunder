@@ -7,6 +7,8 @@ class Book < ActiveRecord::Base
 	belongs_to :assured_person, class_name: "Person", foreign_key: "assured_person_id"
 	belongs_to :payer_person, class_name: "Person", foreign_key: "payer_person_id"
 
+	default_scope { order(created_at: 'ASC') }
+
 	validates :number, presence: true
 
 	# main_insurance return the insurance associated with this book.
@@ -29,6 +31,22 @@ class Book < ActiveRecord::Base
 	# check if the book has main insurance
 	def has_main_insurance?
 		self.insurances.main.limit(1).first != nil
+	end
+
+	def begin_age
+		delta = (self.begin_at - self.person.date_of_birth) / 365
+		delta.to_i
+	end
+
+	def end_age
+		return nil if self.end_at == nil
+
+		delta = (self.end_at - self.person.date_of_birth) / 365
+		delta.to_i
+	end
+
+	def sum_insurance_premium
+		# self.insurances.inject(0) { |n, mem|  mem.premium + n}
 	end
 
 end

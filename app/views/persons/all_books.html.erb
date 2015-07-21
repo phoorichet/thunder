@@ -20,7 +20,7 @@
 
         <div class="row">
           <div class="col-md-2">
-            <img src="holder.js/100x100">
+            <img src="holder.js/150x150">
           </div>
           <div class="col-md-6">
             <div class="row">
@@ -135,28 +135,77 @@
       <div class="col-md-12">
       <%= render "navs" %>
 
-      <div>
-
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#hostpitalBenefits" aria-controls="hostpitalBenefits" role="tab" data-toggle="tab">HOSPITAL BENEFITS</a></li>
-          <li role="presentation"><a href="#liveBenefits" aria-controls="liveBenefits" role="tab" data-toggle="tab">LIVE BENEFITS</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="hostpitalBenefits">
-            <div>HOSPITAL</div>
-          </div>
-          <div role="tabpanel" class="tab-pane" id="liveBenefits">
-            <div>LIVE</div>
+      <div class="row">
+        <div class="col-md-4 col-lg-4">
+          <div class="book-wrapper">
+            <%= link_to new_person_book_path(@person) do %>
+              <div>เพิ่มเลมกรมธรรม</div>
+              <div><%= Date.current %></div>
+            <% end %>
           </div>
         </div>
-
+        <% @person.books.length.downto(1).each do |i| %>
+        <% book = @person.books[i-1] %>
+        <div class="col-md-4 col-lg-4">
+          <div class="book-wrapper">
+            <%= link_to person_book_path(book.person, book) do %>
+              
+              <div class="row">
+                <div class="col-xs-12">
+                  <%= i %> 
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <%= book.main_insurance.name if book.main_insurance %> 
+                </div>
+                <div class="col-xs-6">
+                  <%= book.main_insurance.status if book.main_insurance %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div><%= book.begin_age %></div>
+                  <div><%= book.begin_at %></div>
+                  <div>เริ่มกรมธรรม์ (อายุ)</div>
+                </div>
+                <div class="col-xs-6">
+                  <div><%= book.end_age %></div>
+                  <div><%= book.end_at %></div>
+                  <div>สิ้นสุดกรมธรรม์ (อายุ)</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div><%= book.main_insurance.amount if book.main_insurance %></div>
+                  <div>ทุนประกัน</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div><%= book.riders.map { |r| r.name } .join(", ") %></div>
+                  <div>สัญญาคุมครองเพิ่มเติม</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div><%= book.number %></div>
+                  <div>เลขที่กรมธรรม์</div>
+                </div>
+              </div>
+               <div class="row">
+                <div class="col-xs-12">
+                  <div>เบี้ยประกันรวม </div>
+                </div>
+              </div>
+            
+            <% end %>
+          </div>
+        </div>
+        <% end %>
       </div>
-       
-        
 
+      
         <!-- section class="book">
           <h1 class="text-center">Books</h1>
           
@@ -186,6 +235,12 @@
 
           <%= link_to "Add book", new_person_book_path(@person) %>
         </section -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>เบี้ยประกันรวม <%= @person.sum_insurance_premium %></div>
       </div>
     </div>
   </div>
