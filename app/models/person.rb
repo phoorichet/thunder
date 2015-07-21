@@ -174,6 +174,6 @@ class Person < ActiveRecord::Base
     end
 
     def sum_insurance_premium
-        # self.books.reduce(0) {|n, book| book.sum_insurance_premium + n}
+        self.books.inject(0) { |sum, i|  sum + i.sum_insurance_premium }
     end
 end

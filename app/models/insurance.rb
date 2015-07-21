@@ -19,17 +19,16 @@ class Insurance < ActiveRecord::Base
 	validates :protection_length, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
 	# insurance type must be ['master', 'main', 'rider']
-	validates :insurance_type, inclusion: { in: %w(master main rider) }
+	validates :insurance_type, inclusion: { in: %w(master main) }
 
 	validate :main_insurance_can_have_only_one
 
 	# Scopes
 	scope :master, ->(){ where(insurance_type: 'master') }
 	scope :main,  ->(){ where(insurance_type: 'main') }
-	scope :rider,  ->(){ where(insurance_type: 'rider') }
 
 	def main_insurance_can_have_only_one
-		if self.book and self.book.has_main_insurance?
+		if self.book and self.book.has_main_insurance? and self.book.main_insurance.id != self.id
 			errors.add(:insurance_type, "This book alreay have the main insurance. Please removed it first to proceed!")
 		end
 	end
@@ -41,10 +40,6 @@ class Insurance < ActiveRecord::Base
 
 	def is_main?
 		self.insurance_type == 'main'
-	end
-
-	def is_rider?
-		self.insurance_type == 'rider'
 	end
 
 	# TODO

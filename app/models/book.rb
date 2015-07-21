@@ -46,7 +46,7 @@ class Book < ActiveRecord::Base
 	end
 
 	def sum_insurance_premium
-		# self.insurances.inject(0) { |n, mem|  mem.premium + n}
+		self.insurances.inject(0) { |sum, i|  sum + i.premium }
 	end
 
 end
