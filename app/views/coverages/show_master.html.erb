@@ -64,7 +64,9 @@
 
 <div class="row">
   <div class="col-xs-12">
+    <% if @coverage.coverage_id == nil %>
     <%= link_to "Add", new_master_coverage_path(coverage_id: @coverage.id), class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 
