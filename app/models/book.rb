@@ -49,4 +49,8 @@ class Book < ActiveRecord::Base
 		self.insurances.inject(0) { |sum, i|  sum + i.premium }
 	end
 
+	def sum_insurance_amount
+		self.insurances.inject(0) { |sum, i|  sum + i.amount }
+	end
+
 end

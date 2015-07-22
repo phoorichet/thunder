@@ -144,8 +144,16 @@
             <% end %>
           </div>
         </div>
+        <% count_row = 1 %>
         <% @person.books.length.downto(1).each do |i| %>
         <% book = @person.books[i-1] %>
+
+        <% if count_row % 3 == 0 %>
+          </div>
+          <div class="row">
+        <% end %>
+
+
         <div class="col-md-4 col-lg-4">
           <div class="book-wrapper">
             <%= link_to person_book_path(book.person, book) do %>
@@ -178,7 +186,7 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div><%= book.main_insurance.amount if book.main_insurance %></div>
-                  <div>ทุนประกัน</div>
+                  <div>ทุนประกัน <%= book.sum_insurance_amount %></div>
                 </div>
               </div>
               <div class="row">
@@ -195,13 +203,15 @@
               </div>
                <div class="row">
                 <div class="col-xs-12">
-                  <div>เบี้ยประกันรวม </div>
+                  <div>เบี้ยประกันรวม <%= book.sum_insurance_premium %></div>
                 </div>
               </div>
             
             <% end %>
           </div>
         </div>
+
+        <% count_row += 1 %>
         <% end %>
       </div>
 
@@ -243,5 +253,41 @@
         <div>เบี้ยประกันรวม <%= @person.sum_insurance_premium %></div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>สรุปกรมธรรม์</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>กรมธรรม์หลัก</th>
+              <th>ความคุ้มครองช่วยเหลือ</th>
+              <th>ความคุ้มครอง</th>
+              <th>อายุ</th>
+              <th>เบี้ยประกัน</th>
+              <th>ปี</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @person.insurances.each do |insurance| %>
+              <tr>
+                <td><%= insurance.name %></td>
+                <td><%= insurance.amount %></td>
+                <td>1</td>
+                <td><%= insurance.premium %></td>
+                <td>1</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
