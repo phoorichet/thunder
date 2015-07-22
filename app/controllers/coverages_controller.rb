@@ -58,7 +58,6 @@ class CoveragesController < ApplicationController
             reference_coverage.sub_coverages.each do |d|
               values = d.copied_attributes
               values[:rider_id] = @rider.id
-              puts "------->>> #{values}"
               @coverage.sub_coverages.create(values) 
            end
           end

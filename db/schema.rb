@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722122251) do
+ActiveRecord::Schema.define(version: 20150722190816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.integer  "assured_person_id"
     t.integer  "payer_person_id"
   end
+
+  add_index "books", ["person_id"], name: "index_books_on_person_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -73,6 +75,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.datetime "updated_at",   null: false
   end
 
+  add_index "dividends", ["insurance_id"], name: "index_dividends_on_insurance_id", using: :btree
+
   create_table "insurances", force: :cascade do |t|
     t.string   "name"
     t.float    "amount",             default: 0.0
@@ -93,6 +97,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.string   "insurance_type"
     t.integer  "maximum_cover_age"
   end
+
+  add_index "insurances", ["book_id"], name: "index_insurances_on_book_id", using: :btree
 
   create_table "insured_users", force: :cascade do |t|
     t.string   "first_name"
@@ -166,6 +172,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
 
   add_index "persons", ["ancestry"], name: "index_persons_on_ancestry", using: :btree
   add_index "persons", ["employer_id"], name: "index_persons_on_employer_id", using: :btree
+  add_index "persons", ["spouse_id"], name: "index_persons_on_spouse_id", using: :btree
+  add_index "persons", ["user_id"], name: "index_persons_on_user_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"
@@ -202,6 +210,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.float    "coverage_rate"
   end
 
+  add_index "protections", ["insurance_id"], name: "index_protections_on_insurance_id", using: :btree
+
   create_table "returns", force: :cascade do |t|
     t.integer  "year"
     t.integer  "age"
@@ -211,6 +221,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.integer  "insurance_id"
     t.float    "rate"
   end
+
+  add_index "returns", ["insurance_id"], name: "index_returns_on_insurance_id", using: :btree
 
   create_table "riders", force: :cascade do |t|
     t.string   "name"
@@ -230,6 +242,7 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.integer  "maximum_cover_age"
   end
 
+  add_index "riders", ["insurance_id"], name: "index_riders_on_insurance_id", using: :btree
   add_index "riders", ["rider_type"], name: "index_riders_on_rider_type", using: :btree
 
   create_table "surrenders", force: :cascade do |t|
@@ -247,6 +260,8 @@ ActiveRecord::Schema.define(version: 20150722122251) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  add_index "surrenders", ["insurance_id"], name: "index_surrenders_on_insurance_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
