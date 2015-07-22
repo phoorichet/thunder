@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721173610) do
+ActiveRecord::Schema.define(version: 20150722072404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150721173610) do
     t.string   "group"
     t.boolean  "is_main"
     t.string   "insurance_type"
+    t.integer  "maximum_cover_age"
   end
 
   create_table "insured_users", force: :cascade do |t|
@@ -216,14 +217,15 @@ ActiveRecord::Schema.define(version: 20150721173610) do
     t.string   "description"
     t.string   "status"
     t.string   "rider_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "insurance_id"
     t.integer  "reference_id"
     t.string   "code_name"
     t.integer  "book_id"
     t.float    "premium"
     t.float    "amount"
+    t.integer  "maximum_cover_age"
   end
 
   add_index "riders", ["rider_type"], name: "index_riders_on_rider_type", using: :btree

@@ -47,6 +47,13 @@ class Insurance < ActiveRecord::Base
 		'active'
 	end
 
+	def protect_until_age
+		person = self.book.person
+		end_at = self.created_at.years_since(self.protection_length).to_date
+		delta = (end_at - person.date_of_birth) / 365
+		delta.to_i
+	end
+
 	# copied_attributes copies only some attributes and return as a hash
 	def copied_attributes
 		attrs = {}
@@ -60,6 +67,7 @@ class Insurance < ActiveRecord::Base
 		attrs[:group] = self.group
 		attrs[:company] = self.company
 		attrs[:tag_list] = self.tag_list
+		attrs[:maximum_cover_age] = self.maximum_cover_age
 
 		# Ref ID
 		attrs[:reference_id] = self.id

@@ -259,7 +259,6 @@
         <div>สรุปกรมธรรม์</div>
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-12">
         <table class="table table-hover">
@@ -278,10 +277,46 @@
             <% @person.insurances.each do |insurance| %>
               <tr>
                 <td><%= insurance.name %></td>
+                <td></td>
                 <td><%= insurance.amount %></td>
-                <td>1</td>
+                <td><%= insurance.protect_until_age %></td>
                 <td><%= insurance.premium %></td>
-                <td>1</td>
+                <td><%= insurance.paid_period_length %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>สัญญาคุ้มครองเพิ่มเติม</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>กรมธรรม์หลัก</th>
+              <th>ความคุ้มครองช่วยเหลือ</th>
+              <th>ความคุ้มครอง</th>
+              <th>อายุ</th>
+              <th>เบี้ยประกัน</th>
+              <th>ปี</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @person.riders.each do |rider| %>
+              <tr>
+                <td><%= rider.name %></td>
+                <td></td>
+                <td><%= rider.amount %></td>
+                <td><%= 1 %></td>
+                <td><%= rider.premium %></td>
+                <td><%= 1 %></td>
               </tr>
             <% end %>
           </tbody>

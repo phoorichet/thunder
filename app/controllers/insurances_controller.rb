@@ -227,7 +227,7 @@ class InsurancesController < ApplicationController
         :book_id, :master_insurance_id, :reference_id, :tag_list, :is_main, :minimum_age,
         :maximum_age, :consider_year, :consider_gender, :have_surrender, 
         :have_dividend, :paid_period_length, :protection_length, :group,
-        :company, :insurance_type, :amount, :premium)
+        :company, :insurance_type, :amount, :premium, :maximum_cover_age)
     end
 
     def set_book

@@ -184,4 +184,12 @@ class Person < ActiveRecord::Base
     def insurances
         self.books.map { |b| b.main_insurance } .select {|d| d != nil}
     end
+
+    def riders
+        riders = []
+        self.books.each do |b|
+            b.riders.each {|r| riders << r if r != nil}
+        end
+        riders
+    end
 end

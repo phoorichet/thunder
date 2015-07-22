@@ -185,7 +185,8 @@ class RidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rider_params
-      params.require(:rider).permit(:name, :description, :status, :code_name, :reference_id, :tag_list, :premium, :amount)
+      params.require(:rider).permit(:name, :description, :status, :code_name, 
+        :reference_id, :tag_list, :premium, :amount, :maximum_cover_age)
     end
 
     def set_book
