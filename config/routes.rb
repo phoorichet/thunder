@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       get 'summary'
       get 'all_books'
       get 'tax'
+      get 'show_book'
     end
     collection do
       get 'search'

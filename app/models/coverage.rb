@@ -7,11 +7,12 @@ class Coverage < ActiveRecord::Base
 
 	acts_as_taggable # Alias for acts_as_taggable_on :tags
 
-	scope :master, ->(){where(coverage_type: 'master')}
+	scope :master, ->(){ where(coverage_type: 'master') }
+	scope :only_parent, ->(){ where("coverage_id is NULL") }
 
 	validates :key, presence: true
 
-	default_scope { order(id: :asc)}
+	default_scope { order(created_at: :desc) }
 
 	def is_master?
 		self.coverage_type == 'master'

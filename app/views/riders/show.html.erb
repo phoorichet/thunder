@@ -57,7 +57,7 @@
   </thead>
 
   <tbody>
-    <% @rider.coverages.each do |coverage| %>
+    <% @rider.coverages.only_parent.each do |coverage| %>
       <tr>
         <td><%= coverage.key %></td>
         <td><%= coverage.value %></td>

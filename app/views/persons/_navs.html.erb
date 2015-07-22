@@ -8,4 +8,9 @@
   <li>
   		<%= active_link_to "TAX", tax_person_path(@person) %>
   </li>
+  <% @person.books.each do |book|%>
+  <li>
+  		<%= active_link_to book.get_rider_names, show_book_person_path(@person, book_id: book.id) %>
+  </li>
+  <% end %>
 </ul>

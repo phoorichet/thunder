@@ -2,7 +2,7 @@ class PersonsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_person, only: [:show, :edit, :update, :destroy, 
                         :create_parent, :new_relation, :create_relation, 
-                        :delete_relation, :all_books, :summary]
+                        :delete_relation, :all_books, :summary, :show_book]
   before_action :breadcrumb, only: [:show, :edit, :index]
 
   # GET /persons
@@ -188,6 +188,12 @@ class PersonsController < ApplicationController
   def all_books
     page = params[:page] || 1
     @persons = current_user.persons.page(page).order_by_fist_name
+  end
+
+  def show_book
+    page = params[:page] || 1
+    @persons = current_user.persons.page(page).order_by_fist_name
+    @book = @person.books.find_by(id: params[:book_id].to_i) 
   end
 
 

@@ -147,37 +147,13 @@ class Person < ActiveRecord::Base
 
     ############################ END RELATION ##################################
 
-    # Shortcut to get all the riders that belong to person's books
-    def riders
-        result = []
-        self.books.each do |book|
-            book.plans.each do |plan|
-                plan.riders.each do |rider|
-                    result << rider
-                end
-            end
-        end
 
-        result
-    end
 
     def pas
         result = []
         self.books.each do |book|
             book.pas.each do |pa|
                 result << pa
-            end
-        end
-
-        result
-    end
-
-    # return all the plan associatd with the user books
-    def plans
-        result = []
-        self.books.each do |book|
-            book.plans.each do |plan|
-                result << plan
             end
         end
 
@@ -202,5 +178,50 @@ class Person < ActiveRecord::Base
             b.riders.each {|r| riders << r if r != nil}
         end
         riders
+    end
+
+    def find_rider(rider_id)
+        r = riders.select {|d| d.id == rider_id} 
+        r.size > 0 ? r.first : nil
+    end
+
+    def coverages_tagged_with(tags)
+        result = []
+        self.books.each do |book|
+            book.riders.each do |rider|
+                rider.coverages.tagged_with(tags).each do |coverage|
+                    result << coverage 
+                end
+            end
+        end
+        result
+    end
+
+    def coverages_tagged_with_life
+        coverages_tagged_with(["ความคุ้มครองและผลประโยชน์ที่ได้รับด้านชีวิต"])
+    end
+
+    def coverages_tagged_with_in_patient
+        coverages_tagged_with(["ค่ารักษาพยาบาลผู้ป่วยใน"])
+    end
+
+    def coverages_tagged_with_out_patient
+        coverages_tagged_with(["ค่ารักษาพยาบาลผู้ป่วยนอก"])
+    end
+
+    def coverages_tagged_with_medicine_in_patient
+        coverages_tagged_with(["ค่ายากลับบ้านต่อการรักษาเป็นผู้ป่วยใน"])
+    end
+
+    def coverages_tagged_with_cancer_disease
+        coverages_tagged_with(["ค่ารักษาโรคมะเร็งหรือโรคร้ายต่อเนื่อง"])
+    end
+
+    def coverages_tagged_with_payback_in_hospital
+        coverages_tagged_with(["ค่าชดเชยระหว่างการรักษาตัวในรพ"])
+    end
+
+    def coverages_tagged_with_accident
+        coverages_tagged_with(["ชดเชยเนื่องจากอุบัติเหตุ"])
     end
 end

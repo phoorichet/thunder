@@ -146,10 +146,69 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="hostpitalBenefits">
-            <div>HOSPITAL</div>
+            <div>
+              <h3>ค่ารักษาพยาบาลผู้ป่วยนอก</h3>
+              <% @person.coverages_tagged_with_in_patient.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
+
+            <div>
+              <h3>ค่ารักษาพยาบาลผู้ป่วยใน</h3>
+              <% @person.coverages_tagged_with_out_patient.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
+
+            <div>
+              <h3>ค่ายากลับบ้านต่อการรักษาเป็นผู้ป่วยใน</h3>
+              <% @person.coverages_tagged_with_medicine_in_patient.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
+
+            <div>
+              <h3>ค่ารักษาโรคมะเร็งหรือโรคร้ายต่อเนื่อง</h3>
+              <% @person.coverages_tagged_with_cancer_disease.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
+
+            <div>
+              <h3>ค่าชดเชยระหว่างการรักษาตัวในรพ</h3>
+              <% @person.coverages_tagged_with_payback_in_hospital.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
+
+            <div>
+              <h3>ชดเชยเนื่องจากอุบัติเหตุ</h3>
+              <% @person.coverages_tagged_with_accident.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
           </div>
           <div role="tabpanel" class="tab-pane" id="liveBenefits">
-            <div>LIVE</div>
+            <div>
+              <h3>ความคุ้มครองและผลประโยชน์ที่ได้รับด้านชีวิต</h3>
+              <% @person.coverages_tagged_with_life.each do |coverage| %>
+              <div>
+                <%= coverage.key %> -- <%= coverage.value %>
+              </div>
+              <% end %>
+            </div>
           </div>
         </div>
 

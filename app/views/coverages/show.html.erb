@@ -54,10 +54,18 @@
         </td>
         <td><%= coverage.value %></td>
         <td><%= coverage.tag_list %></td>
-        <td><%= link_to 'Show', rider_coverage(coverage.rider, coverage) %></td>
+        <td><%= link_to 'Show', rider_coverage_path(coverage.rider, coverage) %></td>
         <td><%= link_to 'Edit', edit_rider_coverage_path(coverage.rider, coverage) %></td>
-        <td><%= link_to 'Destroy', coverage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', rider_coverage_path(coverage.rider, coverage), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-xs-12">
+    <% if @coverage.coverage_id == nil %>
+      <%= link_to "Add", new_rider_coverage_path(@coverage.rider, coverage_id: @coverage.id), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
