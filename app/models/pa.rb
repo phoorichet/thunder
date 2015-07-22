@@ -19,6 +19,8 @@ class Pa < ActiveRecord::Base
 		attrs[:description] = self.description
 		attrs[:status] = self.status
 		attrs[:premium] = self.premium
+		attrs[:amount] = self.amount
+		attrs[:maximum_cover_age] = self.maximum_cover_age
 		attrs[:reference_id] = self.id
 		attrs[:tag_list] = self.tag_list
 

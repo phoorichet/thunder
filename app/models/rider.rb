@@ -9,6 +9,8 @@ class Rider < ActiveRecord::Base
 
 	scope :master, ->(){ where(rider_type: 'master')}
 
+	default_scope { order(created_at: 'ASC') }
+
 	def is_master?
 		self.rider_type == 'master'
 	end

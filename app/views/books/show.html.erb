@@ -48,6 +48,7 @@
             <th>Consider year</th>
             <th>Consider gender</th>
             <th>Company</th>
+            <th>Maximum Age</th>
             <th></th>
         <th></th>
         <th></th>
@@ -64,6 +65,7 @@
             <td><%= insurance.consider_year %></td>
             <td><%= insurance.consider_gender %></td>
             <td><%= insurance.company %></td>
+            <td><%= insurance.maximum_cover_age %></td>
             <td><%= link_to 'Show', book_insurance_path(@book, @book.main_insurance) %></td>
             <td><%= link_to 'Edit', edit_book_insurance_path(@book, @book.main_insurance) %></td>
             <td><%= link_to 'Destroy', [@book, @book.main_insurance], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -91,6 +93,7 @@
       <th>Code name</th>
       <th>Premium</th>
       <th>Amount</th>
+      <th>Maximum Age</th>
       <th>Tags</th>
       <th colspan="3"></th>
     </tr>
@@ -105,6 +108,7 @@
         <td><%= rider.code_name %></td>
         <td><%= rider.premium %></td>
         <td><%= rider.amount %></td>
+        <td><%= rider.maximum_cover_age %></td>
         <td><%= rider.tag_list %></td>
         <td><%= link_to 'Show', [rider.book, rider] %></td>
         <td><%= link_to 'Edit', edit_book_rider_path(rider.book, rider) %></td>

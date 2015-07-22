@@ -161,6 +161,17 @@ class Person < ActiveRecord::Base
         result
     end
 
+    def pas
+        result = []
+        self.books.each do |book|
+            book.pas.each do |pa|
+                result << pa
+            end
+        end
+
+        result
+    end
+
     # return all the plan associatd with the user books
     def plans
         result = []

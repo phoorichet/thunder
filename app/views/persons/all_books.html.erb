@@ -279,7 +279,7 @@
                 <td><%= insurance.name %></td>
                 <td></td>
                 <td><%= insurance.amount %></td>
-                <td><%= insurance.protect_until_age %></td>
+                <td><%= insurance.maximum_cover_age %></td>
                 <td><%= insurance.premium %></td>
                 <td><%= insurance.paid_period_length %></td>
               </tr>
@@ -311,11 +311,52 @@
           <tbody>
             <% @person.riders.each do |rider| %>
               <tr>
-                <td><%= rider.name %></td>
+                <td>
+                  <div><%= rider.name %></div>
+                  <div><%= rider.description %></div>
+                </td>
                 <td></td>
                 <td><%= rider.amount %></td>
-                <td><%= 1 %></td>
+                <td><%= rider.maximum_cover_age %></td>
                 <td><%= rider.premium %></td>
+                <td><%= 1 %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>สัญญาคุ้มครองอุบัติเหตุ</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>กรมธรรม์หลัก</th>
+              <th>ความคุ้มครองช่วยเหลือ</th>
+              <th>ความคุ้มครอง</th>
+              <th>อายุ</th>
+              <th>เบี้ยประกัน</th>
+              <th>ปี</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @person.pas.each do |pa| %>
+              <tr>
+                <td>
+                  <div><%= pa.name %></div>
+                  <div><%= pa.description %></div>
+                </td>
+                <td></td>
+                <td><%= pa.amount %></td>
+                <td><%= pa.maximum_cover_age %></td>
+                <td><%= pa.premium %></td>
                 <td><%= 1 %></td>
               </tr>
             <% end %>
