@@ -51,6 +51,19 @@ class CoveragesController < ApplicationController
 
     respond_to do |format|
       if @coverage.save
+        # Deep clone sub coverage in the reference rider
+        if coverage_params[:reference_id] != ""
+          reference_coverage = Coverage.find_by_id(coverage_params[:reference_id])
+          if reference_coverage
+            reference_coverage.sub_coverages.each do |d|
+              values = d.copied_attributes
+              values[:rider_id] = @rider.id
+              puts "------->>> #{values}"
+              @coverage.sub_coverages.create(values) 
+           end
+          end
+        end
+
         format.html { redirect_to [@coverage.rider, @coverage], notice: 'Coverage was successfully created.' }
         format.json { render :show, status: :created, location: @coverage }
       else

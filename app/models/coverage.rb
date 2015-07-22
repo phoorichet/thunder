@@ -25,6 +25,7 @@ class Coverage < ActiveRecord::Base
 		attrs[:value] = self.value
 		attrs[:description] = self.description
 		attrs[:reference_id] = self.id
+		attrs[:rider_id] = self.rider_id
 		attrs[:tag_list] = self.tag_list
 
 		attrs
