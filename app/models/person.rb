@@ -168,6 +168,14 @@ class Person < ActiveRecord::Base
         self.books.inject(0) { |sum, i|  sum + i.sum_insurance_amount }
     end
 
+    def sum_rider_premium
+       self.books.inject(0) { |sum, i|  sum + i.sum_rider_premium } 
+    end
+
+    def sum_rider_amount
+        self.books.inject(0) { |sum, i|  sum + i.sum_rider_amount } 
+    end
+
     def insurances
         self.books.map { |b| b.main_insurance } .select {|d| d != nil}
     end

@@ -53,6 +53,14 @@ class Book < ActiveRecord::Base
 		self.insurances.inject(0) { |sum, i|  sum + i.amount }
 	end
 
+	def sum_rider_premium
+		self.riders.inject(0) { |sum, i|  sum + i.premium }
+	end
+
+	def sum_rider_amount
+		self.riders.inject(0) { |sum, i|  sum + i.amount }
+	end
+
 	def get_rider_names
 		self.riders.pluck("name").join(", ")
 	end

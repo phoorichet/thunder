@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722190816) do
+ActiveRecord::Schema.define(version: 20150723055044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20150722190816) do
     t.integer  "maximum_cover_age"
   end
 
+  add_index "riders", ["book_id"], name: "index_riders_on_book_id", using: :btree
   add_index "riders", ["insurance_id"], name: "index_riders_on_insurance_id", using: :btree
   add_index "riders", ["rider_type"], name: "index_riders_on_rider_type", using: :btree
 
