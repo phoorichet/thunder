@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723055044) do
+ActiveRecord::Schema.define(version: 20150723082614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,10 +139,10 @@ ActiveRecord::Schema.define(version: 20150723055044) do
     t.string   "pa_type"
     t.integer  "reference_id"
     t.text     "description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.float    "premium"
-    t.float    "amount"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.float    "premium",           default: 0.0
+    t.float    "amount",            default: 0.0
     t.integer  "maximum_cover_age"
   end
 
