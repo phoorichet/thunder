@@ -22,7 +22,7 @@
           <% if alphabet != person.first_name.first %>
               <% alphabet = person.first_name.first %>
                <div class="row">
-                  <div class="col-xs-4">
+                  <div class="col-xs-2">
                     <div>
                       <%= alphabet %>
                     </div>
@@ -30,7 +30,7 @@
               </div>
           <% end %>
           <div class="row">
-              <div class="col-xs-8 col-xs-offset-4">
+              <div class="col-xs-10 col-xs-offset-2">
                 <div>
                   <%= link_to person_path(person) do %>
                     <%= person.first_name %> <%= person.last_name %>

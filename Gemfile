@@ -85,3 +85,5 @@ gem 'enumerize'
 
 # Active link_to
 gem 'active_link_to'
+
+gem 'font-awesome-sass'

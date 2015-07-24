@@ -37,6 +37,9 @@ class Person < ActiveRecord::Base
     attr_accessor :relation_desc
 
     enumerize :relation_desc, in: [:parent, :spouse, :child, :sibling, :employer, :employee]
+    enumerize :gender, in: [:male, :female]
+
+    ############################ PROPERTIES ####################################
 
     def income_formatted
         self.income ? self.income.to_s(:currency, precision: 0) : "N/A"
@@ -44,6 +47,11 @@ class Person < ActiveRecord::Base
 
     def fullname
         "#{self.first_name} #{self.last_name}"
+    end
+
+    def current_age
+        delta = (Date.current - self.date_of_birth) / 365
+        delta.to_i
     end
 
     ############################ RELATION ######################################
@@ -143,6 +151,10 @@ class Person < ActiveRecord::Base
         self.parents.each {|d| d.parents.map { |f| f.relation_desc = 'ancestor'; f  } .each {|g| relations << g}}
         
         relations
+    end
+
+    def relation_groups
+        self.relations.group_by {|d| d.relation_desc}
     end
 
     ############################ END RELATION ##################################
