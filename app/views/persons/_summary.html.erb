@@ -1,0 +1,199 @@
+<section class="book">
+  <div class="row">
+    <div class="col-md-12">
+    <%= render "navs" %>
+
+    <!-- Reder here -- >
+      <div>
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active">
+              <a href="#hostpitalBenefits" aria-controls="hostpitalBenefits" role="tab" data-toggle="tab">
+                <h3>HOSPITAL BENEFITS</h3>
+              </a>
+            </li>
+            <li role="presentation">
+              <a href="#liveBenefits" aria-controls="liveBenefits" role="tab" data-toggle="tab">
+                <h3>LIVE BENEFITS</h3>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="hostpitalBenefits">
+              <section class="benefit center-block">
+                  <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ค่ารักษาพยาบาลผู้ป่วยนอก</h3>    
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_in_patient.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+
+                  <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ค่ารักษาพยาบาลผู้ป่วยใน</h3>   
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_out_patient.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+
+                  <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ค่ายากลับบ้านต่อการรักษาเป็นผู้ป่วยใน</h3> 
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_medicine_in_patient.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+
+                  <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ค่ารักษาโรคมะเร็งหรือโรคร้ายต่อเนื่อง</h3>
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_cancer_disease.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+
+                  <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ค่าชดเชยระหว่างการรักษาตัวในรพ</h3>
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_payback_in_hospital.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+
+                  <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ชดเชยเนื่องจากอุบัติเหตุ</h3>
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_accident.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+
+              </section>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="liveBenefits">
+              <section class="benefit center-block">
+                 <div class="benefit-card">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>ความคุ้มครองและผลประโยชน์ที่ได้รับด้านชีวิต</h3>
+                      </div>
+                    </div>
+                    
+                    <% @person.coverages_tagged_with_life.each do |coverage| %>
+                    <div class="row coverage-row">
+                      <div class="col-md-9">
+                        <div>
+                          <%= coverage.key %>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="pull-right">
+                            <%= coverage.value %>
+                          </div>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+              </section>
+            </div>
+          </div>
+
+      </div>
+       
+    </div>
+  </div>
+</section>

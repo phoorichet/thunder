@@ -1,0 +1,42 @@
+<section class="book">
+  <div class="row">
+    <div class="col-md-12">
+    <%= render "navs" %>
+
+    <!-- Reder here -->
+    <div class="rider-wrapper center-block">
+
+
+      
+      <% @book.riders.each do |rider| %>
+        <div class="row">
+          <div class="col-md-12">
+              <h3><%= rider.name %></h3>  
+          </div>
+        </div>
+
+        <% rider.coverages.only_parent.each do |coverage| %>
+          <div class="row">
+            <div class="col-md-9">
+              <div><%= coverage.key %></div>
+              <div><%= coverage.description %></div>
+              <div>
+                <p>
+                 <% coverage.sub_coverages.each do |sc| %> 
+                    <div><%= sc.key%> -- <%= sc.value %></div>
+                 <% end %>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="pull-right"><%= coverage.value %></div>
+            </div>
+          </div>
+        <% end %>
+      
+      <% end %>
+     
+    </div>
+
+  </div>
+</section>

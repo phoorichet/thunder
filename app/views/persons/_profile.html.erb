@@ -1,0 +1,153 @@
+ <section class="profile-wrapper">
+  <div class="row">
+    <div class="col-md-8" style="margin-left: 82px">
+      <div class="page-header">
+        <%= link_to persons_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-list-alt"></span>
+          Back
+        <% end %>
+        <%= link_to edit_person_path(@person), class: 'btn btn-primary' do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+          Edit
+        <% end %>
+        <h3>INDIVIDUAL < <%= @person.fullname %></h3>
+      </div>
+      
+      <div class="profile-1">
+          <div class="row">
+            <div class="col-md-2">
+              <img src="holder.js/110x120">
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12">
+                  <div>
+                      <div><h4><%= @person.first_name.upcase %></h4></div>
+                      <div><%= @person.company %></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="border-top: 2px dotted;">
+                <div class="col-md-3 box-right-dotted">
+                  <div class="detailed-box">
+                      <div class="box-header"><%= @person.gender.first.upcase if @person.gender %></div>
+                      <div class="box-subheader">Gender</div>
+                  </div>
+                </div>
+                <div class="col-md-3 box-right-dotted">
+                  <div class="detailed-box">
+                      <div class="box-header"><%= @person.current_age %></div>
+                      <div class="box-subheader">Age</div>
+                  </div>
+                </div>
+                <div class="col-md-3 box-right-dotted">
+                  <div class="detailed-box">
+                      <div class="box-header">Classic</div>
+                      <div class="box-subheader">Rank</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="detailed-box">
+                      <div class="box-header"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                      <div class="box-subheader">Prospect</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              
+            </div>
+          </div>
+      </div>
+
+      <div class="profile-2">
+
+          <div class="row">
+            <div class="col-md-3">
+              MOBILE
+            </div>
+            <div class="col-md-3">
+              <%= @person.mobile %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              BIRTHDATE
+            </div>
+            <div class="col-md-3">
+              <%= @person.date_of_birth %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2">
+              JOB
+            </div>
+            <div class="col-md-2 right-border">
+              <%= @person.occupation %>
+            </div>
+            <div class="col-md-2">
+              CIGARATTE
+            </div>
+            <div class="col-md-2">
+              <%= @person.is_smoking %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              ID NUMBER
+            </div>
+            <div class="col-md-3">
+              <%= @person.national_id %>
+            </div>
+          </div>
+
+          <div class="row end-row">
+            <div class="col-md-2">
+              WEIGHT
+            </div>
+            <div class="col-md-2 right-border">
+              <%= @person.weight %>
+            </div>
+            <div class="col-md-2">
+              HEIGHT
+            </div>
+            <div class="col-md-2">
+              <%= @person.height %>
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <section class="relation">
+        <div class="page-header">
+          <%= link_to new_relation_person_path(@person), class: 'btn btn-primary' do %>
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+          <% end %>
+          <h2>Family</h2>
+        </div>
+
+        <% @person.relation_groups.each do |group, values| %>
+          <div class="group-wrapper">
+              <div class="group-header"><%= group %></div>
+              <% values.each do |person| %>
+                  <div class="group-person">
+                    <%= link_to person_path(person) do %> 
+                        <%= person.first_name %> <%= person.last_name %> 
+                    <% end %>
+                  </div>
+                  <!-- td><%= link_to 'Show', person_path(person) %></td>
+                  <td><%= link_to 'Destroy', delete_relation_person_path(@person, uid: person.id, relation_desc: person.relation_desc) , method: :delete, data: { confirm: 'Are you sure?' } %></td -->
+              <% end %>
+
+          </div>
+        <% end %>
+
+      </section>
+    </div>
+  </div>
+</section>
