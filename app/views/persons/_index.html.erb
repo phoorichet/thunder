@@ -16,7 +16,14 @@
 </div>
 
 <div class="row">
+  <div class="col-xs-12">
+    
+  </div>
+</div>
+
+<div class="row">
     <div class="col-xs-12">
+      <div class="person-index">
         <% alphabet = "" %>
         <% @persons.each do |person|%>
           <% if alphabet != person.first_name.first %>
@@ -31,7 +38,7 @@
           <% end %>
           <div class="row">
               <div class="col-xs-10 col-xs-offset-2">
-                <div>
+                <div class="person-name">
                   <%= link_to person_path(person) do %>
                     <%= person.first_name %> <%= person.last_name %>
                   <% end %>
@@ -39,6 +46,7 @@
               </div>
           </div>
         <% end %> 
+      </div>
     </div>
 </div>
 
